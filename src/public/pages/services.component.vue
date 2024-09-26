@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "services.component"
+  name: "services"
 }
 </script>
 
