@@ -5,9 +5,9 @@ export default {
 </script>
 
 <template>
-
+  <p style="color: black">services works</p>
 </template>
 
-<style scoped>
+<style>
 
 </style>
