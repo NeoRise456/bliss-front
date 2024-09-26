@@ -1,7 +1,7 @@
 <script>
 
 import {defineComponent} from "vue";
-import HeaderToolbar from "./public/components/header-toolbar.component.vue";
+import HeaderToolbar from "./shared/components/header-toolbar.component.vue";
 
 export default defineComponent({
   components: {HeaderToolbar}
