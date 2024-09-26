@@ -1,3 +1,23 @@
+<script>
+export default {
+    data() {
+      return {
+        drawer: false,
+        items: [
+          {label: 'Home', to: '/home'},
+          {label: 'Services', to: '/services'},
+          {label: 'Schedule', to: '/schedule'}
+        ]
+      }
+    },
+    methods: {
+      toggleDrawer() {
+        this.drawer = !this.drawer
+      }
+    }
+  }
+</script>
+
 <template>
   <header class="header-toolbar">
     <pv-toolbar style="padding: 5px; background-color: #D1E4FA; border-style: none;">
@@ -10,10 +30,9 @@
       </template>
       <template #center>
         <div class="flex items-center gap-2">
-          <pv-button class="custom-button" label="Home" text plain style="color: #37123c"/>
-          <pv-button class="custom-button" label="Services" text plain style="color: #37123c"/>
-          <pv-button class="custom-button" label="Pricing" text plain style="color: #37123c"/>
-          <pv-button class="custom-button" label="Schedule" text plain style="color: #37123c" />
+          <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
+            <pv-button :href="href" class="custom-button" @click="navigate" text plain><p style="color: #37123c; margin:0;">{{item.label}}</p></pv-button>
+          </router-link>
         </div>
       </template>
       <template #end>
@@ -31,25 +50,23 @@
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
-.header-toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
+  .header-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
 
-.custom-button:hover {
-  background-color: #D1E4FA !important;
-}
+  .custom-button:hover {
+    background-color: #D1E4FA !important;
+  }
 
-.custom-button {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-}
+  .custom-button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+  }
 </style>
-<script setup lang="ts">
-</script>

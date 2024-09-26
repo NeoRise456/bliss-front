@@ -1,15 +1,15 @@
 <script>
+  import HeaderToolbar from "./shared/components/header-toolbar.component.vue";
 
-import {defineComponent} from "vue";
-import HeaderToolbar from "./public/components/header-toolbar.component.vue";
-
-export default defineComponent({
-  components: {HeaderToolbar}
-})
+  export default {
+    name: 'app',
+    components: {HeaderToolbar}
+  }
 </script>
 
 <template>
   <header-toolbar/>
+  <router-view/>
 </template>
 
 <style>
