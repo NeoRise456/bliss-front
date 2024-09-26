@@ -1,12 +1,15 @@
 <script>
+import LanguageSwitcher from "./language-switcher.component.vue";
+
 export default {
+  components: {LanguageSwitcher},
     data() {
       return {
         drawer: false,
         items: [
-          {label: 'Home', to: '/home'},
-          {label: 'Services', to: '/services'},
-          {label: 'Schedule', to: '/schedule'}
+          {label: this.$t('toolbar.home'), to: '/home'},
+          {label: this.$t('toolbar.services'), to: '/services'},
+          {label: this.$t('toolbar.schedule'), to: '/schedule'}
         ]
       }
     },
@@ -31,17 +34,18 @@ export default {
       <template #center>
         <div class="flex items-center gap-2">
           <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
-            <pv-button :href="href" class="custom-button" @click="navigate" text plain><p style="color: #37123c; margin:0;">{{item.label}}</p></pv-button>
+            <pv-button :href="href" class="custom-button" @click="navigate" text plain><p style="color: #37123c; margin:0;">{{item.label}} </p></pv-button>
           </router-link>
         </div>
+
       </template>
       <template #end>
         <pv-button class="custom-button" icon="pi pi-search" text style="color: #37123c"/>
         <pv-button class="custom-button" icon="pi pi-shopping-cart" text style="color: #37123c"/>
         <pv-button class="custom-button" icon="pi pi-heart" text style="color: #37123c"/>
         <pv-button class="custom-button" icon="pi pi-user" label="Login / Register" text plain style="color: #37123c" />
-        <div class="flex items-center gap-2 m-2">
-          <pv-button label="Share" severity="contrast" size="small" />
+        <div class="flex items-center gap-3 m-2">
+          <language-switcher/>
           <i class="pi pi-cog" style="font-size: 2rem"></i>
         </div>
       </template>
