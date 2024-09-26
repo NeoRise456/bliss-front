@@ -12,7 +12,6 @@
         <div class="flex items-center gap-2">
           <pv-button class="custom-button" label="Home" text plain style="color: #37123c"/>
           <pv-button class="custom-button" label="Services" text plain style="color: #37123c"/>
-          <pv-button class="custom-button" label="Pricing" text plain style="color: #37123c"/>
           <pv-button class="custom-button" label="Schedule" text plain style="color: #37123c" />
         </div>
       </template>
