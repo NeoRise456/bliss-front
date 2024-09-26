@@ -35,6 +35,7 @@ import SelectButton from "primevue/selectbutton";
 import DialogService from "primevue/dialogservice";
 import ToastService from "primevue/toastservice";
 import Avatar from "primevue/avatar";
+import router from "./router/index.js";
 
 const app = createApp(App);
 
@@ -52,7 +53,8 @@ app.use(PrimeVue, {
 
 app.use(ConfirmationService)
     .use(DialogService)
-    .use(ToastService);
+    .use(ToastService)
+    .use(router);
 
 app.component('pv-button', Button)
     .component('pv-card', Card)
