@@ -1,3 +1,9 @@
 {
-
+  "toolbar": {
+    "home": "Home",
+    "services": "Services",
+    "schedule": "Schedule",
+    "login": "Login",
+    "register": "Register"
+  }
 }
