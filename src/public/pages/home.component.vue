@@ -5,9 +5,9 @@ export default {
 </script>
 
 <template>
-
+  <p style="color: black">home works</p>
 </template>
 
-<style scoped>
+<style>
 
 </style>
