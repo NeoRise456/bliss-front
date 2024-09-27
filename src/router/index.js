@@ -14,7 +14,7 @@ const router = createRouter({
         {path: '/schedule', name:'Schedule', component: ScheduleComponent, meta: {title: 'Schedule'}},
         {path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: {title: 'ServiceDetail'}},
         {path: '/business-services', name:'My Services', component: BusinessServicesComponent, meta:{title:'My Services'}},
-        {path: '/business-services/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
+        {path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
         {path: '/', redirect: '/home'}
     ]
 });

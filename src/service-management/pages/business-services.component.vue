@@ -20,7 +20,7 @@ export default {
     </template>
     <template #footer>
       <div class="add-button">
-        <router-link to="/business-services/create-service">
+        <router-link to="/business-service-management/create-service">
           <pv-button icon="pi pi-plus"
                      icon-pos="right"
                      label="Add service"

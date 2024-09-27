@@ -127,6 +127,66 @@
       "raiting": 4.1,
       "created_at": "2021-01-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
+    },
+    {
+      "service_name": "Service Test",
+      "price": 23.5,
+      "description": "This is a service test",
+      "company_id": 1,
+      "duration": 60,
+      "raiting": 3.5,
+      "sales": 8,
+      "created_at": "2024-09-27T15:27:23.299Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 9
+    },
+    {
+      "service_name": "Service Test",
+      "price": 23.5,
+      "description": "This is a service test",
+      "company_id": 1,
+      "duration": 60,
+      "raiting": 3.5,
+      "sales": 8,
+      "created_at": "2024-09-27T15:27:29.942Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 10
+    },
+    {
+      "service_name": "Service Test 1",
+      "price": 35,
+      "description": "Chikronos services",
+      "company_id": 1,
+      "duration": 60,
+      "raiting": 3.5,
+      "sales": 8,
+      "created_at": "2024-09-27T15:28:56.798Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 11
+    },
+    {
+      "service_name": "Service Test 2",
+      "price": 3.99,
+      "description": "This is a 3.99 service.",
+      "company_id": 1,
+      "duration": 60,
+      "raiting": 3.5,
+      "sales": 8,
+      "created_at": "2024-09-27T15:45:08.868Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 12
+    },
+    {
+      "service_name": "Service Test Video",
+      "price": 12.45,
+      "description": "This is a video service test",
+      "company_id": 1,
+      "duration": 60,
+      "raiting": 3.5,
+      "sales": 8,
+      "created_at": "2024-09-27T16:07:52.485Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 13
     }
   ]
 }
