@@ -1,3 +1,9 @@
 {
-
+  "toolbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "schedule": "Agenda",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse"
+  }
 }
