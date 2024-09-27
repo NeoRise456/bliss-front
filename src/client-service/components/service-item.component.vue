@@ -8,6 +8,11 @@ export default {
       type: Service,
       required: true
     }
+  },
+  methods: {
+    redirectToServiceDetail(serviceId) {
+      this.$router.push({ name: 'Service', params: { id: serviceId } });
+    }
   }
 }
 </script>
@@ -26,7 +31,11 @@ export default {
     </template>
     <template #footer>
       <div class="flex gap-4 mt-1">
-        <pv-button icon="pi pi-arrow-right" icon-pos="right" label="Learn More" class="w-full" />
+        <pv-button icon="pi pi-arrow-right"
+                   icon-pos="right"
+                   label="Learn More"
+                   class="w-full"
+                   @click="redirectToServiceDetail(service.id)"/>
       </div>
     </template>
   </pv-card>
