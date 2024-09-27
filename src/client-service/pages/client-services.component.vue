@@ -5,7 +5,7 @@ import PriceFilter from "../components/price-filter.component.vue";
 import CategoryFilter from "../components/category-filter.component.vue";
 
 export default {
-  name: "services",
+  name: "client-services",
   components: {CategoryFilter, PriceFilter, ServiceList, serviceListComponent}
 }
 </script>
