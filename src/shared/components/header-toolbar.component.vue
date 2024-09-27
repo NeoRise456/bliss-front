@@ -59,12 +59,14 @@ export default {
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
   .header-toolbar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    height: 60px;
   }
+
 
   .custom-button:hover {
     background-color: #D1E4FA !important;
