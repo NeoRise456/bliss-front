@@ -1,7 +1,9 @@
 <script>
 
+  import {ServicesApiService} from "../services/services-api.service.js";
+
   export default {
-    name: "create-business-service.component",
+    name: "create-business-service",
     data(){
       return {
         serviceName: null,
@@ -9,9 +11,9 @@
         description: null,
         selectedCategory: null,
         categories: [
-          {name: 'Category 1', cname: 'Category 1'},
-          {name: 'Category 2', cname: 'Category 2'},
-          {name: 'Category 3', cname: 'Category 3'}
+          {name: '1', cname: '1'},
+          {name: '2', cname: '2'},
+          {name: '3', cname: '3'}
         ]
       }
     },
@@ -21,6 +23,27 @@
       },
       onUpload() {
         this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+      },
+      async createService() {
+        const serviceData = {
+          service_name: this.serviceName,
+          price: this.price,
+          description: this.description,
+          category_id: this.selectedCategory ? this.selectedCategory.id : null,
+          company_id: 1, // Assuming a static company_id for this example
+          duration: 60, // Assuming a static duration for this example
+          raiting: 3.5, // Assuming a default rating for new services
+          sales: 8, // Assuming no sales initially
+          created_at: new Date().toISOString(),
+          img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp" // Assuming a static image URL for this example
+        };
+        try {
+          const serviceApiService = new ServicesApiService();
+          const response = await serviceApiService.createService(serviceData);
+          this.$toast.add({ severity: 'success', summary: 'Service Created', detail: 'Your service has been created successfully.', life: 3000 });
+        } catch (error) {
+          this.$toast.add({ severity: 'error', summary: 'Error', detail: 'There was an error creating the service.', life: 3000 });
+        }
       }
     }
   }
@@ -112,7 +135,7 @@
             </div>
           </template>
           <template #footer>
-            <pv-button label="Create Service" class="mt-5" style="background-color: #37123C; color: white"/>
+            <pv-button label="Create Service" class="mt-5" style="background-color: #37123C; color: white" @click="createService"/>
           </template>
         </pv-card>
       </div>
@@ -139,6 +162,7 @@
 
   .custom-text-input{
     background-color: #ffffff;
+    color: black;
   }
 
   .custom-cascade-select {
