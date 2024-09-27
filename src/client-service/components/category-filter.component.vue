@@ -1,6 +1,6 @@
 
 <script>
-import {ServiceApiService} from "../services/service-api.service.js";
+import {ServicesApiService} from "../services/services-api.service.js";
 // Adjusted import path
 
 export default {
@@ -19,7 +19,7 @@ export default {
   methods: {
     async fetchCategories() {
       try {
-        const serviceApiService = new ServiceApiService();
+        const serviceApiService = new ServicesApiService();
         const response = await serviceApiService.getCategories();
         this.categories = response.data;  // Assign the fetched categories to local state
       } catch (error) {
