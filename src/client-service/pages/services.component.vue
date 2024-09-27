@@ -11,12 +11,12 @@ export default {
 </script>
 
 <template>
-  <div style="margin: 6rem 0rem; display: flex; ">
-    <div>
+  <div class="flex m-5">
+    <div class="flex-1 text-center p-4">
       <category-filter/>
       <price-filter/>
     </div>
-    <div>
+    <div class="flex-1  text-center p-4  mx-4">
       <service-list/>
     </div>
   </div>
