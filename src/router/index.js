@@ -9,9 +9,10 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/home', name:'Home', component: HomeComponent, meta: {title: 'Home'}},
-        {path: '/services', name:'Services', component: ServicesComponent, meta: {title: 'Services'}},
+        {path: '/client-services', name:'Services', component: ClientServicesComponent, meta: {title: 'Services'}},
         {path: '/schedule', name:'Schedule', component: ScheduleComponent, meta: {title: 'Schedule'}},
-        {path: '/service/:id', name: 'Service', component: ServiceDetailComponent, meta: {title: 'ServiceDetail'}},
+        {path: '/client-service/:id', name: 'Service', component: ClientServiceDetailComponent, meta: {title: 'ServiceDetail'}},
+        {path: '/business-services', name:'My Services', component: BusinessServicesComponent, meta:{title:'My Services'}},
         {path: '/', redirect: '/home'}
     ]
 });

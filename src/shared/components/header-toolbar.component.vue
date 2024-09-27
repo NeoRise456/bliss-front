@@ -7,9 +7,10 @@ export default {
       return {
         drawer: false,
         items: [
-          {label: this.$t('toolbar.home'), to: '/home'},
-          {label: this.$t('toolbar.services'), to: '/services'},
-          {label: this.$t('toolbar.schedule'), to: '/schedule'}
+          {label: "Home", to: '/home'},
+          {label: "Services", to: '/client-services'},
+          {label: "Schedule", to: '/schedule'},
+          {label: "My Services", to:'/business-services'}
         ]
       }
     },
