@@ -1,6 +1,6 @@
 <script>
-import serviceListComponent from "../components/service-list.component.vue";
-import ServiceList from "../components/service-list.component.vue";
+import serviceListComponent from "../components/client-service-list.component.vue";
+import ServiceList from "../components/client-service-list.component.vue";
 import PriceFilter from "../components/price-filter.component.vue";
 import CategoryFilter from "../components/category-filter.component.vue";
 

@@ -1,6 +1,6 @@
 <script>
-import {ServiceApiService} from "../services/service-api.service.js";
-import ServiceItem from "./service-item.component.vue";
+import {ServicesApiService} from "../services/services-api.service.js";
+import ServiceItem from "./client-service-item.component.vue";
 import {Service} from "../model/service.entity.js";
 
 export default {
@@ -19,7 +19,7 @@ export default {
   methods: {
     async fetchServices() {
       try {
-        const serviceApiService = new ServiceApiService();
+        const serviceApiService = new ServicesApiService();
         const response = await serviceApiService.getServices();
         this.services = response.data.map(service => new Service(
           service.id,
