@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
-import ServicesComponent from "../public/pages/services.component.vue";
+import ServicesComponent from "../client-service/pages/services.component.vue";
 import ScheduleComponent from "../public/pages/schedule.component.vue";
 
 const router = createRouter({
