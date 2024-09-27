@@ -36,6 +36,7 @@ import DialogService from "primevue/dialogservice";
 import ToastService from "primevue/toastservice";
 import Avatar from "primevue/avatar";
 import router from "./router/index.js";
+import Slider from "primevue/slider";
 
 const app = createApp(App);
 
@@ -79,6 +80,7 @@ app.component('pv-button', Button)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
     .component('pv-avatar', Avatar)
+    .component('pv-slider', Slider)
     .component('pv-select-button', SelectButton);
 
 app.use(i18n);
