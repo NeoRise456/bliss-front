@@ -10,3 +10,9 @@ Welcome to Bliss! This web application allows users to browse, book, and manage 
 - **Reviews & Ratings:** Leave feedback on services received to help others make informed decisions.
 - **Admin Dashboard:** Manage services, users, and appointments effectively.
 
+## Technologies Used
+
+- **Frontend:** Vue, json-server,prime vue, prime flex.
+- **Backend:** 
+- **Database:** 
+- **Styling:** 
