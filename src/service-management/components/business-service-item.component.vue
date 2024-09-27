@@ -20,15 +20,21 @@ export default {
 </script>
 
 <template>
-  <pv-card style="width:20rem; height: auto; overflow:hidden">
+  <pv-card class="bg-white item-card">
     <template #header>
-      <img alt="user header" :src="service.img" width="320px"/>
+      <div style="padding: 10px">
+        <img alt="user header" :src="service.img" width="300px"/>
+      </div>
     </template>
-    <template #title> {{ service.service_name }}</template>
+    <template #title>
+      <div class="content-text">
+        {{ service.service_name }}
+      </div>
+    </template>
     <template #content>
-      <p class="m-0">
+      <div class="content-text">
         {{ service.description }}
-      </p>
+      </div>
     </template>
     <template #footer>
       <div class="flex gap-4 mt-1">
@@ -49,5 +55,15 @@ export default {
 </template>
 
 <style scoped>
-
+  .item-card{
+    width:20rem;
+    height: auto;
+    overflow:hidden;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+  }
+  .content-text {
+    color: #37123C;
+  }
 </style>

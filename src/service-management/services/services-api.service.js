@@ -61,5 +61,12 @@ export class ServicesApiService {
         return http.get(`/services/${id}`);
     }
 
-
+    /**
+     * Create a new service
+     * @param service
+     * @returns {Promise<axios.AxiosResponse<any>>}
+     */
+    createService(service) {
+        return http.post('/services', service);
+    }
 }

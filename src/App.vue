@@ -9,9 +9,13 @@
 
 <template>
   <header-toolbar/>
-  <router-view/>
+  <div class="main-content">
+    <router-view/>
+  </div>
 </template>
 
 <style>
-
+  .main-content {
+    padding-top: 60px; /* Same as the height of the toolbar */
+  }
 </style>
