@@ -1,11 +1,14 @@
 <script>
+import AppointmentService from "../../schedule-management/pages/appointment-service.component.vue";
+
 export default {
-  name: "schedule"
+  name: "schedule",
+  components: {AppointmentService}
 }
 </script>
 
 <template>
-  <p style="color: black">schedule works</p>
+  <appointment-service/>
 </template>
 
 <style>

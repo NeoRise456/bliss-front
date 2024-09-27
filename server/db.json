@@ -27,6 +27,32 @@
       "created_at": "2021-01-01T00:00:00.000Z"
     }
   ],
+  "schedules": [
+    {
+      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/dejsrdntls0e2xufqkud.jpg",
+      "id": 1,
+      "title": "Hair Cut -SOHO",
+      "date": "Jun 10, 2024",
+      "time": "09:41 AM",
+      "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
+    },
+    {
+      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/djelvjcgzbxpirkppocv.jpg",
+      "id": 2,
+      "title": "Hair dye-MY LUCKY",
+      "date": "Jun 10, 2024",
+      "time": "09:41 AM",
+      "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
+    },
+    {
+      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
+      "id": 3,
+      "title": "Botox treatment-MY LUCKY",
+      "date": "Jun 10, 2024",
+      "time": "09:41 AM",
+      "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
+    }
+  ],
   "services": [
     {
       "id": 1,
