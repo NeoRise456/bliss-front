@@ -24,7 +24,7 @@ export default {
 <style scoped>
 .custom-card {
   background-color: white; /* Fondo blanco para la tarjeta */
-  width: 100%; /* Asegura que la tarjeta ocupe todo el ancho disponible */
+  width: 100%;
   margin: 0 auto; /* Centra la tarjeta horizontalmente */
   padding: 20px;
   border-radius: 10px; /* Bordes redondeados */
