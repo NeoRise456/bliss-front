@@ -33,6 +33,7 @@ export default {
 };
 </script>
 
+
 <template>
   <div style="width: 40rem; margin: 1rem;">
     <pv-card>
@@ -46,7 +47,6 @@ export default {
               placeholder="Min Value"
           />
 
-
           <pv-input-text
               id="max-input"
               v-model.number="value[1]"
@@ -55,16 +55,14 @@ export default {
           />
         </div>
 
-
         <pv-slider
             v-model="value"
             range
             class="w-56"
-            min="0"
+            :min="0"
             :max="1000"
             style="margin: 1rem"
         />
-
       </template>
       <template #footer>
         <pv-button label="Filter"/>
