@@ -1,8 +1,9 @@
 import {createRouter, createWebHistory} from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
-import ServicesComponent from "../client-service/pages/services.component.vue";
 import ScheduleComponent from "../public/pages/schedule.component.vue";
-import ServiceDetailComponent from "../client-service/pages/service-detail.component.vue";
+import ClientServicesComponent from "../client-service/pages/client-services.component.vue";
+import ClientServiceDetailComponent from "../client-service/pages/client-service-detail.component.vue";
+import BusinessServicesComponent from "../client-service/pages/business-services.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
