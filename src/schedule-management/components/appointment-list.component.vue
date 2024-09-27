@@ -57,7 +57,7 @@ export default {
 
 /* Estilos para cada tarjeta individual */
 .appointment-item-container {
-  width: 100%; /* Asegura que cada tarjeta ocupe todo el ancho disponible */
+  width: 100%;
   margin-bottom: 20px; /* Añade espacio entre cada tarjeta */
 }
 @media (min-width: 768px) {
