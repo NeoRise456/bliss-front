@@ -37,6 +37,7 @@ import ToastService from "primevue/toastservice";
 import Avatar from "primevue/avatar";
 import router from "./router/index.js";
 import Slider from "primevue/slider";
+import CascadeSelect from "primevue/cascadeselect";
 
 const app = createApp(App);
 
@@ -81,7 +82,8 @@ app.component('pv-button', Button)
     .component('pv-toast', Toast)
     .component('pv-avatar', Avatar)
     .component('pv-slider', Slider)
-    .component('pv-select-button', SelectButton);
+    .component('pv-select-button', SelectButton)
+    .component('pv-cascade-select', CascadeSelect);
 
 app.use(i18n);
 
