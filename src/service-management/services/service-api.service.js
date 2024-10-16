@@ -1,15 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
-export class ServicesApiService {
+export class ServiceApiService {
 
-    /**
-     * Get all categories
-     * @returns {Promise<axios.AxiosResponse<any>>}
-     */
-
-    getCategories() {
-        return http.get('/categories');
-    }
 
     /**
      * Get a single category by ID
