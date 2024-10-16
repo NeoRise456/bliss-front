@@ -35,12 +35,12 @@ export default {
 
 
 <template>
-  <div style="width: 40rem; margin: 1rem;">
+  <div class="w-auto">
     <pv-card>
       <template #content>
         <h1> Filter By Price </h1>
 
-        <div style="margin: 1rem">
+        <div class="m-3 flex">
           <pv-input-text
               id="min-input"
               v-model.number="value[0]"
@@ -51,17 +51,16 @@ export default {
               id="max-input"
               v-model.number="value[1]"
               placeholder="Max Value"
-              style="margin-left: 1rem"
+              class="ml-2"
           />
         </div>
 
         <pv-slider
             v-model="value"
             range
-            class="w-56"
+            class="w-56 m-1"
             :min="0"
             :max="1000"
-            style="margin: 1rem"
         />
       </template>
       <template #footer>
