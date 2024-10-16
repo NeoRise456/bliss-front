@@ -1,6 +1,6 @@
 <script>
 
-  import {ServicesApiService} from "../services/services-api.service.js";
+  import {ServiceApiService} from "../services/service-api.service.js";
 
   export default {
     name: "create-business-service",
@@ -38,7 +38,7 @@
           img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp" // Assuming a static image URL for this example
         };
         try {
-          const serviceApiService = new ServicesApiService();
+          const serviceApiService = new ServiceApiService();
           const response = await serviceApiService.createService(serviceData);
           this.$toast.add({ severity: 'success', summary: 'Service Created', detail: 'Your service has been created successfully.', life: 3000 });
         } catch (error) {
