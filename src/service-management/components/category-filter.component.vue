@@ -1,37 +1,26 @@
 
 <script>
-import {ServicesApiService} from "../services/services-api.service.js";
-// Adjusted import path
+
 
 export default {
   name: "category-filter",
   components: {},
+  props: {
+    categories: {
+      type: Array,
+      default: []
+    }
+  },
   data() {
     return {
-      categories: [],
       selectedCategories: ['']
     };
-  },
-  mounted() {
-
-    this.fetchCategories();
-  },
-  methods: {
-    async fetchCategories() {
-      try {
-        const serviceApiService = new ServicesApiService();
-        const response = await serviceApiService.getCategories();
-        this.categories = response.data;  // Assign the fetched categories to local state
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    }
   }
 };
 </script>
 
 <template>
-  <pv-card style="width: 25rem; margin: 1rem;">
+  <pv-card class="m-1 w-auto">
     <template #title>Categories</template>
     <template #content>
       <div class="card flex justify-center">
