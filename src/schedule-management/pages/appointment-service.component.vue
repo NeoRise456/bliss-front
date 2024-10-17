@@ -4,7 +4,15 @@ import appointmentList from "../components/appointment-list.component.vue";
 
 export default {
   name: "appointment-service",
-  components: {appointmentList, appointmentsListComponent}
+  components: {appointmentList, appointmentsListComponent},
+  data() {
+    return {
+      userId: null // Inicializamos userId
+    };
+  },
+  created() {
+    this.userId = this.$route.params.userId; // Obtener userId de la ruta
+  }
 }
 </script>
 
@@ -15,7 +23,7 @@ export default {
     </template>
     <template #content>
       <div class="appointment-container">
-        <appointment-list/>
+        <appointment-list :userId="userId"/>
       </div>
     </template>
   </pv-card>
