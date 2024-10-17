@@ -6,6 +6,7 @@ export class Schedule {
         date = '',
         time = '',
         place = '',
+        userId = 0
     ) {
         this.img = img;
         this.id = id;
@@ -13,5 +14,6 @@ export class Schedule {
         this.date = date;
         this.time = time;
         this.place = place;
+        this.userId = userId;
     }
 }

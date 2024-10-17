@@ -9,4 +9,17 @@ export class ScheduleApiService {
         return http.get(`schedules/${id}`);
     }
 
+    getSchedulesByUserId(userId) {
+        return http.get('/schedules')
+            .then(response => {
+                // Filtrar las citas según el userId
+                const userSchedules = response.data.filter(schedule => schedule.userId === userId);
+                return userSchedules.length ? userSchedules : [];
+            })
+            .catch(error => {
+                console.error("Error fetching schedules by userId:", error);
+                throw error;
+            });
+    }
+
 }

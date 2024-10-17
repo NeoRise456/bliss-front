@@ -9,7 +9,7 @@ export default {
         items: [
           {label: "Home", to: '/home'},
           {label: "Services", to: '/client-services'},
-          {label: "Schedule", to: '/schedule'},
+          {label: "Schedule", to: '/schedule/1'},
           {label: "My Services", to:'/business-services'}
         ]
       }
