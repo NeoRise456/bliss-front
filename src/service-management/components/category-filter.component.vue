@@ -1,4 +1,5 @@
 <script>
+
 export default {
   name: "category-filter",
   props: {
@@ -26,6 +27,7 @@ export default {
 </script>
 
 <template>
+
   <pv-card class="m-1 w-auto">
     <template #title>Categories</template>
     <template #content>
@@ -43,5 +45,4 @@ export default {
 </template>
 
 <style scoped>
-/* Add your styles here */
 </style>

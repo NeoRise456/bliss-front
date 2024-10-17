@@ -2,6 +2,7 @@
 export default {
   name: "price-filter",
   props: {
+
     minServiceValue: {
       type: Number,
       required: true,
@@ -36,6 +37,7 @@ export default {
       this.$emit('update:modelValue', newValue);
     }
   },
+
   created() {
     this.value = [this.minServiceValue, this.maxServiceValue];
   }
@@ -45,18 +47,18 @@ export default {
 <template>
   <div class="w-auto">
     <pv-card>
-      <template #title>Price Filter</template>
+      <template #title> {{ $t('priceFilter.filterByPrice') }} </template>
       <template #content>
         <div class="m-3 flex">
           <pv-input-text
               id="min-input"
               v-model.number="value[0]"
-              placeholder="Min Value"
+              :placeholder="$t('priceFilter.minValue')"
           />
           <pv-input-text
               id="max-input"
               v-model.number="value[1]"
-              placeholder="Max Value"
+              :placeholder="$t('priceFilter.maxValue')"
               class="ml-2"
           />
         </div>

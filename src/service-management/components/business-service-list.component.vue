@@ -1,3 +1,4 @@
+
 <script>
 import {ServiceApiService} from "../services/service-api.service.js";
 import {Service} from "../model/service.entity.js";
@@ -41,11 +42,11 @@ export default {
 </script>
 
 <template>
-    <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
-      <business-service-item  v-for="service in services"
-                     :key="service.id"
-                     :service="service"/>
-    </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+    <business-service-item  v-for="service in services"
+                            :key="service.id"
+                            :service="service"/>
+  </div>
 </template>
 
 <style scoped>

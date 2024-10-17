@@ -3,7 +3,68 @@
     "home": "Home",
     "services": "Services",
     "schedule": "Schedule",
+    "myServices": "My Services",
     "login": "Login",
     "register": "Register"
+  },
+  "appointment": {
+    "title": "Title",
+    "date": "Date",
+    "time": "Time",
+    "place": "Place",
+    "noAppointments": "No appointments available for this user.",
+    "appointments": "Appointments"
+  },
+  "businessService": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "noServices": "No services available."
+  },
+  "categoryFilter": {
+    "title": "Categories",
+    "filterButton": "Filter"
+  },
+  "clientService": {
+    "learnMore": "Learn More",
+    "price": "Price"
+  },
+  "clientServiceList": {
+    "title": "Services"
+  },
+  "createBusinessService": {
+    "title": "Create your category",
+    "serviceName": "Service Name",
+    "categories": "Categories",
+    "upload": "Upload",
+    "price": "Price",
+    "description": "Description",
+    "createService": "Create Service"
+  },
+  "createBusinessText": {
+    "workAtTheSpeed": "Work at the speed",
+    "gradualAccumulation": "The gradual accumulation of information about atomic and small-scale behaviour.",
+    "learnMore": "Learn More",
+    "nameYourService": "Name your service",
+    "selectCategory": "Select a category",
+    "setPrice": "Set a price for your service",
+    "addDescription": "Add a description for your service.",
+    "upload": "Upload"
+  },
+  "priceFilter": {
+    "filterByPrice": "Filter By Price",
+    "minValue": "Min Value",
+    "maxValue": "Max Value",
+    "filter": "Filter"
+  },
+  "businessServices": {
+    "ourServices": "Our Services",
+    "addService": "Add service"
+  },
+  "clientServiceDetail": {
+    "serviceDetails": "Service Details",
+    "price": "Price",
+    "description": "Description",
+    "duration": "Duration",
+    "bookNow": "Book Now"
   }
 }

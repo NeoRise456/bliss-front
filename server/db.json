@@ -30,6 +30,7 @@
   "schedules": [
     {
       "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/dejsrdntls0e2xufqkud.jpg",
+      "userId": 1,
       "id": 1,
       "title": "Hair Cut -SOHO",
       "date": "Jun 10, 2024",
@@ -38,6 +39,7 @@
     },
     {
       "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/djelvjcgzbxpirkppocv.jpg",
+      "userId": 1,
       "id": 2,
       "title": "Hair dye-MY LUCKY",
       "date": "Jun 10, 2024",
@@ -46,11 +48,30 @@
     },
     {
       "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
+      "userId": 1,
       "id": 3,
       "title": "Botox treatment-MY LUCKY",
       "date": "Jun 10, 2024",
       "time": "09:41 AM",
       "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
+    },
+    {
+      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
+      "userId": 2,
+      "id": 4,
+      "title": "Massage Therapy",
+      "date": "Jul 11, 2024",
+      "time": "11:00 AM",
+      "place": "456 Elm Street Springfield, IL 62705 United States"
+    },
+    {
+      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
+      "userId": 2,
+      "id": 5,
+      "title": "Facial Treatment",
+      "date": "Jul 12, 2024",
+      "time": "02:30 PM",
+      "place": "789 Maple Avenue Springfield, IL 62706 United States"
     }
   ],
   "services": [
