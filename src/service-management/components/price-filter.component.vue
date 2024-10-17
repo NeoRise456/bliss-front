@@ -1,66 +1,74 @@
 <script>
-import { ref, watch } from 'vue';
-
 export default {
   name: "price-filter",
-  components: {},
   props: {
-    min: {
+
+    minServiceValue: {
       type: Number,
-      default: 0,
+      required: true,
     },
-    max: {
+    maxServiceValue: {
       type: Number,
-      default: 1000,
+      required: true
+    },
+    modelValue: {
+      type: Array,
+      default: []
+    },
+  },
+  emits: ['update:modelValue'],
+  data() {
+    return {
+      minValue: this.minServiceValue,
+      maxValue: this.maxServiceValue,
+      value: [this.minServiceValue, this.maxServiceValue]
+    };
+  },
+  watch: {
+    minServiceValue(newVal) {
+      this.minValue = newVal;
+    },
+    maxServiceValue(newVal) {
+      this.maxValue = newVal;
+    },
+    value(newValue) {
+      if (newValue[0] < this.minValue) newValue[0] = this.minValue;
+      if (newValue[1] > this.maxValue) newValue[1] = this.maxValue;
+      this.$emit('update:modelValue', newValue);
     }
   },
-  setup(props) {
-    const minValue = ref(props.min);
-    const maxValue = ref(props.max);
-    const value = ref((minValue.value + maxValue.value) / 2);
 
-    watch(value, (newValue) => {
-      if (newValue < minValue.value) value.value = minValue.value;
-      if (newValue > maxValue.value) value.value = maxValue.value;
-    });
-
-    return { minValue, maxValue, value };
+  created() {
+    this.value = [this.minServiceValue, this.maxServiceValue];
   }
 };
 </script>
 
 <template>
-  <div style="width: 40rem; margin: 1rem;">
+  <div class="w-auto">
     <pv-card>
+      <template #title> {{ $t('priceFilter.filterByPrice') }} </template>
       <template #content>
-        <h1>{{ $t('priceFilter.filterByPrice') }}</h1>
-
-        <div style="margin: 1rem">
+        <div class="m-3 flex">
           <pv-input-text
               id="min-input"
               v-model.number="value[0]"
               :placeholder="$t('priceFilter.minValue')"
           />
-
           <pv-input-text
               id="max-input"
               v-model.number="value[1]"
               :placeholder="$t('priceFilter.maxValue')"
-              style="margin-left: 1rem"
+              class="ml-2"
           />
         </div>
-
         <pv-slider
             v-model="value"
             range
-            class="w-56"
-            :min="0"
-            :max="1000"
-            style="margin: 1rem"
+            class="w-56 m-1"
+            :min="minValue"
+            :max="maxValue"
         />
-      </template>
-      <template #footer>
-        <pv-button :label="$t('priceFilter.filter')"/>
       </template>
     </pv-card>
   </div>

@@ -1,6 +1,8 @@
 <script>
-import { ServicesApiService } from "../services/services-api.service.js";
-import { Service } from "../model/service.entity.js";
+
+import {ServiceApiService} from "../services/service-api.service.js";
+import {Service} from "../model/service.entity.js";
+
 
 export default {
   name: "client-service-detail",
@@ -12,7 +14,7 @@ export default {
   },
   created() {
     const serviceId = this.$route.params.id;
-    const serviceApi = new ServicesApiService();
+    const serviceApi = new ServiceApiService();
     serviceApi.getService(serviceId)
         .then(response => {
           this.service = response.data;

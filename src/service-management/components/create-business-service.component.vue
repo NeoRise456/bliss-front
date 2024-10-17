@@ -1,3 +1,64 @@
+<script>
+
+import {ServicesApiService} from "../services/services-api.service.js";
+
+export default {
+  name: "create-business-service",
+  data(){
+    return {
+      serviceName: null,
+      price: null,
+      description: null,
+      selectedCategory: null,
+      categories: [
+        {name: '1', cname: '1'},
+        {name: '2', cname: '2'},
+        {name: '3', cname: '3'}
+      ]
+    }
+  },
+  methods: {
+    upload() {
+      this.$refs.fileupload.upload();
+    },
+    onUpload() {
+      this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+    },
+    async createService() {
+      const serviceData = {
+        service_name: this.serviceName,
+        price: this.price,
+        description: this.description,
+        category_id: this.selectedCategory ? this.selectedCategory.id : null,
+        company_id: 1, // Assuming a static company_id for this example
+        duration: 60, // Assuming a static duration for this example
+        raiting: 3.5, // Assuming a default rating for new services
+        sales: 8, // Assuming no sales initially
+        created_at: new Date().toISOString(),
+        img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp" // Assuming a static image URL for this example
+      };
+      try {
+        const serviceApiService = new ServicesApiService();
+        const response = await serviceApiService.createService(serviceData);
+        this.$toast.add({
+          severity: 'success',
+          summary: 'Service Created',
+          detail: 'Your service has been created successfully.',
+          life: 3000
+        });
+      } catch (error) {
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'There was an error creating the service.',
+          life: 3000
+        });
+      }
+    }
+  }
+}
+</script>
+
 <template>
   <div style="margin-top: 40px">
     <div class="grid nested-grid">
@@ -97,20 +158,25 @@
   color: #37123C;
   background: #D5CAF0;
 }
+
 .custom-card-2 {
   font-family: 'Montserrat', sans-serif;
   color: #37123C;
   background: #D9D9D9;
 }
+
 .custom-card-3 {
   font-family: 'Montserrat', sans-serif;
   color: #37123C;
 }
+
 .custom-text-input {
   background-color: #ffffff;
   color: black;
 }
+
 .custom-cascade-select {
   background-color: #ffffff;
 }
+
 </style>
