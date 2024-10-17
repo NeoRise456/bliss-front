@@ -1,21 +1,36 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
 import ScheduleComponent from "../public/pages/schedule.component.vue";
 import ClientServicesComponent from "../service-management/pages/client-services.component.vue";
 import ClientServiceDetailComponent from "../service-management/pages/client-service-detail.component.vue";
 import BusinessServicesComponent from "../service-management/pages/business-services.component.vue";
 import CreateBusinessServiceComponent from "../service-management/components/create-business-service.component.vue";
+import HistoryPageComponent from "../history/pages/history-page.component.vue";
+import PageNotFound from "../public/pages/page-not-found.vue";
+
+const defaultClientId = 1;
+const defaultBusinessId = 1;
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/home', name:'Home', component: HomeComponent, meta: {title: 'Home'}},
-        {path: '/client-services', name:'Services', component: ClientServicesComponent, meta: {title: 'Services'}},
-        {path: '/schedule/:userId', name: 'Schedule', component: ScheduleComponent, meta: {title: 'Schedule'}},
-        {path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: {title: 'ServiceDetail'}},
-        {path: '/business-services', name:'My Services', component: BusinessServicesComponent, meta:{title:'My Services'}},
-        {path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
-        {path: '/', redirect: '/home'}
+        // General options
+        { path: '/home', name: 'Home', component: HomeComponent, meta: { title: 'Home' } },
+        { path: '/services', name: 'Services', component: ClientServicesComponent, meta: { title: 'Services' } },
+        { path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: { title: 'ServiceDetail' } },
+
+        // Client options
+        { path: '/schedule/:userId?', name: 'ClientSchedule', component: ScheduleComponent, meta: { title: 'Schedule' }, props: route => ({ userId: route.params.userId || defaultClientId }) },
+        { path: '/client-myservices/:id?', name: 'ClientMyServices', component: HistoryPageComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultClientId }) },
+
+        // Business options
+        { path: '/business-myservices/:id?', name: 'BusinessMyServices', component: BusinessServicesComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
+        { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: PageNotFound, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
+        { path: '/business-service-management/create-service/:id', name: 'CreateService', component: CreateBusinessServiceComponent, meta: { title: 'Create Service' } },
+
+        // Redirection options
+        { path: '/', redirect: '/home' },
+        { path: '/:pathMatch(.*)*', name: 'not-found', component: PageNotFound, meta: { title: 'Page Not Found' } }
     ]
 });
 
