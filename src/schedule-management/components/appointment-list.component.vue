@@ -34,13 +34,13 @@ export default {
         this.schedules = response.data
             .filter(schedule => schedule.userId === this.userId) // Eliminar parseInt si userId es un número
             .map(schedule => new Schedule(
-            schedule.img,
-            schedule.id,
-            schedule.title,
-            schedule.date,
-            schedule.time,
-            schedule.place
-        ));
+                schedule.img,
+                schedule.id,
+                schedule.title,
+                schedule.date,
+                schedule.time,
+                schedule.place
+            ));
         console.log('Filtered Schedules:', this.schedules); // Verificar que se hayan filtrado correctamente
 
 
@@ -55,7 +55,7 @@ export default {
 <template>
   <div class="appointment-list-container">
     <div v-if="schedules.length === 0">
-      <p>No hay citas disponibles para este usuario.</p>
+      <p>{{ $t('appointment.noAppointments') }}</p>
     </div>
     <div v-for="schedule in schedules"
          :key="schedule.id"
