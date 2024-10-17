@@ -18,17 +18,17 @@ export default {
 </script>
 
 <template>
-  <div class="appointment-card" @click="redirectToAppointment(schedule.id)"> <!-- Evento de clic aquí -->
+  <div class="appointment-card" @click="redirectToAppointment(schedule.id)">
     <div class="appointment-content">
       <img alt="user header" :src="schedule.img" class="appointment-image" />
       <div class="appointment-details">
         <h3 class="appointment-title">{{ schedule.title }}</h3>
         <div class="appointment-info">
           <div class="date-time-container">
-            <div class="date-card">{{ schedule.date }}</div>
-            <div class="time-card">{{ schedule.time }}</div>
+            <div class="date-card">{{ $t('appointment.date') }}: {{ schedule.date }}</div>
+            <div class="time-card">{{ $t('appointment.time') }}: {{ schedule.time }}</div>
           </div>
-          <p>{{ schedule.place }}</p>
+          <p>{{ $t('appointment.place') }}: {{ schedule.place }}</p>
         </div>
       </div>
     </div>
@@ -39,9 +39,9 @@ export default {
 .appointment-card {
   width: 100%;
   padding: 20px;
-  border: 1px solid #ccc; /* Añadir un borde para que se vea como una tarjeta */
+  border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
 }
 
@@ -73,19 +73,19 @@ export default {
 
 .date-time-container {
   display: flex;
-  gap: 10px; /* Espacio entre la tarjeta de fecha y hora */
-  margin-bottom: 10px; /* Espacio entre las tarjetas y el lugar */
+  gap: 10px;
+  margin-bottom: 10px;
   color: #00aced;
 }
 
 .date-card, .time-card {
   padding: 10px;
-  background-color: #f5f5f5; /* Color de fondo para que se vea como una tarjeta */
+  background-color: #f5f5f5;
   border-radius: 8px;
   border: 1px solid #ddd;
   font-size: 1rem;
-  min-width: 100px; /* Ajusta el ancho mínimo de las tarjetas */
-  text-align: center; /* Alineación centrada dentro de la tarjeta */
+  min-width: 100px;
+  text-align: center;
 }
 
 .appointment-info p {
