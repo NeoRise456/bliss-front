@@ -3,7 +3,68 @@
     "home": "Inicio",
     "services": "Servicios",
     "schedule": "Agenda",
+    "myServices": "Mis Servicios",
     "login": "Iniciar Sesión",
     "register": "Registrarse"
+  },
+  "appointment": {
+    "title": "Título",
+    "date": "Fecha",
+    "time": "Hora",
+    "place": "Lugar",
+    "noAppointments": "No hay citas disponibles para este usuario.",
+    "appointments": "Citas"
+  },
+  "businessService": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "noServices": "No hay servicios disponibles."
+  },
+  "categoryFilter": {
+    "title": "Categorías",
+    "filterButton": "Filtrar"
+  },
+  "clientService": {
+    "learnMore": "Más información",
+    "price": "Precio"
+  },
+  "clientServiceList": {
+    "title": "Servicios"
+  },
+  "createBusinessService": {
+    "title": "Crea tu servicio",
+    "serviceName": "Nombre del Servicio",
+    "categories": "Categorías",
+    "upload": "Subir",
+    "price": "Precio",
+    "description": "Descripción",
+    "createService": "Crear Servicio"
+  },
+  "createBusinessText": {
+    "workAtTheSpeed": "Trabaja a la velocidad",
+    "gradualAccumulation": "La acumulación gradual de información sobre el comportamiento atómico y a pequeña escala.",
+    "learnMore": "Más información",
+    "nameYourService": "Nombra tu servicio",
+    "selectCategory": "Selecciona una categoría",
+    "setPrice": "Establece un precio para tu servicio",
+    "addDescription": "Añade una descripción para tu servicio.",
+    "upload": "Subir"
+  },
+  "priceFilter": {
+    "filterByPrice": "Filtrar por precio",
+    "minValue": "Valor mínimo",
+    "maxValue": "Valor máximo",
+    "filter": "Filtrar"
+  },
+  "businessServices": {
+    "ourServices": "Nuestros Servicios",
+    "addService": "Agregar servicio"
+  },
+  "clientServiceDetail": {
+    "serviceDetails": "Detalles del Servicio",
+    "price": "Precio",
+    "description": "Descripción",
+    "duration": "Duración",
+    "bookNow": "Reservar Ahora"
   }
 }

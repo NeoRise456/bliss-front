@@ -1,14 +1,14 @@
 <script>
-import {ServicesApiService} from "../services/services-api.service.js";
-import {Service} from "../model/service.entity.js";
+import { ServicesApiService } from "../services/services-api.service.js";
+import { Service } from "../model/service.entity.js";
 
 export default {
   name: "client-service-detail",
   components: {},
-  data(){
+  data() {
     return {
       service: Service
-    }
+    };
   },
   created() {
     const serviceId = this.$route.params.id;
@@ -19,31 +19,31 @@ export default {
           console.log(this.service);
         })
         .catch(error => {
-          console.error("There was azn error fetching the service:", error);
+          console.error("There was an error fetching the service:", error);
         });
   }
-}
+};
 </script>
+
 <template>
-  <div style="margin-top: 10rem; background-color: #1a1a1a; padding: 5rem; border-radius: 1rem;" >
+  <div style="margin-top: 10rem; background-color: #1a1a1a; padding: 5rem; border-radius: 1rem;">
     <div style="display: flex; gap: 1rem">
       <div>
         <img :src="service.img" alt="Service Image" />
       </div>
       <div>
-        <h1> {{ service.service_name }}</h1>
-        <p> {{ service.description }} </p>
-        <p> Price : {{ service.price }} </p>
-        <p> Duration : {{ service.duration }} </p>
+        <h1>{{ service.service_name }}</h1>
+        <p>{{ $t('clientServiceDetail.description') }}: {{ service.description }}</p>
+        <p>{{ $t('clientServiceDetail.price') }}: {{ service.price }}</p>
+        <p>{{ $t('clientServiceDetail.duration') }}: {{ service.duration }}</p>
       </div>
-
     </div>
     <div class="mt-7">
-      <pv-button label="Book Now" class="w-full"/>
+      <pv-button :label="$t('clientServiceDetail.bookNow')" class="w-full" />
     </div>
   </div>
 </template>
 
 <style scoped>
-
+/* Add any necessary styles here */
 </style>
