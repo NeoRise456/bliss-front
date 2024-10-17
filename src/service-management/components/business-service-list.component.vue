@@ -1,62 +1,54 @@
+
 <script>
+import {ServicesApiService} from "../services/services-api.service.js";
+import {Service} from "../model/service.entity.js";
 import BusinessServiceItem from "./business-service-item.component.vue";
 
 export default {
   name: "business-service-list",
-  components: {
-    BusinessServiceItem
-  },
-  data() {
-    return {
-      services: []
-    };
-  },
-  created() {
-    this.fetchServices();
+  components: {BusinessServiceItem},
+  data(){
+    return{
+      services: [],
+    }
   },
   methods: {
     async fetchServices() {
       try {
-        const response = await fetch('/api/services');
-        const data = await response.json();
-        this.services = data.map(service => ({
-          img: service.img,
-          id: service.id,
-          service_name: service.service_name,
-          description: service.description
-        }));
+        const serviceApiService = new ServicesApiService();
+        const response = await serviceApiService.getServices();
+        this.services = response.data.map(service => new Service(
+            service.id,
+            service.category_id,
+            service.company_id,
+            service.service_name,
+            service.description,
+            service.price,
+            service.duration,
+            service.rating,
+            service.sales,
+            service.created_at,
+            service.img
+        ));
       } catch (error) {
         console.error('Error fetching services:', error);
       }
-    }
-  }
+    },
+  },
+  created() {
+    this.fetchServices();
+  },
 }
 </script>
 
 <template>
-  <div class="service-list-container">
-    <div v-if="services.length === 0">
-      <p>{{ $t('businessService.noServices') }}</p>
-    </div>
-    <div v-for="service in services"
-         :key="service.id"
-         class="service-item-container">
-      <business-service-item :service="service"/>
-    </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+    <business-service-item  v-for="service in services"
+                            :key="service.id"
+                            :service="service"/>
   </div>
 </template>
 
 <style scoped>
-.service-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px;
-}
 
-.service-item-container {
-  width: 100%;
-  max-width: 300px;
-}
 </style>
