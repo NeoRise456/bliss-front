@@ -11,7 +11,7 @@ const router = createRouter({
     routes: [
         {path: '/home', name:'Home', component: HomeComponent, meta: {title: 'Home'}},
         {path: '/client-services', name:'Services', component: ClientServicesComponent, meta: {title: 'Services'}},
-        {path: '/schedule', name:'Schedule', component: ScheduleComponent, meta: {title: 'Schedule'}},
+        {path: '/schedule/:userId', name: 'Schedule', component: ScheduleComponent, meta: {title: 'Schedule'}},
         {path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: {title: 'ServiceDetail'}},
         {path: '/business-services', name:'My Services', component: BusinessServicesComponent, meta:{title:'My Services'}},
         {path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
