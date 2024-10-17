@@ -1,6 +1,6 @@
 <script>
 
-import {ServicesApiService} from "../services/services-api.service.js";
+import {ServiceApiService} from "../services/services-api.service.js";
 
 export default {
   name: "create-business-service",
