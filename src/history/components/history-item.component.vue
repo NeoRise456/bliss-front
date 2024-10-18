@@ -17,7 +17,8 @@ export default {
     <div class="history-content">
       <h3 class="service-name">{{ appointment.serviceName }}</h3>
       <p class="company-name">{{ appointment.companyName }}</p>
-      <p class="appointment-date">{{ appointment.schedule.date }}</p>
+      <p class="appointment-date" v-if="appointment.schedule">{{ appointment.schedule.date }}</p>
+      <p class="appointment-date" v-else>No schedule available</p>
     </div>
   </div>
 </template>

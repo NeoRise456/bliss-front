@@ -12,7 +12,14 @@ export default {
 <template>
   <div class="history-page">
     <h1>Completed Appointments</h1>
-    <HistoryList />
+    <Suspense>
+      <template #default>
+        <HistoryList/>
+      </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+    </Suspense>
   </div>
 </template>
 

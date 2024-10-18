@@ -2,97 +2,43 @@
   "categories": [
     {
       "id": 1,
-      "category_name": "Category 1",
-      "description": "Category 1 description"
+      "category_name": "Hair Care",
+      "description": "Services related to haircuts, styling, coloring, and treatments."
     },
     {
       "id": 2,
-      "category_name": "Category 2",
-      "description": "Category 2 description"
+      "category_name": "Skin Care",
+      "description": "Facials, peels, and other skin treatments to enhance and maintain healthy skin."
     },
     {
       "id": 3,
-      "category_name": "Category 3",
-      "description": "Category 3 description"
-    }
-  ],
-  "appointments": [
-    {
-      "id": 1,
-      "userId": 1,
-      "serviceId": 1,
-      "company": 1,
-      "reservationDate": "2023-11-20",
-      "status": "completed",
-        "payment": {
-            "amount": 100,
-            "method": "credit card",
-            "status": "completed"
-        },
-        "schedule": {
-            "date": "2023-11-25",
-            "time": "09:00 AM"
-        }
-
-    }
-
-  ],
-  "companies": [
-    {
-      "id": 1,
-      "name": "Company 1",
-      "ruc": "12345678901",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
-      "description": "Company 1 description",
-      "created_at": "2021-01-01T00:00:00.000Z"
-    }
-  ],
-  "schedules": [
-    {
-      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/dejsrdntls0e2xufqkud.jpg",
-      "userId": 1,
-      "id": 1,
-      "title": "Hair Cut -SOHO",
-      "date": "Jun 10, 2024",
-      "time": "09:41 AM",
-      "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
+      "category_name": "Nail Care",
+      "description": "Manicures, pedicures, and nail treatments for healthy and beautiful nails."
     },
     {
-      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/djelvjcgzbxpirkppocv.jpg",
-      "userId": 1,
-      "id": 2,
-      "title": "Hair dye-MY LUCKY",
-      "date": "Jun 10, 2024",
-      "time": "09:41 AM",
-      "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
-    },
-    {
-      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
-      "userId": 1,
-      "id": 3,
-      "title": "Botox treatment-MY LUCKY",
-      "date": "Jun 10, 2024",
-      "time": "09:41 AM",
-      "place": "123 Oakwood Avenue Springfield, IL 62704 United States"
-    },
-    {
-      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
-      "userId": 2,
       "id": 4,
-      "title": "Massage Therapy",
-      "date": "Jul 11, 2024",
-      "time": "11:00 AM",
-      "place": "456 Elm Street Springfield, IL 62705 United States"
+      "category_name": "Massage Therapy",
+      "description": "Various types of massages such as Swedish, deep tissue, and relaxation."
     },
     {
-      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1727432480/ihavf3qatkyuzmc7vn0j.jpg",
-      "userId": 2,
       "id": 5,
-      "title": "Facial Treatment",
-      "date": "Jul 12, 2024",
-      "time": "02:30 PM",
-      "place": "789 Maple Avenue Springfield, IL 62706 United States"
+      "category_name": "Makeup",
+      "description": "Professional makeup services for special events, bridal makeup, or daily looks."
+    },
+    {
+      "id": 6,
+      "category_name": "Body Treatments",
+      "description": "Body scrubs, wraps, and detoxifying treatments to rejuvenate the skin."
+    },
+    {
+      "id": 7,
+      "category_name": "Hair Removal",
+      "description": "Waxing, threading, and laser hair removal services."
+    },
+    {
+      "id": 8,
+      "category_name": "Spa Packages",
+      "description": "Combination of services such as massages, facials, and body treatments for a full relaxation experience."
     }
   ],
   "services": [
@@ -100,8 +46,8 @@
       "id": 1,
       "category_id": 1,
       "company_id": 1,
-      "service_name": "Service 1",
-      "description": "Service 1 description",
+      "service_name": "Basic Haircut",
+      "description": "A simple and stylish haircut tailored to your preferences.",
       "price": 100,
       "duration": 60,
       "raiting": 4.1,
@@ -113,8 +59,8 @@
       "id": 2,
       "category_id": 1,
       "company_id": 1,
-      "service_name": "Service 2",
-      "description": "Service 2 description",
+      "service_name": "Hair Coloring",
+      "description": "Full hair coloring with high-quality products for vibrant, lasting color.",
       "price": 200,
       "duration": 120,
       "raiting": 4.1,
@@ -126,10 +72,10 @@
       "id": 3,
       "category_id": 2,
       "company_id": 1,
-      "service_name": "Service 3",
-      "description": "Service 3 description",
+      "service_name": "Classic Facial",
+      "description": "A revitalizing facial to cleanse, exfoliate, and hydrate your skin.",
       "price": 300,
-      "duration": 180,
+      "duration": 90,
       "raiting": 4.1,
       "sales": 8,
       "created_at": "2021-01-01T00:00:00.000Z",
@@ -139,10 +85,10 @@
       "id": 4,
       "category_id": 2,
       "company_id": 1,
-      "service_name": "Service 4",
-      "description": "Service 4 description",
+      "service_name": "Deep Cleansing Facial",
+      "description": "A thorough deep cleansing treatment for oily and acne-prone skin.",
       "price": 400,
-      "duration": 240,
+      "duration": 120,
       "raiting": 4.9,
       "sales": 8,
       "created_at": "2021-01-01T00:00:00.000Z",
@@ -152,10 +98,10 @@
       "id": 5,
       "category_id": 3,
       "company_id": 1,
-      "service_name": "Service 5",
-      "description": "Service 5 description",
+      "service_name": "Manicure & Pedicure",
+      "description": "Full manicure and pedicure treatment to keep your nails healthy and polished.",
       "price": 500,
-      "duration": 300,
+      "duration": 120,
       "raiting": 4.6,
       "created_at": "2021-01-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
@@ -164,10 +110,10 @@
       "id": 6,
       "category_id": 3,
       "company_id": 1,
-      "service_name": "Service 6",
-      "description": "Service 6 description",
+      "service_name": "Gel Nail Extensions",
+      "description": "Enhance your nails with long-lasting gel extensions.",
       "price": 600,
-      "duration": 360,
+      "duration": 150,
       "raiting": 2.1,
       "created_at": "2021-01-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
@@ -176,10 +122,10 @@
       "id": 7,
       "category_id": 3,
       "company_id": 1,
-      "service_name": "Service 7",
-      "description": "Service 7 description",
+      "service_name": "Nail Art Design",
+      "description": "Creative nail art designs to suit your personal style.",
       "price": 700,
-      "duration": 420,
+      "duration": 180,
       "raiting": 3.1,
       "created_at": "2021-01-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
@@ -188,73 +134,88 @@
       "id": 8,
       "category_id": 3,
       "company_id": 1,
-      "service_name": "Service 8",
-      "description": "Service 8 description",
+      "service_name": "Luxury Pedicure",
+      "description": "A relaxing luxury pedicure treatment to refresh and revitalize your feet.",
       "price": 800,
-      "duration": 480,
+      "duration": 90,
       "raiting": 4.1,
       "created_at": "2021-01-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "userId": 1,
+      "serviceId": 1,
+      "company": 1,
+      "reservationDate": "2023-11-20",
+      "status": "completed",
+      "date": "2023-11-25",
+      "time": "09:00 AM",
+      "service_name": "Basic Haircut",
+      "name": "Company 1"
     },
     {
-      "service_name": "Service Test",
-      "price": 23.5,
-      "description": "This is a service test",
-      "company_id": 1,
-      "duration": 60,
-      "raiting": 3.5,
-      "sales": 8,
-      "created_at": "2024-09-27T15:27:23.299Z",
-      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
-      "id": 9
+      "id": 2,
+      "userId": 1,
+      "serviceId": 2,
+      "company": 2,
+      "reservationDate": "2023-12-01",
+      "status": "pending",
+      "date": "2023-12-05",
+      "time": "03:00 PM",
+      "service_name": "Hair Coloring",
+      "name": "Company 2"
     },
     {
-      "service_name": "Service Test",
-      "price": 23.5,
-      "description": "This is a service test",
-      "company_id": 1,
-      "duration": 60,
-      "raiting": 3.5,
-      "sales": 8,
-      "created_at": "2024-09-27T15:27:29.942Z",
-      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
-      "id": 10
+      "id": 3,
+      "userId": 1,
+      "serviceId": 3,
+      "company": 3,
+      "reservationDate": "2023-12-10",
+      "status": "pending",
+      "date": "2023-12-15",
+      "time": "10:30 AM",
+      "service_name": "Classic Facial",
+      "name": "Company 3"
     },
     {
-      "service_name": "Service Test 1",
-      "price": 35,
-      "description": "Chikronos services",
-      "company_id": 1,
-      "duration": 60,
-      "raiting": 3.5,
-      "sales": 8,
-      "created_at": "2024-09-27T15:28:56.798Z",
-      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
-      "id": 11
+      "id": 4,
+      "userId": 1,
+      "serviceId": 1,
+      "company": 1,
+      "reservationDate": "2023-12-20",
+      "status": "pending",
+      "date": "2023-12-25",
+      "time": "09:00 AM",
+      "service_name": "Basic Haircut",
+      "name": "Company 1"
     },
     {
-      "service_name": "Service Test 2",
-      "price": 3.99,
-      "description": "This is a 3.99 service.",
-      "company_id": 1,
-      "duration": 60,
-      "raiting": 3.5,
-      "sales": 8,
-      "created_at": "2024-09-27T15:45:08.868Z",
-      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
-      "id": 12
-    },
+      "id": 5,
+      "userId": 1,
+      "serviceId": 4,
+      "company": 2,
+      "reservationDate": "2023-12-28",
+      "status": "pending",
+      "date": "2023-12-30",
+      "time": "11:45 AM",
+      "service_name": "Deep Cleansing Facial",
+      "name": "Company 2"
+    }
+  ],
+  "companies": [
     {
-      "service_name": "Service Test Video",
-      "price": 12.45,
-      "description": "This is a video service test",
-      "company_id": 1,
-      "duration": 60,
-      "raiting": 3.5,
-      "sales": 8,
-      "created_at": "2024-09-27T16:07:52.485Z",
-      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
-      "id": 13
+      "id": 1,
+      "name": "Company 1",
+      "ruc": "12345678901",
+      "email": "sample@sample.com",
+      "website": "www.sample.com",
+      "description": "Company 1 description",
+      "created_at": "2021-01-01T00:00:00.000Z"
     }
   ]
+
+
 }
