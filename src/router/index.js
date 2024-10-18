@@ -7,7 +7,7 @@ import BusinessServicesComponent from "../service-management/pages/business-serv
 import CreateBusinessServiceComponent from "../service-management/components/create-business-service.component.vue";
 import HistoryPageComponent from "../history/pages/history-page.component.vue";
 import PageNotFound from "../public/pages/page-not-found.vue";
-
+import CompanyDetailPageComponent   from "../company-detail/pages/company-detail-page.component.vue";
 const defaultClientId = 1;
 const defaultBusinessId = 1;
 
@@ -15,15 +15,16 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         // General options
-        { path: '/home', name: 'Home', component: HomeComponent, meta: { title: 'Home' } },
-        { path: '/services', name: 'Services', component: ClientServicesComponent, meta: { title: 'Services' } },
-        { path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: { title: 'ServiceDetail' } },
 
         // Client options
+        { path: '/home', name: 'ClientHome', component: HomeComponent, meta: { title: 'Home' } },
+        { path: '/services', name: 'ClientServices', component: ClientServicesComponent, meta: { title: 'Services' } },
+        { path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: { title: 'ServiceDetail' } },
         { path: '/schedule/:userId?', name: 'ClientSchedule', component: ScheduleComponent, meta: { title: 'Schedule' }, props: route => ({ userId: route.params.userId || defaultClientId }) },
         { path: '/client-myservices/:id?', name: 'ClientMyServices', component: HistoryPageComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultClientId }) },
 
         // Business options
+        { path: '/home', name: 'BusinessHome', component: CompanyDetailPageComponent, meta: { title: 'Home' } },
         { path: '/business-myservices/:id?', name: 'BusinessMyServices', component: BusinessServicesComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
         { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: PageNotFound, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
         { path: '/business-service-management/create-service/:id', name: 'CreateService', component: CreateBusinessServiceComponent, meta: { title: 'Create Service' } },

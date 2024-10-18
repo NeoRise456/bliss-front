@@ -12,12 +12,20 @@ export default {
   },
   computed: {
     items() {
-      return [
-        { label: this.$t('toolbar.home'), to: '/home' },
-        { label: this.$t('toolbar.services'), to: '/services' },
-        { label: this.$t('toolbar.schedule'), to: this.userType === 'client' ? `/schedule/${this.userId}` : `/business-schedule/${this.userId}` },
-        { label: this.$t('toolbar.myServices'), to: this.userType === 'client' ? `/client-myservices/${this.userId}` : `/business-myservices/${this.userId}` }
-      ];
+      if (this.userType === 'client') {
+        return [
+          { label: this.$t('toolbar.home'), to: '/home' },
+          { label: this.$t('toolbar.services'), to: '/services' },
+          { label: this.$t('toolbar.schedule'), to: `/schedule/${this.userId}` },
+          { label: this.$t('toolbar.myServices'), to: `/client-myservices/${this.userId}` }
+        ];
+      } else {
+        return [
+          { label: this.$t('toolbar.home'), to: '/home' },
+          { label: this.$t('toolbar.myServices'), to: `/business-myservices/${this.userId}` },
+          { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
+        ];
+      }
     }
   },
   methods: {
