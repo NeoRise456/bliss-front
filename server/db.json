@@ -234,6 +234,18 @@
       "created_at": "2024-09-27T16:07:52.485Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
       "id": 13
+    },
+    {
+      "service_name": "sdf",
+      "price": 12,
+      "description": null,
+      "company_id": 1,
+      "duration": 60,
+      "raiting": 3.5,
+      "sales": 8,
+      "created_at": "2024-10-23T04:36:46.589Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 14
     }
   ]
 }

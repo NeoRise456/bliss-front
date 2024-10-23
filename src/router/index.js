@@ -5,6 +5,7 @@ import ClientServicesComponent from "../service-management/pages/client-services
 import ClientServiceDetailComponent from "../service-management/pages/client-service-detail.component.vue";
 import BusinessServicesComponent from "../service-management/pages/business-services.component.vue";
 import CreateBusinessServiceComponent from "../service-management/components/create-business-service.component.vue";
+import ServiceAppointmentComponent from "../service-management/pages/service-appointment.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -15,7 +16,8 @@ const router = createRouter({
         {path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: {title: 'ServiceDetail'}},
         {path: '/business-services', name:'My Services', component: BusinessServicesComponent, meta:{title:'My Services'}},
         {path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
-        {path: '/', redirect: '/home'}
+        {path: '/', redirect: '/home'},
+        {path:'/service-appointment', name:'Service Appointment', ServiceAppointmentComponent, meta:{title:'Service Appointment'} }
     ]
 });
 
