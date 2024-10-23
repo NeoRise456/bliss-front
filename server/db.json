@@ -25,7 +25,45 @@
       "website": "www.sample.com",
       "description": "Company 1 description",
       "created_at": "2021-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Company 2",
+      "ruc": "12345678902",
+      "email": "sample@sample.com",
+      "website": "www.sample.com",
+      "description": "Company 2 description",
+      "created_at": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Company 3",
+      "ruc": "12345678903",
+      "email": "sample@sample.com",
+      "website": "www.sample.com",
+      "description": "Company 3 description",
+      "created_at": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Company 4",
+      "ruc": "12345678904",
+      "email": "sample@sample.com",
+      "website": "www.sample.com",
+      "description": "Company 4 description",
+      "created_at": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "Company 5",
+      "ruc": "12345678905",
+      "email": "sample@sample.com",
+      "website": "www.sample.com",
+      "description": "Company 5 description",
+      "created_at": "2024-01-01T00:00:00.000Z"
     }
+
+
   ],
   "schedules": [
     {
