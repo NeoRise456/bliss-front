@@ -31,7 +31,7 @@ export default {
       return this.$route.params.id;
     },
     getServiceById(id){
-      this.serviceApiService.getServiceById(id)
+      this.serviceApiService.getService(id)
           .then(response => {
             this.currentService = this.buildServiceFromResponseData(response.data);
           })
