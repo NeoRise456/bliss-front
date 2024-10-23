@@ -2,68 +2,44 @@
   "categories": [
     {
       "id": 1,
-      "category_name": "Category 1",
-      "description": "Category 1 description"
+      "category_name": "Hair Care",
+      "description": "Services related to haircuts, styling, coloring, and treatments."
     },
     {
       "id": 2,
-      "category_name": "Category 2",
-      "description": "Category 2 description"
+      "category_name": "Skin Care",
+      "description": "Facials, peels, and other skin treatments to enhance and maintain healthy skin."
     },
     {
       "id": 3,
-      "category_name": "Category 3",
-      "description": "Category 3 description"
-    }
-  ],
-  "companies": [
-    {
-      "id": 1,
-      "name": "Company 1",
-      "ruc": "12345678901",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
-      "description": "Company 1 description",
-      "created_at": "2021-01-01T00:00:00.000Z"
-    },
-    {
-      "id": 2,
-      "name": "Company 2",
-      "ruc": "12345678902",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
-      "description": "Company 2 description",
-      "created_at": "2024-01-01T00:00:00.000Z"
-    },
-    {
-      "id": 3,
-      "name": "Company 3",
-      "ruc": "12345678903",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
-      "description": "Company 3 description",
-      "created_at": "2024-01-01T00:00:00.000Z"
+      "category_name": "Nail Care",
+      "description": "Manicures, pedicures, and nail treatments for healthy and beautiful nails."
     },
     {
       "id": 4,
-      "name": "Company 4",
-      "ruc": "12345678904",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
-      "description": "Company 4 description",
-      "created_at": "2024-01-01T00:00:00.000Z"
+      "category_name": "Massage Therapy",
+      "description": "Various types of massages such as Swedish, deep tissue, and relaxation."
     },
     {
       "id": 5,
-      "name": "Company 5",
-      "ruc": "12345678905",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
-      "description": "Company 5 description",
-      "created_at": "2024-01-01T00:00:00.000Z"
+      "category_name": "Makeup",
+      "description": "Professional makeup services for special events, bridal makeup, or daily looks."
+    },
+    {
+      "id": 6,
+      "category_name": "Body Treatments",
+      "description": "Body scrubs, wraps, and detoxifying treatments to rejuvenate the skin."
+    },
+    {
+      "id": 7,
+      "category_name": "Hair Removal",
+      "description": "Waxing, threading, and laser hair removal services."
+    },
+    {
+      "id": 8,
+      "category_name": "Spa Packages",
+      "description": "Combination of services such as massages, facials, and body treatments for a full relaxation experience."
     }
-
-
   ],
   "schedules": [
     {
@@ -284,6 +260,70 @@
       "created_at": "2024-10-23T04:36:46.589Z",
       "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
       "id": 14
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "userId": 1,
+      "serviceId": 1,
+      "company": 1,
+      "reservationDate": "2023-11-20",
+      "status": "COMPLETED",
+      "date": "2023-11-25",
+      "time": "09:00 AM"
+
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "serviceId": 2,
+      "company": 2,
+      "reservationDate": "2023-12-01",
+      "status": "PENDING",
+      "date": "2023-12-05",
+      "time": "03:00 PM"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "serviceId": 3,
+      "company": 3,
+      "reservationDate": "2023-12-10",
+      "status": "PENDING",
+      "date": "2023-12-15",
+      "time": "10:30 AM"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "serviceId": 1,
+      "company": 1,
+      "reservationDate": "2023-12-20",
+      "status": "PENDING",
+      "date": "2023-12-25",
+      "time": "09:00 AM"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "serviceId": 4,
+      "company": 2,
+      "reservationDate": "2023-12-28",
+      "status": "PENDING",
+      "date": "2023-12-30",
+      "time": "11:45 AM"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "Company 1",
+      "ruc": "12345678901",
+      "email": "sample@sample.com",
+      "website": "www.sample.com",
+      "description": "Company 1 description",
+      "created_at": "2021-01-01T00:00:00.000Z"
     }
   ]
 }

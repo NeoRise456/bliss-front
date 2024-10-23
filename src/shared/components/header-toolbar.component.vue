@@ -2,28 +2,41 @@
 import LanguageSwitcher from "./language-switcher.component.vue";
 
 export default {
-  components: {LanguageSwitcher},
+  components: { LanguageSwitcher },
   data() {
     return {
-      drawer: false
-    }
+      drawer: false,
+      userType: 'client', // Default user type
+      userId: 1 // Temporary user id for testing the component
+    };
   },
   computed: {
     items() {
-      return [
-        {label: this.$t('toolbar.home'), to: '/home'},
-        {label: this.$t('toolbar.services'), to: '/client-services'},
-        {label: this.$t('toolbar.schedule'), to: '/schedule/1'},
-        {label: this.$t('toolbar.myServices'), to: '/business-services'}
-      ];
+      if (this.userType === 'client') {
+        return [
+          { label: this.$t('toolbar.home'), to: '/home' },
+          { label: this.$t('toolbar.services'), to: '/services' },
+          { label: this.$t('toolbar.schedule'), to: `/schedule/${this.userId}` },
+          { label: this.$t('toolbar.myServices'), to: `/client-myservices/${this.userId}` }
+        ];
+      } else {
+        return [
+          { label: this.$t('toolbar.home'), to: '/home' },
+          { label: this.$t('toolbar.myServices'), to: `/business-myservices/${this.userId}` },
+          { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
+        ];
+      }
     }
   },
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer;
+    },
+    changeUserType(type) {
+      this.userType = type;
     }
   }
-}
+};
 </script>
 
 <template>
@@ -33,7 +46,8 @@ export default {
         <div class="flex items-center gap-2">
           <div class="flex justify-content-center p-3 mr-8">
             <a style="font-family: 'Tajawal', sans-serif; color: #37123c; font-weight: bold; font-size: 30px">
-              BLISS </a>
+              BLISS
+            </a>
           </div>
         </div>
       </template>
@@ -47,14 +61,17 @@ export default {
         </div>
       </template>
       <template #end>
-        <pv-button class="custom-button" icon="pi pi-search" text style="color: #37123c"/>
-        <pv-button class="custom-button" icon="pi pi-shopping-cart" text style="color: #37123c"/>
-        <pv-button class="custom-button" icon="pi pi-heart" text style="color: #37123c"/>
-        <pv-button class="custom-button" icon="pi pi-user" :label="$t('toolbar.login') + ' / ' + $t('toolbar.register')"
-                   text plain style="color: #37123c"/>
+        <pv-button class="custom-button" icon="pi pi-search" text style="color: #37123c" />
+        <pv-button class="custom-button" icon="pi pi-shopping-cart" text style="color: #37123c" />
+        <pv-button class="custom-button" icon="pi pi-heart" text style="color: #37123c" />
+        <pv-button class="custom-button" icon="pi pi-user" :label="$t('toolbar.login') + ' / ' + $t('toolbar.register')" text plain style="color: #37123c" />
         <div class="flex items-center gap-3 m-2">
-          <language-switcher/>
+          <language-switcher />
           <i class="pi pi-cog" style="font-size: 2rem"></i>
+          <select v-model="userType" @change="changeUserType(userType)">
+            <option value="client">Client</option>
+            <option value="business">Business</option>
+          </select>
         </div>
       </template>
     </pv-toolbar>
