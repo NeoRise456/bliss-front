@@ -1,4 +1,3 @@
-
 <script>
 import {ServiceApiService} from "../services/service-api.service.js";
 import {Service} from "../model/service.entity.js";

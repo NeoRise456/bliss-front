@@ -15,14 +15,16 @@ export default {
       if (this.userType === 'client') {
         return [
           { label: this.$t('toolbar.home'), to: '/home' },
-          { label: this.$t('toolbar.services'), to: '/services' },
+          { label: this.$t('toolbar.services'), to: '/client-services' },
           { label: this.$t('toolbar.schedule'), to: `/schedule/${this.userId}` },
           { label: this.$t('toolbar.myServices'), to: `/client-myservices/${this.userId}` }
         ];
       } else {
         return [
           { label: this.$t('toolbar.home'), to: '/home' },
-          { label: this.$t('toolbar.myServices'), to: `/business-myservices/${this.userId}` },
+            // { label: this.$t('toolbar.myServices'), to: `/business-myservices/${this.userId}` },
+          { label: this.$t('toolbar.myServices'), to: `/business-myservices` },
+            // { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
           { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
         ];
       }
