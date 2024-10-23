@@ -150,11 +150,10 @@
       "serviceId": 1,
       "company": 1,
       "reservationDate": "2023-11-20",
-      "status": "completed",
+      "status": "COMPLETED",
       "date": "2023-11-25",
-      "time": "09:00 AM",
-      "service_name": "Basic Haircut",
-      "name": "Company 1"
+      "time": "09:00 AM"
+
     },
     {
       "id": 2,
@@ -162,11 +161,9 @@
       "serviceId": 2,
       "company": 2,
       "reservationDate": "2023-12-01",
-      "status": "pending",
+      "status": "PENDING",
       "date": "2023-12-05",
-      "time": "03:00 PM",
-      "service_name": "Hair Coloring",
-      "name": "Company 2"
+      "time": "03:00 PM"
     },
     {
       "id": 3,
@@ -174,11 +171,9 @@
       "serviceId": 3,
       "company": 3,
       "reservationDate": "2023-12-10",
-      "status": "pending",
+      "status": "PENDING",
       "date": "2023-12-15",
-      "time": "10:30 AM",
-      "service_name": "Classic Facial",
-      "name": "Company 3"
+      "time": "10:30 AM"
     },
     {
       "id": 4,
@@ -186,11 +181,9 @@
       "serviceId": 1,
       "company": 1,
       "reservationDate": "2023-12-20",
-      "status": "pending",
+      "status": "PENDING",
       "date": "2023-12-25",
-      "time": "09:00 AM",
-      "service_name": "Basic Haircut",
-      "name": "Company 1"
+      "time": "09:00 AM"
     },
     {
       "id": 5,
@@ -198,11 +191,9 @@
       "serviceId": 4,
       "company": 2,
       "reservationDate": "2023-12-28",
-      "status": "pending",
+      "status": "PENDING",
       "date": "2023-12-30",
-      "time": "11:45 AM",
-      "service_name": "Deep Cleansing Facial",
-      "name": "Company 2"
+      "time": "11:45 AM"
     }
   ],
   "companies": [
@@ -216,6 +207,4 @@
       "created_at": "2021-01-01T00:00:00.000Z"
     }
   ]
-
-
 }
