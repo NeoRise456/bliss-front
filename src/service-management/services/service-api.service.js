@@ -42,6 +42,15 @@ export class ServiceApiService {
         return http.get('/services');
     }
 
+    /**
+     * Get all services by category
+     * @param categoryId
+     * @returns {Promise<axios.AxiosResponse<any>>}
+     */
+    getServicesByCategory(categoryId) {
+        return http.get(`/services/${categoryId}`);
+    }
+
 
     /**
      * Get a single service by ID
