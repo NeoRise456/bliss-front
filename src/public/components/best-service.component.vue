@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       services: [],
+      bestService: null,
     };
   },
   async mounted() {
@@ -13,6 +14,12 @@ export default {
     try{
       const servicesResponse = await serviceApiService.getServices();
       this.services = servicesResponse.data;
+
+      if (this.services.length > 0) {
+        const sortedServices = this.services.sort((a, b) => b.rating - a.rating);
+        this.bestService = sortedServices[0];
+      }
+
     } catch (error) {
       console.error("Error loading best services: ",error);
     }
