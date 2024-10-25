@@ -66,5 +66,13 @@
     "description": "Description",
     "duration": "Duration",
     "bookNow": "Book Now"
+  },
+  "servicesHome": {
+    "service_name": "Service Name",
+    "description": "Description",
+    "price": "Price",
+    "duration": "Duration",
+    "rating": "Rating",
+    "sales": "Sales"
   }
 }

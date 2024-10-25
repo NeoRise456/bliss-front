@@ -66,5 +66,13 @@
     "description": "Descripción",
     "duration": "Duración",
     "bookNow": "Reservar Ahora"
+  },
+  "servicesHome": {
+    "service_name": "Nombre del Servicio",
+    "description": "Descripción",
+    "price": "Precio",
+    "duration": "Duración",
+    "rating": "Calificación",
+    "sales": "Ventas"
   }
 }
