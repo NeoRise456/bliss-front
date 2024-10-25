@@ -36,10 +36,17 @@ export default {
         return {companyId: parseInt(companyId), avgRating};
       })
 
+      const topCompanyIds = companyAvgRating
+          .sort((a,b)=> b.avgRating - a.avgRating)
+          .slice(0,3)
+          .map(item => item.companyId);
+
+      this.companies = this.companies.filter(company => topCompanyIds.includes(company.id));
+
 
 
     } catch (e) {
-      console.error(e);
+      console.error("Error loading services and companies:",e);
     }
   }
 }
