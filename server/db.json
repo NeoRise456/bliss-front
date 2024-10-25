@@ -145,7 +145,7 @@
       "id": 5,
       "category_id": 3,
       "company_id": 1,
-      "service_name": "Service 5",
+      "service_name": "Wing Extension",
       "description": "Service 5 description",
       "price": 500,
       "duration": 300,
@@ -266,7 +266,7 @@
     {
       "id": 1,
       "userId": 1,
-      "serviceId": 1,
+      "serviceId": 5,
       "company": 1,
       "reservationDate": "2023-11-20",
       "status": "COMPLETED",
@@ -342,6 +342,29 @@
       "website": "www.montalvo.com",
       "description": "Company 3 description",
       "created_at": "2021-01-01T00:00:00.000Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "phone": "555-1234",
+      "address": "123 Oakwood Avenue Springfield, IL 62704 United States"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "phone": "555-5678",
+      "address": "456 Elm Street Springfield, IL 62705 United States"
+    },
+    {
+      "id": 3,
+      "name": "Mark Johnson",
+      "email": "markjohnson@example.com",
+      "phone": "555-9101",
+      "address": "789 Maple Avenue Springfield, IL 62706 United States"
     }
   ]
 }
