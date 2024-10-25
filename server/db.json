@@ -267,7 +267,7 @@
       "id": 1,
       "userId": 1,
       "serviceId": 1,
-      "company": 1,
+      "companyId": 1,
       "reservationDate": "2023-11-20",
       "status": "COMPLETED",
       "date": "2023-11-25",
@@ -278,7 +278,7 @@
       "id": 2,
       "userId": 1,
       "serviceId": 2,
-      "company": 2,
+      "companyId": 2,
       "reservationDate": "2023-12-01",
       "status": "PENDING",
       "date": "2023-12-05",
@@ -288,7 +288,7 @@
       "id": 3,
       "userId": 1,
       "serviceId": 3,
-      "company": 3,
+      "companyId": 3,
       "reservationDate": "2023-12-10",
       "status": "PENDING",
       "date": "2023-12-15",
@@ -298,7 +298,7 @@
       "id": 4,
       "userId": 1,
       "serviceId": 1,
-      "company": 1,
+      "companyId": 1,
       "reservationDate": "2023-12-20",
       "status": "PENDING",
       "date": "2023-12-25",
@@ -308,7 +308,7 @@
       "id": 5,
       "userId": 1,
       "serviceId": 4,
-      "company": 2,
+      "companyId": 2,
       "reservationDate": "2023-12-28",
       "status": "PENDING",
       "date": "2023-12-30",
@@ -325,5 +325,21 @@
       "description": "Company 1 description",
       "created_at": "2021-01-01T00:00:00.000Z"
     }
+  ],
+  "review": [
+    {
+      "id": 1,
+      "punctuation": 3,
+      "comment": "1212e12e",
+      "createdDate": "2024-10-20T06:12:10.716Z",
+      "appointmentId": 1,
+      "userId": 1,
+      "images": [
+        "",
+        "",
+        ""
+      ]
+    }
   ]
+
 }
