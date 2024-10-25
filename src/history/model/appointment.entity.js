@@ -6,6 +6,8 @@ export class Appointment {
         company = 0,
         reservationDate = '',
         status = '',
+        date = '',
+        time = '',
         payment = { amount: 0, method: '', status: '' },
         schedule = { date: '', time: '' },
         serviceName = '',
@@ -17,6 +19,8 @@ export class Appointment {
         this.company = company;
         this.reservationDate = reservationDate;
         this.status = status;
+        this.date = date;
+        this.time = time;
         this.payment = payment;
         this.schedule = schedule;
         this.serviceName = serviceName;
