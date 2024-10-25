@@ -17,8 +17,8 @@ export default {
     <div class="history-content">
       <h3 class="service-name">{{ appointment.serviceName }}</h3>
       <p class="company-name">{{ appointment.companyName }}</p>
-      <p class="appointment-date" v-if="appointment.schedule">{{ appointment.schedule.date }}</p>
-      <p class="appointment-date" v-else>No schedule available</p>
+      <p class="appointment-date">{{ appointment.date }}</p>
+      <p class="appointment-time">{{ appointment.time }}</p>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
   margin: 5px 0;
 }
 
-.company-name, .appointment-date {
+.company-name, .appointment-date, .appointment-time {
   font-size: 1rem;
   color: #666;
   margin: 5px 0;
