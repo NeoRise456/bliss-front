@@ -20,9 +20,6 @@ export default {
           <p><strong>Email:</strong> {{ user.email }}</p>
           <p><strong>Phone:</strong> {{ user.phone }}</p>
           <p><strong>Address:</strong> {{ user.address }}</p>
-          <div class="status-card" :class="{'pending': user.status === 'PENDING', 'completed': user.status === 'COMPLETED'}">
-            <p><strong>Status:</strong> {{ user.status }}</p>
-          </div>
         </div>
       </div>
     </div>
