@@ -7,6 +7,7 @@ export default {
     return{
       companies: [],
       services: [],
+      topCompanies: [],
     };
   },
   async mounted() {
@@ -41,7 +42,7 @@ export default {
           .slice(0,3)
           .map(item => item.companyId);
 
-      this.companies = this.companies.filter(company => topCompanyIds.includes(company.id));
+      this.topCompanies = this.companies.filter(company => topCompanyIds.includes(company.id));
 
 
 
@@ -53,6 +54,25 @@ export default {
 </script>
 
 <template>
+  <div class="p-m-4">
+    <div v-for="company in topCompanies" :key="company.id" class="p-mb-4">
+      <pv-card class="p-shadow-4" style="width: 300px">
+        <template #header>
+          <div class="p-text-center">
+            <h3>{{ company.name }}</h3>
+          </div>
+        </template>
+        <template #content>
+          <div class="p-card-content p-text-center">
+            <p>{{ company.description }}</p>
+            <p>RUC: {{ company.ruc }}</p>
+            <p>Email: {{ company.email }}</p>
+            <a :href="company.website" target="_blank">{{ company.website }}</a>
+          </div>
+        </template>
+      </pv-card>
+    </div>
+  </div>
 
 </template>
 
