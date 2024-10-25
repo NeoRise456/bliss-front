@@ -17,7 +17,7 @@ export default {
 
       this.services = servicesResponse.data;
       this.companies = companiesResponse.data;
-
+      // suma de ranting y el conteo de servicio por empresa
       const companyRatings = {};
 
       this.services.forEach(service => {
@@ -29,6 +29,14 @@ export default {
         companyRatings[service.company_id].serviceCount++;
 
       })
+
+      // calculo de promedio de rating por empresa
+      const companyAvgRating = Object.keys(companyRatings).map(companyId =>{
+        const avgRating = companyRatings[companyId].totalRating / companyRatings[companyId].serviceCount;
+        return {companyId: parseInt(companyId), avgRating};
+      })
+
+
 
     } catch (e) {
       console.error(e);
