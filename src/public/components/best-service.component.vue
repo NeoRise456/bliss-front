@@ -3,6 +3,7 @@ import {ServiceApiService} from "../../service-management/services/service-api.s
 
 export default {
   name: "best-service",
+
   data() {
     return {
       services: [],
@@ -28,7 +29,27 @@ export default {
 </script>
 
 <template>
-
+  <div v-if="bestService" class="best-service-container flex justify-content-center">
+    <pv-card>
+      <template #title>
+        <h2>{{ bestService.service_name }}</h2>
+      </template>
+      <template #content>
+        <div class="flex align-items-center gap-4">
+          <img :src="bestService.img" alt="Imagen del servicio" class="service-img" style="width: 100px; height: auto; border-radius: 8px;" />
+          <div>
+            <p class="p-mt-2">{{$t('servicesHome.price')}}: ${{bestService.price}}</p>
+            <p class="p-mt-2">{{$t('servicesHome.duration')}}: {{bestService.duration}} min</p>
+            <p class="p-mt-2">{{$t('servicesHome.sales')}}: {{bestService.sales}}</p>
+            <p class="p-mt-2">{{$t('servicesHome.rating')}}: {{bestService.rating}}</p>
+          </div>
+        </div>
+      </template>
+    </pv-card>
+  </div>
+  <div v-else class="flex justify-content-center">
+    <p>Error</p>
+  </div>
 </template>
 
 <style scoped>
