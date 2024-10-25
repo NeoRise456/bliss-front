@@ -9,6 +9,8 @@ import ServiceAppointmentComponent from "../service-management/pages/service-app
 import HistoryPageComponent from "../history/pages/history-page.component.vue";
 import PageNotFound from "../public/pages/page-not-found.vue";
 import CompanyDetailPageComponent   from "../company-detail/pages/company-detail-page.component.vue";
+import businessAppointmentListComponent
+    from "../schedule-management/components/business-appointment-list.component.vue";
 const defaultClientId = 1;
 const defaultBusinessId = 1;
 
@@ -32,7 +34,7 @@ const router = createRouter({
         { path: '/home', name: 'BusinessHome', component: CompanyDetailPageComponent, meta: { title: 'Home' } },
         { path: '/business-myservices', name:'BussinesMyServices', component: BusinessServicesComponent, meta:{title:'My Services'}},
         {path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
-        { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: PageNotFound, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
+        { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: businessAppointmentListComponent, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
        
 
         // Redirection options
