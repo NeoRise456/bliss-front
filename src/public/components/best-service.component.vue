@@ -1,5 +1,5 @@
 <script>
-import {ServiceApiService} from "../../service-management/services/service-api.service.js";
+import { ServiceApiService } from "../../service-management/services/service-api.service.js";
 
 export default {
   name: "best-service",
@@ -10,34 +10,47 @@ export default {
       bestService: null,
     };
   },
-  async mounted() {
-    const serviceApiService = new ServiceApiService();
-    try{
-      const servicesResponse = await serviceApiService.getServices();
-      this.services = servicesResponse.data;
+  methods: {
+    async fetchBestService() {
+      const serviceApiService = new ServiceApiService();
+      try {
+        const servicesResponse = await serviceApiService.getServices();
+        this.services = servicesResponse.data;
 
-      if (this.services.length > 0) {
-        const sortedServices = this.services.sort((a, b) => b.rating - a.rating);
-        this.bestService = sortedServices[0];
+        if (Array.isArray(this.services) && this.services.length > 0) {
+          // Ordena los servicios por rating de mayor a menor
+          const sortedServices = this.services.sort((a, b) => b.rating - a.rating);
+          // Obtenemos el servico con mayor rating
+          this.bestService = sortedServices[0];
+        }
+
+      } catch (error) {
+        console.error("Error loading best services: ", error);
       }
+    },
+  },
+  created() {
+    this.fetchBestService();
+  },
+};
 
-    } catch (error) {
-      console.error("Error loading best services: ",error);
-    }
-  }
-}
 </script>
 
 <template>
+  <h2 class="p-text-center">{{$t('servicesHome.bestService')}}</h2>
   <div v-if="bestService" class="best-service-container flex justify-content-center">
-    <pv-card>
+    <pv-card class="best-service-card p-shadow-2">
       <template #title>
-        <h2>{{ bestService.service_name }}</h2>
+        <h2 class="service-title">{{ bestService.service_name }}</h2>
       </template>
       <template #content>
-        <div class="flex align-items-center gap-4">
-          <img :src="bestService.img" alt="Imagen del servicio" class="service-img" style="width: 100px; height: auto; border-radius: 8px;" />
-          <div>
+        <div class="service-content flex">
+
+          <div class="image-container">
+            <img :src="bestService.img" alt="Service Image" class="service-img" />
+          </div>
+
+          <div class="info-container">
             <p class="p-mt-2">{{$t('servicesHome.price')}}: ${{bestService.price}}</p>
             <p class="p-mt-2">{{$t('servicesHome.duration')}}: {{bestService.duration}} min</p>
             <p class="p-mt-2">{{$t('servicesHome.sales')}}: {{bestService.sales}}</p>
@@ -53,5 +66,67 @@ export default {
 </template>
 
 <style scoped>
+
+.p-text-center {
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.best-service-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.best-service-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #37123C;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.best-service-card:hover {
+  transform: scale(1.02);
+}
+
+.service-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.service-content {
+  display: flex;
+}
+
+.image-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-container {
+  width: 50%;
+  padding: 0 16px;
+}
+
+.service-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.p-mt-2 {
+  margin-top: 8px;
+}
+.p-shadow-2{
+  box-shadow: 0px 2px 8px rgba(255, 251, 0, 0.98);
+}
 
 </style>
