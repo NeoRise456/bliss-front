@@ -117,7 +117,7 @@ export default {
         <pv-card class="w-auto p-5 custom-card-3 bg-gray-50">
           <template #header>
             <div>
-              <h2 style="font-family: 'Tajawal', sans-serif; font-weight: normal; font-size: 3rem; margin-top: 0; margin-bottom: 10px">{{ $t('createBusinessService.title') }}</h2>
+              <h2 class="title">{{ $t('createBusinessService.title') }}</h2>
             </div>
           </template>
           <template #content>
@@ -158,6 +158,14 @@ export default {
 </template>
 
 <style scoped>
+.title{
+  font-family: 'Tajawal', sans-serif;
+  font-weight: normal;
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 .custom-card-1 {
   font-family: 'Montserrat', sans-serif;
   color: #37123C;
