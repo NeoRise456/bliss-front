@@ -1,5 +1,5 @@
 <script>
-
+import {defaultBusinessId} from "../../router/index.js";
 import {ServiceApiService} from "../services/service-api.service.js";
 
 export default {
@@ -18,6 +18,11 @@ export default {
     }
   },
   methods: {
+    getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
     upload() {
       this.$refs.fileupload.upload();
     },
@@ -30,10 +35,10 @@ export default {
         price: this.price,
         description: this.description,
         category_id: this.selectedCategory ? this.selectedCategory.id : null,
-        company_id: 1, // Assuming a static company_id for this example
-        duration: 60, // Assuming a static duration for this example
-        raiting: 3.5, // Assuming a default rating for new services
-        sales: 8, // Assuming no sales initially
+        company_id: defaultBusinessId, // Assuming a static company_id for this example
+        duration: this.getRandomInt(40,120), // Assuming a static duration for this example
+        rating: this.getRandomInt(0,50)/10, // Assuming a default rating for new services
+        sales: this.getRandomInt(0,20), // Assuming no sales initially
         created_at: new Date().toISOString(),
         img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp" // Assuming a static image URL for this example
       };
