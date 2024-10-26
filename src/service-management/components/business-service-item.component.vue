@@ -11,8 +11,8 @@ export default {
     }
   },
   methods: {
-    redirectToServiceDetail(serviceId) {
-      this.$router.push({ name: 'Business-Service', params: { id: serviceId } });
+    redirectToServiceEdit(serviceId) {
+      this.$router.push({name: 'ServiceEdit', params: { serviceId: serviceId }});
     }
   }
 }
@@ -37,16 +37,16 @@ export default {
     </template>
     <template #footer>
       <div class="flex gap-4 mt-1">
-        <pv-button icon="pi pi-pencil"
-                   icon-pos="right"
-                   :label="$t('businessService.edit')"
-                   class="w-full"
-                   @click="redirectToServiceDetail(service.id)" />
-        <pv-button icon="pi pi-delete-left"
-                   icon-pos="right"
-                   :label="$t('businessService.delete')"
-                   class="w-full"
-                   severity="danger" />
+          <pv-button icon="pi pi-pencil"
+                     icon-pos="right"
+                     :label="$t('businessService.edit')"
+                     class="w-full"
+                     @click="this.redirectToServiceEdit(service.id)" />
+          <pv-button icon="pi pi-delete-left"
+                     icon-pos="right"
+                     :label="$t('businessService.delete')"
+                     class="w-full"
+                     severity="danger" />
       </div>
     </template>
   </pv-card>
