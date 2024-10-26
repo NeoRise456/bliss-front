@@ -37,8 +37,8 @@ export default {
         description: this.description,
         price: this.price,
         duration: this.getRandomInt(40, 120),
-        rating: this.getRandomInt(0, 50) / 10,
-        sales: this.getRandomInt(0, 20),
+        rating: 0,
+        sales: 0,
         created_at: new Date().toISOString(),
         img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
       };
