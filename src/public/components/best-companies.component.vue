@@ -1,81 +1,131 @@
 <script>
-import {ServiceApiService} from "../../service-management/services/service-api.service.js";
+import { ServiceApiService } from "../../service-management/services/service-api.service.js";
 
 export default {
   name: "best-companies",
-  data(){
-    return{
+  data() {
+    return {
       companies: [],
       services: [],
       topCompanies: [],
     };
   },
-  async mounted() {
-    const serviceApiService = new ServiceApiService();
-    try {
-      const servicesResponse = await serviceApiService.getServices();
-      const companiesResponse = await serviceApiService.getCompanies();
+  methods: {
+    async topCompany() {
+      const serviceApiService = new ServiceApiService();
+      try {
+        const servicesResponse = await serviceApiService.getServices();
+        const companiesResponse = await serviceApiService.getCompanies();
 
-      this.services = servicesResponse.data;
-      this.companies = companiesResponse.data;
-      // suma de ranting y el conteo de servicio por empresa
-      const companyRatings = {};
+        this.services = servicesResponse.data;
+        this.companies = companiesResponse.data;
 
-      this.services.forEach(service => {
-        if (!companyRatings[service.company_id]) {
-          companyRatings[service.company_id] = {totalRating: 0, serviceCount: 0};
-        }
+        // Suma de ratings y conteo de servicios por empresa
+        const companyRatings = {};
 
-        companyRatings[service.company_id].totalRating += service.rating;
-        companyRatings[service.company_id].serviceCount++;
+        this.services.forEach((service) => {
+          if (!companyRatings[service.company_id]) {
+            companyRatings[service.company_id] = { totalRating: 0, serviceCount: 0 };
+          }
 
-      })
+          companyRatings[service.company_id].totalRating += service.rating;
+          companyRatings[service.company_id].serviceCount++;
+        });
 
-      // calculo de promedio de rating por empresa
-      const companyAvgRating = Object.keys(companyRatings).map(companyId =>{
-        const avgRating = companyRatings[companyId].totalRating / companyRatings[companyId].serviceCount;
-        return {companyId: parseInt(companyId), avgRating};
-      })
+        // Cálculo del promedio de rating por empresa
+        const companyAvgRating = Object.keys(companyRatings).map((companyId) => {
+          const avgRating = companyRatings[companyId].totalRating / companyRatings[companyId].serviceCount;
+          return { companyId: parseInt(companyId), avgRating };
+        });
 
-      const topCompanyIds = companyAvgRating
-          .sort((a,b)=> b.avgRating - a.avgRating)
-          .slice(0,3)
-          .map(item => item.companyId);
-
-      this.topCompanies = this.companies.filter(company => topCompanyIds.includes(company.id));
-
+        // Ordena por promedio de rating y selecciona las 3 empresas con mejor rating
+        const topCompanyIds = companyAvgRating
+            .sort((a, b) => b.avgRating - a.avgRating)
+            .slice(0, 3)
+            .map((item) => item.companyId);
 
 
-    } catch (e) {
-      console.error("Error loading services and companies:",e);
-    }
-  }
-}
+        this.topCompanies = this.companies.filter((company) => topCompanyIds.includes(company.id));
+
+      } catch (e) {
+        console.error("Error loading services and companies:", e);
+      }
+    },
+  },
+  created() {
+    this.topCompany();
+  },
+};
 </script>
 
 <template>
   <div class="p-m-4">
-    <div v-for="company in topCompanies" :key="company.id" class="p-mb-4">
-      <pv-card class="p-shadow-4" style="width: 300px">
-        <template #header>
-          <div class="p-text-center">
-            <h3>{{ company.name }}</h3>
-          </div>
-        </template>
-        <template #content>
-          <div class="p-card-content p-text-center">
-            <p>{{ company.description }}</p>
-            <p>RUC: {{ company.ruc }}</p>
-            <p>Email: {{ company.email }}</p>
-            <a :href="company.website" target="_blank">{{ company.website }}</a>
-          </div>
-        </template>
-      </pv-card>
+    <h2 class="p-text-center">{{$t('companyDetail.bestCompany')}}:</h2>
+    <div class="companies-container p-grid p-nogutter">
+      <div
+          v-for="company in topCompanies"
+          :key="company.id"
+          class="p-col-12 p-md-6 p-lg-4 p-p-2"
+      >
+        <pv-card class="company-card p-shadow-4">
+          <template #title>
+            <div class="p-d-flex p-jc-center">
+              <img :src="company.img" alt="Logo" class="company-logo"/>
+            </div>
+            <h3 class="p-mt-3">{{ company.name }}</h3>
+          </template>
+
+          <img :src="company.img" alt="company logo" class="company-banner"/>
+
+          <template #content>
+            <div class="p-card-content p-text-center">
+              <p>{{ company.description }}</p>
+              <p>{{ $t('companyDetail.ruc') }}: {{ company.ruc }}</p>
+              <p>{{ $t('companyDetail.email') }}: {{ company.email }}</p>
+              <a :href="company.website" target="_blank">{{ company.website }}</a>
+            </div>
+          </template>
+        </pv-card>
+      </div>
     </div>
   </div>
-
 </template>
 
 <style scoped>
+.companies-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.company-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #37123C;
+}
+
+.company-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.company-banner {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.p-shadow-4 {
+  box-shadow: 0px 4px 8px rgb(116, 10, 229);
+}
+.p-text-center {
+  text-align: center;
+ /* color: #1a1a1a;*/
+}
+.p-p-2 {
+  padding: 8px;
+}
 </style>
+
