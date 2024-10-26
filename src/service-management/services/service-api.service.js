@@ -94,4 +94,15 @@ import http from "../../shared/services/http-common.js";
         deleteService(serviceId) {
             return http.delete(`/services/${serviceId}`);
         }
+
+
+        /**
+        * Update a service
+         * @param serviceId
+         * @param service
+         * @returns {Promise<axios.AxiosResponse<any>>}
+        * */
+        updateService(serviceId, service) {
+            return http.put(`/services/${serviceId}`, service);
+        }
     }
