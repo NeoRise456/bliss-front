@@ -68,11 +68,21 @@
     "bookNow": "Reservar Ahora"
   },
   "servicesHome": {
+    "services": "Servicios",
     "service_name": "Nombre del Servicio",
     "description": "Descripción",
     "price": "Precio",
     "duration": "Duración",
     "rating": "Calificación",
     "sales": "Ventas"
+  },
+  "companyDetail": {
+    "name": "Nombre",
+    "ruc": "RUC",
+    "email": "Correo Electrónico",
+    "website": "Sitio Web",
+    "description": "Descripción",
+    "averageRating": "Calificación Promedio",
+    "companyNotFound": "No se encontró la empresa."
   }
 }
