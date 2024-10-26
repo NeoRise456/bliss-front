@@ -31,16 +31,16 @@ export default {
     },
     async createService() {
       const serviceData = {
+        category_id: this.selectedCategory ? parseInt(this.selectedCategory.cname) : null,
+        company_id: defaultBusinessId,
         service_name: this.serviceName,
-        price: this.price,
         description: this.description,
-        category_id: this.selectedCategory ? this.selectedCategory.id : null,
-        company_id: defaultBusinessId, // Assuming a static company_id for this example
-        duration: this.getRandomInt(40,120), // Assuming a static duration for this example
-        rating: this.getRandomInt(0,50)/10, // Assuming a default rating for new services
-        sales: this.getRandomInt(0,20), // Assuming no sales initially
+        price: this.price,
+        duration: this.getRandomInt(40, 120),
+        rating: this.getRandomInt(0, 50) / 10,
+        sales: this.getRandomInt(0, 20),
         created_at: new Date().toISOString(),
-        img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp" // Assuming a static image URL for this example
+        img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
       };
       try {
         const serviceApiService = new ServiceApiService();
