@@ -66,5 +66,14 @@
     "description": "Description",
     "duration": "Duration",
     "bookNow": "Book Now"
+  },
+  "editService": {
+    "title": "Edit Service",
+    "serviceName": "Service Name",
+    "serviceCategory": "Category Service",
+    "serviceDuration": "Duration",
+    "servicePrice": "Price",
+    "serviceDescription": "Description",
+    "editButton": "Edit"
   }
 }
