@@ -22,7 +22,7 @@ export default {
   <pv-card class="bg-white item-card">
     <template #header>
       <div style="padding: 10px">
-        <img alt="user header" :src="service.img" width="300px" />
+        <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
       </div>
     </template>
     <template #title>
