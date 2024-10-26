@@ -74,7 +74,8 @@
     "price": "Price",
     "duration": "Duration",
     "rating": "Rating",
-    "sales": "Sales"
+    "sales": "Sales",
+    "bestService": "Best Service"
   },
   "companyDetail": {
     "name": "Name",
@@ -83,6 +84,7 @@
     "website": "Website",
     "description": "Description",
     "averageRating": "Average Rating",
-    "companyNotFound": "Company not found."
+    "companyNotFound": "Company not found.",
+    "bestCompany": "Best Companies"
   }
 }

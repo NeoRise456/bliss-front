@@ -74,7 +74,8 @@
     "price": "Precio",
     "duration": "Duración",
     "rating": "Calificación",
-    "sales": "Ventas"
+    "sales": "Ventas",
+    "bestService": "Mejor Servicio"
   },
   "companyDetail": {
     "name": "Nombre",
@@ -83,6 +84,7 @@
     "website": "Sitio Web",
     "description": "Descripción",
     "averageRating": "Calificación Promedio",
-    "companyNotFound": "No se encontró la empresa."
+    "companyNotFound": "No se encontró la empresa.",
+    "bestCompany": "Mejores Empresas"
   }
 }
