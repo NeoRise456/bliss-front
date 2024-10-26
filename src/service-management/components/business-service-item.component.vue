@@ -1,6 +1,6 @@
 <script>
 import { Service } from "../model/service.entity.js";
-
+import { ServiceApiService } from "../services/service-api.service.js";
 export default {
   name: "business-service-item",
   components: {},
@@ -12,7 +12,22 @@ export default {
   },
   methods: {
     redirectToServiceEdit(serviceId) {
-      this.$router.push({name: 'ServiceEdit', params: { serviceId: serviceId }});
+      this.$router.push({name: 'ServiceEdit', params: {serviceId: serviceId}});
+    },
+    async deleteService(serviceId) {
+      try{
+        const serviceApiService = new ServiceApiService();
+        await serviceApiService.deleteService(serviceId);
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Service Deleted',
+          detail: 'Your service has been deleted successfully.',
+          life: 3000
+        });
+        window.location.reload();
+      } catch (error) {
+        console.error('Error deleting service:', error);
+      }
     }
   }
 }
@@ -46,7 +61,8 @@ export default {
                      icon-pos="right"
                      :label="$t('businessService.delete')"
                      class="w-full"
-                     severity="danger" />
+                     severity="danger"
+                     @click="this.deleteService(service.id)"/>
       </div>
     </template>
   </pv-card>
