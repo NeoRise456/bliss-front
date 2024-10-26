@@ -17,11 +17,15 @@ export class HistoryApiService {
             const appointmentDetailsPromises = appointments.map(async appointment => {
                 const serviceResponse = await this.serviceApiService.getService(appointment.serviceId);
                 const companyResponse = await this.serviceApiService.getCompany(appointment.companyId);
+              const reviewResponse = await http.get(`/reviews?appointmentId=${appointment.id}`);
 
                 return {
                     ...appointment,
                     serviceName: serviceResponse.data.service_name,
-                    companyName: companyResponse.data.name
+                    companyName: companyResponse.data.name,
+                    appointmentDate: appointment.date,
+                    review: reviewResponse.data.length > 0 ? reviewResponse.data[0] : null
+
                 };
             });
 

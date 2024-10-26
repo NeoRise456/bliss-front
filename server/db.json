@@ -272,27 +272,16 @@
       "status": "COMPLETED",
       "date": "2023-11-25",
       "time": "09:00 AM"
-
     },
     {
       "id": 2,
       "userId": 1,
-      "serviceId": 2,
-      "companyId": 2,
+      "serviceId": 1,
+      "companyId": 1,
       "reservationDate": "2023-12-01",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "date": "2023-12-05",
       "time": "03:00 PM"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "serviceId": 3,
-      "companyId": 3,
-      "reservationDate": "2023-12-10",
-      "status": "PENDING",
-      "date": "2023-12-15",
-      "time": "10:30 AM"
     },
     {
       "id": 4,
@@ -303,16 +292,6 @@
       "status": "PENDING",
       "date": "2023-12-25",
       "time": "09:00 AM"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "serviceId": 4,
-      "companyId": 2,
-      "reservationDate": "2023-12-28",
-      "status": "PENDING",
-      "date": "2023-12-30",
-      "time": "11:45 AM"
     }
   ],
   "companies": [
@@ -326,20 +305,7 @@
       "created_at": "2021-01-01T00:00:00.000Z"
     }
   ],
-  "review": [
-    {
-      "id": 1,
-      "punctuation": 3,
-      "comment": "1212e12e",
-      "createdDate": "2024-10-20T06:12:10.716Z",
-      "appointmentId": 1,
-      "userId": 1,
-      "images": [
-        "",
-        "",
-        ""
-      ]
-    }
-  ]
+  "reviews": [
 
+  ]
 }

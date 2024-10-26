@@ -18,6 +18,15 @@ const fetchCompletedAppointments = async () => {
 onMounted(() => {
   fetchCompletedAppointments();
 });
+
+const handleReviewDeleted = (reviewId) => {
+  completedAppointments.value = completedAppointments.value.map(appointment => {
+    if (appointment.review?.id === reviewId) {
+      return { ...appointment, review: undefined };
+    }
+    return appointment;
+  });
+};
 </script>
 
 <template>
@@ -26,6 +35,8 @@ onMounted(() => {
         v-for="appointment in completedAppointments"
         :key="appointment.id"
         :appointment="appointment"
+        :review="appointment.review"
+        @reviewDeleted="handleReviewDeleted"
     />
   </div>
 </template>

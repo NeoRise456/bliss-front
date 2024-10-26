@@ -11,12 +11,12 @@ import PageNotFound from "../public/pages/page-not-found.vue";
 import CompanyDetailPageComponent   from "../company-detail/pages/company-detail-page.component.vue";
 const defaultClientId = 1;
 const defaultBusinessId = 1;
+import ReviewManagementPage from '../review/pages/review-management-page.component.vue';
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         // General options
-
         // Client options
         // { path: '/schedule/:userId', name: 'ClientSchedule', component: ScheduleComponent, meta: { title: 'Schedule' }, props: route => ({ userId: route.params.userId || defaultClientId }) },
         { path: '/home', name: 'ClientHome', component: HomeComponent, meta: { title: 'Home' } },
@@ -25,6 +25,7 @@ const router = createRouter({
         { path: '/schedule/:userId', name: 'ClientSchedule', component: ScheduleComponent, meta: { title: 'Schedule' } },
         { path: '/client-myservices/:id?', name: 'ClientMyServices', component: HistoryPageComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultClientId }) },
         {path:'/service-appointment', name:'Service Appointment', ServiceAppointmentComponent, meta:{title:'Service Appointment'} },
+        {path: '/review/:appointmentId', name: 'ReviewManagementPage', component: ReviewManagementPage, props: true},
 
         // Business options
         //{ path: '/business-service-management/create-service/:id', name: 'CreateService', component: CreateBusinessServiceComponent, meta: { title: 'Create Service' } },
