@@ -65,20 +65,20 @@ export default {
     <template #content>
       <div style="text-align: left">
         <h2 style="font-weight: normal;">{{$t('editService.serviceName')}}</h2>
-        <pv-input-text type="text" v-model="serviceName" :placeholder="service.service_name" style="width: 100%" class="custom-text-input"/>
+        <pv-input-text style="background-color: white; color: black; width: 100%" type="text" v-model="serviceName" :placeholder="service.service_name" class="custom-text-input"/>
       </div>
       <div style="text-align: left">
         <h2 style="font-weight: normal;">{{$t('editService.serviceCategory')}}</h2>
-        <pv-cascade-select v-model="selectedCategory" :options="categories" optionLabel="cname" optionGroupLabel="name"
-                           optionGroupChildren="children" :placeholder="service.category_id" style="width: 100%" class="custom-cascade-select" />
+        <pv-cascade-select style="background-color: white; color: black; width: 100%" v-model="selectedCategory" :options="categories" optionLabel="cname" optionGroupLabel="name"
+                           optionGroupChildren="children" :placeholder="service.category_id" class="custom-cascade-select" />
       </div>
       <div style="text-align: left">
         <h2 style="font-weight: normal;">{{$t('editService.serviceDuration')}}</h2>
-        <pv-input-number v-model="duration" mode="decimal" showButtons :min="40" :max="120" fluid :placeholder="service.duration" />
+        <pv-input-number style="background: white!important; color: black" v-model="duration" mode="decimal" showButtons :min="40" :max="180" fluid :placeholder="service.duration" />
       </div>
       <div style="text-align: left">
         <h2 style="font-weight: normal;">{{$t('editService.servicePrice')}}</h2>
-        <pv-input-number v-model="price" inputId="currency-us" :min="0" mode="currency" currency="USD" locale="en-US" fluid
+        <pv-input-number style="background-color: white; color: black" v-model="price" inputId="currency-us" :min="0" mode="currency" currency="USD" locale="en-US" fluid
                          :placeholder="service.price" />
       </div>
       <div style="text-align: left">
