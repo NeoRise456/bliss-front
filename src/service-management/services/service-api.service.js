@@ -1,8 +1,6 @@
 import http from "../../shared/services/http-common.js";
 
     export class ServiceApiService {
-
-
         /**
          * Get a single category by ID
          * @param id
@@ -43,6 +41,15 @@ import http from "../../shared/services/http-common.js";
         }
 
         /**
+         * Get a single service by ID
+         * @param id
+         * @returns {Promise<axios.AxiosResponse<any>>}
+         */
+        getService(id) {
+            return http.get(`/services/${id}`);
+        }
+
+        /**
          * Get all services by category
          * @param categoryId
          * @returns {Promise<axios.AxiosResponse<any>>}
@@ -51,17 +58,15 @@ import http from "../../shared/services/http-common.js";
             return http.get(`/services/${categoryId}`);
         }
 
-
-        /**
-         * Get a single service by ID
-         * @param id
-         * @returns {Promise<axios.AxiosResponse<any>>}
-         */
-
-        getService(id) {
-            return http.get(`/services/${id}`);
+        getServiceById(serviceId){
+            return http.get(`/services/${serviceId}`);
         }
 
+        /**
+         * Get all services by company
+         * @param companyId
+         * @returns {Promise<axios.AxiosResponse<any>>}
+         * */
         getServicesByCompanyId(companyId) {
             return http.get(`/services?company_id=${companyId}`);
         }
