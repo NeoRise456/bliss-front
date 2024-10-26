@@ -8,5 +8,5 @@ export class CompanyDetailApiService{
     getCompanies(){
         return http.get('/companies');
     }
-    
+
 }
