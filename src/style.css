@@ -11,7 +11,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --p-inputtext-background: #ffffff !important;
+  --p-inputtext-background: #D1E4FA !important;
+  --p-togglebutton-checked-background: #D1E4FA !important;
+  --p-togglebutton-content-checked-background: #D1E4FA !important;
+  --p-togglebutton-checked-color: #37123c !important;
+  --p-togglebutton-background: #37123c !important;
+  --p-togglebutton-color: #D1E4FA !important;
+  --p-togglebutton-hover-background: #37123c !important;
 }
 
 a {

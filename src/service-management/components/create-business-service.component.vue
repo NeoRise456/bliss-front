@@ -66,11 +66,11 @@ export default {
 
 <template>
   <div style="margin-top: 40px">
-    <div class="grid nested-grid">
+    <div class="grid nested-grid" style="display: flex; justify-content: center;">
       <div class="col-4">
-        <div class="grid">
-          <div class="col-12">
-            <pv-card class="w-20rem p-5 custom-card-1">
+        <div class="grid" style="width: fit-content;">
+          <div class="col-12" style="width: fit-content;">
+            <pv-card class="w-auto p-5 custom-card-1"  style="max-width: 400px">
               <template #header>
                 <div>
                   <i class="pi pi-credit-card" style="font-size: 5rem" />
@@ -90,8 +90,8 @@ export default {
               </template>
             </pv-card>
           </div>
-          <div class="col-12">
-            <pv-card class="w-20rem p-5 custom-card-2">
+          <div class="col-12" style="width: fit-content;">
+            <pv-card class="w-auto p-5 custom-card-2" style="max-width: 400px">
               <template #header>
                 <div>
                   <i class="pi pi-credit-card" style="font-size: 5rem" />
@@ -113,8 +113,8 @@ export default {
           </div>
         </div>
       </div>
-      <div class="col-8">
-        <pv-card class="w-auto p-5 custom-card-3 bg-gray-50">
+      <div class="col-8" style="width: fit-content;">
+        <pv-card class="p-5 custom-card-3 bg-gray-50" style="max-width: 700px">
           <template #header>
             <div>
               <h2 class="title">{{ $t('createBusinessService.title') }}</h2>
@@ -145,7 +145,7 @@ export default {
             </div>
             <div style="text-align: left">
               <h2 style="font-weight: normal;">{{ $t('createBusinessService.description') }}</h2>
-              <pv-textarea v-model="description" rows="10" cols="75" style="background-color: white; color: black" :placeholder="$t('createBusinessText.addDescription')" />
+              <pv-textarea v-model="description" rows="10" cols="75" style="background-color: white; color: black; width: 100%" :placeholder="$t('createBusinessText.addDescription')" />
             </div>
           </template>
           <template #footer>
