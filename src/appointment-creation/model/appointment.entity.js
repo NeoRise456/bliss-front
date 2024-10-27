@@ -8,7 +8,8 @@ export class Appointment {
         reservationDate = '',
         status = '',
         date = '',
-        time = ''
+        time = '',
+        requirements = ''
     ) {
         this.id = id;
         this.userId = userId;
@@ -18,5 +19,6 @@ export class Appointment {
         this.status = status;
         this.date = date;
         this.time = time;
+        this.requirements = requirements;
     }
 }
