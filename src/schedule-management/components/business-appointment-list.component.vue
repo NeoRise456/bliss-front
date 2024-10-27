@@ -32,8 +32,6 @@ export default {
               phone: userResponse.phone,
               address: userResponse.address,
             };
-
-            // Add serviceName directly to the user object
             user.serviceName = serviceResponse ? serviceResponse.service_name : "Unknown Service";
 
             return user;
