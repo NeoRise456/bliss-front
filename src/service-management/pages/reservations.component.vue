@@ -49,7 +49,7 @@ export default {
       <div>
         <pv-card>
           <template #header>
-            <img alt="service" :src="bookingService.img" style="max-width: 200px"/>
+            <img alt="service" :src="bookingService.img" style="max-width: 300px"/>
           </template>
           <template #title>
             {{ bookingService.service_name }}
@@ -96,9 +96,24 @@ export default {
         </template>
       </pv-card>
     </div>
-    <div class="flex-1 flex align-items-center justify-content-center"
-         style="background-color: #37123C">
-      <span> test </span>
+    <div class="flex-1 flex align-items-start justify-content-center">
+      <div>
+        <pv-card style="max-width: 400px">
+          <i class="pi pi-credit-card"/>
+          <template #title>
+            Work at the speed
+          </template>
+          <template #content>
+            <span>
+              The gradual accumulation of information about atomic and small-scale behaviour...
+            </span>
+          </template>
+          <template #footer>
+            <pv-button label="Learn More" icon="pi pi-chevron-right" icon-pos="right" />
+          </template>
+
+        </pv-card>
+      </div>
     </div>
   </div>
 
