@@ -11,25 +11,38 @@ const historyApiService = new HistoryApiService();
 
 const fetchCompletedAppointments = async () => {
   try {
-    const appointments = await historyApiService.getCompletedAppointmentsByUserId(userId);
-    completedAppointments.value = appointments.map(appointment => {
-      const newAppointment = new Appointment(
-          appointment.id,
-          appointment.userId,
-          appointment.serviceId,
-          appointment.companyId,
-          appointment.reservationDate,
-          appointment.status,
-          appointment.date,
-          appointment.time,
-          appointment.review ? new Review(appointment.review) : null
-      );
-      newAppointment.serviceName = appointment.serviceName;
-      newAppointment.companyName = appointment.companyName;
-      newAppointment.review = appointment.review ? new Review(appointment.review) : null; // Add review property
+    const appointments = await historyApiService.getAppointments();
+    console.log('Fetched Appointments:', appointments); // Debugging log
+    if (!Array.isArray(appointments)) {
+      throw new TypeError('Expected an array of appointments');
+    }
+    const filteredAppointments = appointments.filter(appointment => appointment.userId === userId  && appointment.status === "COMPLETED");
+    console.log('Filtered Appointments:', filteredAppointments); // Debugging log
+    completedAppointments.value = await Promise.all(
+        filteredAppointments.map(async appointment => {
+          const service = await historyApiService.getServiceById(appointment.serviceId);
+          const company = await historyApiService.getCompanyById(appointment.companyId);
+          const reviewData = await historyApiService.getReviewByAppointmentId(appointment.id);
+          const review = reviewData.length > 0 ? new Review(reviewData[0]) : null;
 
-      return newAppointment;
-    });
+          const newAppointment = new Appointment(
+              appointment.id,
+              appointment.userId,
+              appointment.serviceId,
+              appointment.companyId,
+              appointment.reservationDate,
+              appointment.status,
+              appointment.date,
+              appointment.time
+          );
+          newAppointment.serviceName = service.service_name;
+          newAppointment.companyName = company.name;
+          newAppointment.review = review;
+
+          return newAppointment;
+        })
+    );
+    console.log('Completed Appointments:', completedAppointments.value);
   } catch (error) {
     console.error('Error fetching completed appointments:', error);
   }
@@ -47,6 +60,7 @@ const handleReviewDeleted = (reviewId) => {
     return appointment;
   });
 };
+
 </script>
 
 <template>
@@ -63,8 +77,8 @@ const handleReviewDeleted = (reviewId) => {
 
 <style scoped>
 .history-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 </style>
