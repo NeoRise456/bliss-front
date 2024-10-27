@@ -2,8 +2,6 @@
 import {ServiceApiService} from "../services/service-api.service.js";
 import {Service} from "../model/service.entity.js";
 
-
-
 export default {
   name: "reservations",
   components: {},
@@ -14,6 +12,7 @@ export default {
       serviceApiService: new ServiceApiService(),
       date: new Date(),
       time: new Date(),
+      requirements: null
     }
   },
   methods: {
@@ -45,6 +44,63 @@ export default {
 </script>
 
 <template>
+  <div class="flex gap-5 align-items-start">
+    <div class="flex-1 flex align-items-center justify-content-center">
+      <div>
+        <pv-card>
+          <template #header>
+            <img alt="service" :src="bookingService.img" style="max-width: 200px"/>
+          </template>
+          <template #title>
+            {{ bookingService.service_name }}
+          </template>
+          <template #subtitle>
+            {{ bookingService.description }}
+          </template>
+          <template #content>
+            PEN {{ bookingService.price }}
+          </template>
+        </pv-card>
+
+      </div>
+    </div>
+    <div class="flex-none flex align-items-center justify-content-center">
+      <pv-card>
+        <template #title>
+          Make An Appointment
+        </template>
+        <template #content>
+          <div>
+            <label class="font-bold block mb-2"> Any requirements? </label>
+            <pv-textarea v-model="requirements"  rows="6" cols="30" class="w-full"/>
+          </div>
+          <div class="mt-5">
+            <div class="flex-auto">
+              <label class="font-bold block mb-2"> Select Date </label>
+              <pv-datepicker v-model="date" readonly/>
+              <div class="card flex justify-center">
+                <pv-datepicker v-model="date" inline showWeek class="w-full sm:w-[30rem]"/>
+              </div>
+            </div>
+            <div class="flex-auto">
+              <label class="font-bold block mb-2"> Select Time </label>
+              <pv-datepicker v-model="time" timeOnly readonly/>
+              <div class="card flex justify-center">
+                <pv-datepicker  v-model="time" inline timeOnly fluid class="w-full sm:w-[30rem]" />
+              </div>
+            </div>
+          </div>
+        </template>
+        <template #footer>
+          <pv-button label="Book Now" icon="pi pi-check" icon-pos="right" />
+        </template>
+      </pv-card>
+    </div>
+    <div class="flex-1 flex align-items-center justify-content-center"
+         style="background-color: #37123C">
+      <span> test </span>
+    </div>
+  </div>
 
 </template>
 
