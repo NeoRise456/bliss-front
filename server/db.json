@@ -321,19 +321,6 @@
   "reviews": [
     {
       "rating": 3,
-      "comment": "hola",
-      "createdDate": "2024-10-27T03:41:07.310Z",
-      "appointmentId": 1,
-      "userId": 1,
-      "images": [
-        null,
-        null,
-        null
-      ],
-      "id": 1
-    },
-    {
-      "rating": 3,
       "comment": "jiji",
       "createdDate": "2024-10-27T03:36:46.242Z",
       "appointmentId": "5",
