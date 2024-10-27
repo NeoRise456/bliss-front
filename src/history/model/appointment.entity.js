@@ -8,11 +8,8 @@ export class Appointment {
         status = '',
         date = '',
         time = '',
-        payment = { amount: 0, method: '', status: '' },
-        schedule = { date: '', time: '' },
-        serviceName = '',
-        companyName = '',
-        review = null// Add review property
+
+
     ) {
         this.id = id;
         this.userId = userId;
@@ -22,10 +19,6 @@ export class Appointment {
         this.status = status;
         this.date = date;
         this.time = time;
-        this.payment = payment;
-        this.schedule = schedule;
-        this.serviceName = serviceName;
-        this.companyName = companyName;
-        this.review = review; // Initialize review property
+
     }
 }
