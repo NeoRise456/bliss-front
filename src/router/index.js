@@ -32,7 +32,7 @@ const router = createRouter({
       
         // Business options
         { path: '/business-my-services/:id', name: 'BusinessMyServices', component: BusinessServicesComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
-        { path: '/home', name: 'BusinessHome', component: CompanyDetailPageComponent, meta: { title: 'Home' } },
+        { path: '/homeBusiness', name: 'BusinessHome', component: CompanyDetailPageComponent, meta: { title: 'Home' } },
         { path: '/service-management/edit-service/:serviceId', name: 'ServiceEdit', component: EditBusinessServiceComponent, meta: { title: 'Edit Service' }, props: true },
         { path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
         { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: PageNotFound, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
