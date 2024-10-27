@@ -39,7 +39,7 @@ const router = createRouter({
         // Redirection options
         { path: '/', redirect: '/home' },
         { path: '/:pathMatch(.*)*', name: 'not-found', component: PageNotFound, meta: { title: 'Page Not Found' } },
-        {path: '/reservations', name: 'Reservations', component: ReservationsComponent, meta: { title: 'Reservations' } },
+        {path: '/reservation/:id', name: 'Reservations', component: ReservationsComponent, meta: { title: 'Reservations' } },
     ]
 });
 
