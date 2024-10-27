@@ -1,6 +1,6 @@
 <script>
 import BusinessAppointmentItem from './business-appointment-item.component.vue';
-import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
+import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
 
 export default {
   name: "business-appointment-list",
@@ -11,6 +11,7 @@ export default {
       companyId: 1,
       selectedUser: null,
       dialogVisible: false,
+      cancelDialogVisible: false,
       apiService: new BusinessAppointmentApiService(),
     };
   },
@@ -33,13 +34,15 @@ export default {
               address: userResponse.address,
             };
 
-            // Add additional service details directly to the user object
             user.serviceName = serviceResponse ? serviceResponse.service_name : "Unknown Service";
             user.description = serviceResponse ? serviceResponse.description : "No Description";
             user.price = serviceResponse ? serviceResponse.price : 0;
             user.duration = serviceResponse ? serviceResponse.duration : 0;
             user.rating = serviceResponse ? serviceResponse.rating : 0;
+            user.sales = serviceResponse ? serviceResponse.sales : 0;
             user.img = serviceResponse ? serviceResponse.img : "";
+            user.date = appointment.date;
+            user.time = appointment.time;
 
             return user;
           }
@@ -50,6 +53,26 @@ export default {
       } catch (error) {
         console.error("Error loading users:", error);
       }
+    },
+
+    async handleCancelAppointment(userId) {
+      try {
+        await this.apiService.cancelAppointment(userId);
+        this.userList = this.userList.filter(user => user.id !== userId);
+        this.cancelDialogVisible = false;
+      } catch (error) {
+        console.error('Error canceling appointment:', error);
+      }
+    },
+
+    openCancelDialog(user) {
+      this.selectedUser = user;
+      this.cancelDialogVisible = true;
+    },
+
+    closeCancelDialog() {
+      this.cancelDialogVisible = false;
+      this.selectedUser = null;
     },
 
     openUserDialog(user) {
@@ -77,7 +100,8 @@ export default {
          :key="user.id"
          class="user-item-container"
          @click="openUserDialog(user)">
-      <business-appointment-item :user="user"/>
+      <business-appointment-item :user="user"
+                                 @open-cancel-dialog="openCancelDialog"/>
     </div>
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeUserDialog">
@@ -88,6 +112,15 @@ export default {
         <p><strong>Phone:</strong> {{ selectedUser?.phone }}</p>
         <p><strong>Address:</strong> {{ selectedUser?.address }}</p>
         <button @click="closeUserDialog">Close</button>
+      </div>
+    </div>
+
+    <div v-if="cancelDialogVisible" class="dialog-overlay" @click="closeCancelDialog">
+      <div class="dialog-card" @click.stop>
+        <h3>Confirm Cancellation</h3>
+        <p>Are you sure you want to cancel this appointment?</p>
+        <button @click="handleCancelAppointment(selectedUser.id)" class="confirm-button">Yes, Cancel</button>
+        <button @click="closeCancelDialog" class="cancel-button">No, Go Back</button>
       </div>
     </div>
   </div>
@@ -133,5 +166,33 @@ export default {
 
 .dialog-card p {
   margin: 10px 0;
+}
+
+.dialog-card button {
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0.3125rem;
+}
+
+.dialog-card .confirm-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+}
+
+.dialog-card .confirm-button:hover {
+  background-color: #ff1a1a;
+}
+
+.dialog-card .cancel-button {
+  background-color: #ccc;
+  color: black;
+  border: none;
+}
+
+.dialog-card .cancel-button:hover {
+  background-color: #999;
 }
 </style>
