@@ -1,6 +1,8 @@
 <script>
-import {ServiceApiService} from "../services/service-api.service.js";
-import {Service} from "../model/service.entity.js";
+import {ServiceApiService} from "../../service-management/services/service-api.service.js";
+import {Service} from "../../service-management/model/service.entity.js";
+import {Appointment} from "../model/appointment.entity.js";
+import {AppointmentApiService} from "../services/appointment-api.service.js";
 
 export default {
   name: "reservations",
@@ -10,6 +12,8 @@ export default {
       serviceId: this.$route.params.id,
       bookingService: Service,
       serviceApiService: new ServiceApiService(),
+      appointment: Appointment,
+      appointmentApiService: new AppointmentApiService(),
       date: new Date(),
       time: new Date(),
       requirements: null
@@ -32,8 +36,35 @@ export default {
       )
     },
     async getBookingService(){
-      const response = await this.serviceApiService.getServiceById(this.serviceId);
+      let response = await this.serviceApiService.getServiceById(this.serviceId);
       this.bookingService = this.buildServiceFromResponseData(response.data);
+    },
+    getRandomId(){
+      return Math.floor(Math.random() * 1000);
+    },
+    async bookService() {
+      console.log(this.bookingService);
+
+      let nowDate = new Date();
+      nowDate = nowDate.toISOString();
+      let bookingDate = this.date.toISOString();
+      let bookingTime = `${this.time.getHours().toString().padStart(2, '0')}:${this.time.getMinutes().toString().padStart(2, '0')}`;
+
+      this.appointment = new Appointment(
+          null,
+          1,
+          this.serviceId,
+          this.bookingService.company_id,
+          nowDate,
+          "PENDING",
+          bookingDate,
+          bookingTime,
+          this.requirements
+      );
+
+      let response = await this.appointmentApiService.createAppointment(this.appointment);
+      console.log(response);
+
     }
   },
   created(){
@@ -92,7 +123,7 @@ export default {
           </div>
         </template>
         <template #footer>
-          <pv-button label="Book Now" icon="pi pi-check" icon-pos="right" />
+          <pv-button label="Book Now" icon="pi pi-check" icon-pos="right" @click="bookService()"/>
         </template>
       </pv-card>
     </div>
@@ -109,7 +140,7 @@ export default {
             </span>
           </template>
           <template #footer>
-            <pv-button label="Learn More" icon="pi pi-chevron-right" icon-pos="right" />
+            <pv-button label="Learn More" icon="pi pi-chevron-right" icon-pos="right"/>
           </template>
 
         </pv-card>
