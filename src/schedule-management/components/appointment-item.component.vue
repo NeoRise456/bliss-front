@@ -1,11 +1,9 @@
 <script>
-import { Schedule } from '../model/schedule.entity.js';
-
 export default {
   name: 'appointment-item',
   props: {
-    schedule: {
-      type: Schedule,
+    appointment: {
+      type: Object,
       required: true
     }
   },
@@ -18,22 +16,20 @@ export default {
 </script>
 
 <template>
-  <div class="appointment-card" @click="redirectToAppointment(schedule.id)">
+  <div class="appointment-card">
     <div class="appointment-content">
-      <img alt="user header" :src="schedule.img" class="appointment-image" />
+      <img alt="user header" class="appointment-image" :src="appointment.img" />
       <div class="appointment-details">
-        <h3 class="appointment-title">{{ schedule.title }}</h3>
-        <div class="appointment-info">
-          <div class="date-time-container">
-            <div class="date-card">{{ $t('appointment.date') }}: {{ schedule.date }}</div>
-            <div class="time-card">{{ $t('appointment.time') }}: {{ schedule.time }}</div>
-          </div>
-          <p>{{ $t('appointment.place') }}: {{ schedule.place }}</p>
+        <h3 class="appointment-title">{{ appointment.serviceName }} - {{ appointment.companyName }}</h3>
+        <div class="date-time-container">
+          <div class="date-card">{{ $t('appointment.date') }}: {{ appointment.date }}</div>
+          <div class="time-card">{{ $t('appointment.time') }}: {{ appointment.time }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .appointment-card {
