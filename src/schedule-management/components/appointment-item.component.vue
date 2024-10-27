@@ -34,7 +34,6 @@ export default {
   </div>
 </template>
 
-
 <style scoped>
 .appointment-card {
   width: 100%;
