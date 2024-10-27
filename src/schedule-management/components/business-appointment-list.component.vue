@@ -195,4 +195,5 @@ export default {
 .dialog-card .cancel-button:hover {
   background-color: #999;
 }
+
 </style>
