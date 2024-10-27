@@ -8,9 +8,6 @@ export default {
     }
   },
   methods: {
-    redirectToAppointment(scheduleId) {
-      this.$router.push({ name: 'Appointment', params: { id: scheduleId } });
-    }
   }
 }
 </script>
