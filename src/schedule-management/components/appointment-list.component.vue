@@ -1,7 +1,7 @@
 <script>
 import AppointmentItem from './appointment-item.component.vue';
-import http from "../../shared/services/http-common.js";
 import { Appointment } from "../../history/model/appointment.entity.js";
+import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
 
 export default {
   name: "appointment-list",
@@ -12,45 +12,21 @@ export default {
       userId: 1,
       selectedAppointment: null,
       dialogVisible: false,
+      apiService: new BusinessAppointmentApiService(),
     };
   },
   methods: {
-    async getCompanyId(id) {
+    async fetchPendingAppointments() {
       try {
-        const response = await http.get(`/companies/${id}`);
-        return response.data;
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          console.error(`Company with id ${id} not found`);
-        } else {
-          console.error(`Error fetching company with id ${id}:`, error);
-        }
-        return null;
-      }
-    },
+        const appointments = await this.apiService.getAppointments();
 
-    async getService(id) {
-      try {
-        const response = await http.get(`/services/${id}`);
-        return response.data;
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          console.error(`Service with id ${id} not found`);
-        } else {
-          console.error(`Error fetching service with id ${id}:`, error);
-        }
-        return null;
-      }
-    },
+        const filteredAppointments = appointments.filter(
+            appointment => appointment.userId === this.userId && appointment.status === "PENDING"
+        );
 
-    async getPendingAppointmentsByUserId(userId) {
-      try {
-        const response = await http.get('/appointments');
-        const appointments = response.data.filter(appointment => appointment.userId === userId && appointment.status === "PENDING");
-
-        const appointmentDetailsPromises = appointments.map(async appointment => {
-          const serviceResponse = await this.getService(appointment.serviceId);
-          const companyResponse = await this.getCompanyId(appointment.companyId);
+        const appointmentDetailsPromises = filteredAppointments.map(async appointment => {
+          const serviceResponse = await this.apiService.getServiceById(appointment.serviceId);
+          const companyResponse = await this.apiService.getCompanyById(appointment.companyId);
 
           const newAppointment = new Appointment(
               appointment.id,
@@ -75,7 +51,6 @@ export default {
     },
 
     openAppointmentDialog(appointment) {
-      console.log(appointment);
       this.selectedAppointment = appointment;
       this.dialogVisible = true;
     },
@@ -86,7 +61,7 @@ export default {
     },
   },
   created() {
-    this.getPendingAppointmentsByUserId(this.userId);
+    this.fetchPendingAppointments();
   }
 };
 </script>
@@ -158,7 +133,6 @@ export default {
 .dialog-card p {
   margin: 10px 0;
 }
-
 
 @media (min-width: 768px) {
   .appointment-list-container {
