@@ -50,13 +50,13 @@ export default {
 
         const appointmentDetailsPromises = appointments.map(async appointment => {
           const serviceResponse = await this.getService(appointment.serviceId);
-          const companyResponse = await this.getCompanyId(appointment.company);
+          const companyResponse = await this.getCompanyId(appointment.companyId);
 
           return new Appointment(
               appointment.id,
               appointment.userId,
               appointment.serviceId,
-              appointment.company,
+              appointment.companyId,
               appointment.reservationDate,
               appointment.status,
               appointment.date,
