@@ -9,16 +9,18 @@ export class Appointment {
         date = '',
         time = '',
 
-
     ) {
         this.id = id;
-        this.userId = userId;
-        this.serviceId = serviceId;
-        this.companyId = companyId;
-        this.reservationDate = reservationDate;
+        this.user_Id = userId;
+        this.service_Id = serviceId;
+        this.company_Id = companyId;
+        this.reservation_Date = reservationDate;
         this.status = status;
         this.date = date;
         this.time = time;
 
     }
 }
+
+
+

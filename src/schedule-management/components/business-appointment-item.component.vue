@@ -13,10 +13,15 @@ export default {
 <template>
   <div class="user-card">
     <div class="user-content">
+      <img :src="user.img" alt="Service Image" class="user-image" />
       <div class="user-details">
         <h3 class="user-title">{{ user.name }}</h3>
         <div class="user-info">
           <p><strong>Service:</strong> {{ user.serviceName }}</p>
+          <p><strong>Description:</strong> {{ user.description }}</p>
+          <p><strong>Price:</strong> ${{ user.price }}</p>
+          <p><strong>Duration:</strong> {{ user.duration }} mins</p>
+          <p><strong>Rating:</strong> {{ user.rating }}</p>
           <p><strong>Email:</strong> {{ user.email }}</p>
           <p><strong>Phone:</strong> {{ user.phone }}</p>
           <p><strong>Address:</strong> {{ user.address }}</p>
@@ -25,6 +30,7 @@ export default {
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .user-card {
@@ -40,6 +46,13 @@ export default {
   display: flex;
   align-items: flex-start;
   gap: 20px;
+}
+
+.user-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .user-details {

@@ -4,15 +4,12 @@ export class User {
         name = '',
         email = '',
         phone = '',
-        address = '',
-        serviceName = ''
+        address = ''
     ) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address
-        this.serviceName = serviceName;
-
     }
 }

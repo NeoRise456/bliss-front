@@ -1,7 +1,7 @@
 <script>
 import AppointmentItem from './appointment-item.component.vue';
-import http from "../../shared/services/http-common.js";
 import { Appointment } from "../../history/model/appointment.entity.js";
+import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
 
 export default {
   name: "appointment-list",
@@ -12,60 +12,36 @@ export default {
       userId: 1,
       selectedAppointment: null,
       dialogVisible: false,
+      apiService: new BusinessAppointmentApiService(),
     };
   },
   methods: {
-    async getCompanyId(id) {
+    async fetchPendingAppointments() {
       try {
-        const response = await http.get(`/companies/${id}`);
-        return response.data;
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          console.error(`Company with id ${id} not found`);
-        } else {
-          console.error(`Error fetching company with id ${id}:`, error);
-        }
-        return null;
-      }
-    },
+        const appointments = await this.apiService.getAppointments();
 
-    async getService(id) {
-      try {
-        const response = await http.get(`/services/${id}`);
-        return response.data;
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          console.error(`Service with id ${id} not found`);
-        } else {
-          console.error(`Error fetching service with id ${id}:`, error);
-        }
-        return null;
-      }
-    },
+        const filteredAppointments = appointments.filter(
+            appointment => appointment.userId === this.userId && appointment.status === "PENDING"
+        );
 
-    async getPendingAppointmentsByUserId(userId) {
-      try {
-        const response = await http.get('/appointments');
-        const appointments = response.data.filter(appointment => appointment.userId === userId && appointment.status === "PENDING");
+        const appointmentDetailsPromises = filteredAppointments.map(async appointment => {
+          const serviceResponse = await this.apiService.getServiceById(appointment.serviceId);
+          const companyResponse = await this.apiService.getCompanyById(appointment.companyId);
 
-        const appointmentDetailsPromises = appointments.map(async appointment => {
-          const serviceResponse = await this.getService(appointment.serviceId);
-          const companyResponse = await this.getCompanyId(appointment.companyId);
-
-          return new Appointment(
+          const newAppointment = new Appointment(
               appointment.id,
-              appointment.userId,
-              appointment.serviceId,
-              appointment.companyId,
-              appointment.reservationDate,
+              appointment.user_Id,
+              appointment.service_Id,
+              appointment.company_Id,
+              appointment.reservation_Date,
               appointment.status,
               appointment.date,
-              appointment.time,
-              appointment.payment,
-              appointment.schedule,
-              serviceResponse ? serviceResponse.service_name : 'Unknown Service',
-              companyResponse ? companyResponse.name : 'Unknown Company'
+              appointment.time
           );
+          newAppointment.serviceName = serviceResponse ? serviceResponse.service_name : 'Unknown Service';
+          newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
+
+          return newAppointment;
         });
 
         this.pendingAppointments = await Promise.all(appointmentDetailsPromises);
@@ -75,7 +51,6 @@ export default {
     },
 
     openAppointmentDialog(appointment) {
-      console.log(appointment);
       this.selectedAppointment = appointment;
       this.dialogVisible = true;
     },
@@ -86,7 +61,7 @@ export default {
     },
   },
   created() {
-    this.getPendingAppointmentsByUserId(this.userId);
+    this.fetchPendingAppointments();
   }
 };
 </script>
@@ -101,7 +76,7 @@ export default {
          :key="appointment.id"
          class="appointment-item-container"
          @click="openAppointmentDialog(appointment)">
-      <appointment-item :appointment="appointment"/>
+      <appointment-item :appointment="appointment" />
     </div>
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeAppointmentDialog">
@@ -157,21 +132,6 @@ export default {
 
 .dialog-card p {
   margin: 10px 0;
-}
-
-.card-content {
-  padding: 16px;
-}
-
-.mt-3 {
-  margin-top: 1rem;
-}
-
-.appointment-details {
-  background-color: #f9f9f9;
-  padding: 15px;
-  margin-top: 10px;
-  border: 1px solid #ddd;
 }
 
 @media (min-width: 768px) {

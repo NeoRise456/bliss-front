@@ -15,20 +15,55 @@ export default {
     };
   },
   methods: {
-    async loadUsers() {
-      this.userList = await this.apiService.getUsersByCompanyId(this.companyId);
+    async fetchUsers() {
+      try {
+        const appointments = await this.apiService.getAppointments();
+        const filteredAppointments = appointments.filter(appointment => appointment.company === this.companyId);
+
+        const userDetailsPromises = filteredAppointments.map(async appointment => {
+          const serviceResponse = await this.apiService.getServiceById(appointment.serviceId);
+          const userResponse = await this.apiService.getUserById(appointment.userId);
+
+          if (userResponse) {
+            const user = {
+              id: userResponse.id,
+              name: userResponse.name,
+              email: userResponse.email,
+              phone: userResponse.phone,
+              address: userResponse.address,
+            };
+
+            // Add additional service details directly to the user object
+            user.serviceName = serviceResponse ? serviceResponse.service_name : "Unknown Service";
+            user.description = serviceResponse ? serviceResponse.description : "No Description";
+            user.price = serviceResponse ? serviceResponse.price : 0;
+            user.duration = serviceResponse ? serviceResponse.duration : 0;
+            user.rating = serviceResponse ? serviceResponse.rating : 0;
+            user.img = serviceResponse ? serviceResponse.img : "";
+
+            return user;
+          }
+          return null;
+        });
+
+        this.userList = (await Promise.all(userDetailsPromises)).filter(user => user !== null);
+      } catch (error) {
+        console.error("Error loading users:", error);
+      }
     },
+
     openUserDialog(user) {
       this.selectedUser = user;
       this.dialogVisible = true;
     },
+
     closeUserDialog() {
       this.dialogVisible = false;
       this.selectedUser = null;
     },
   },
   created() {
-    this.loadUsers();
+    this.fetchUsers();
   }
 };
 </script>
