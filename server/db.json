@@ -268,17 +268,17 @@
       "userId": 1,
       "serviceId": 5,
       "company": 1,
+      "companyId": 1,
       "reservationDate": "2023-11-20",
       "status": "COMPLETED",
       "date": "2023-11-25",
       "time": "09:00 AM"
-
     },
     {
       "id": 2,
       "userId": 1,
       "serviceId": 2,
-      "company": 2,
+      "companyId": 2,
       "reservationDate": "2023-12-01",
       "status": "PENDING",
       "date": "2023-12-05",
@@ -288,7 +288,7 @@
       "id": 3,
       "userId": 1,
       "serviceId": 3,
-      "company": 3,
+      "companyId": 3,
       "reservationDate": "2023-12-10",
       "status": "PENDING",
       "date": "2023-12-15",
@@ -298,7 +298,7 @@
       "id": 4,
       "userId": 1,
       "serviceId": 1,
-      "company": 1,
+      "companyId": 1,
       "reservationDate": "2023-12-20",
       "status": "PENDING",
       "date": "2023-12-25",
@@ -308,9 +308,9 @@
       "id": 5,
       "userId": 1,
       "serviceId": 4,
-      "company": 2,
+      "companyId": 2,
       "reservationDate": "2023-12-28",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "date": "2023-12-30",
       "time": "11:45 AM"
     }
@@ -365,6 +365,34 @@
       "email": "markjohnson@example.com",
       "phone": "555-9101",
       "address": "789 Maple Avenue Springfield, IL 62706 United States"
+    }
+  ],
+  "reviews": [
+    {
+      "rating": 3,
+      "comment": "hola",
+      "createdDate": "2024-10-27T03:41:07.310Z",
+      "appointmentId": 1,
+      "userId": 1,
+      "images": [
+        null,
+        null,
+        null
+      ],
+      "id": 1
+    },
+    {
+      "rating": 3,
+      "comment": "jiji",
+      "createdDate": "2024-10-27T03:36:46.242Z",
+      "appointmentId": "5",
+      "userId": 1,
+      "images": [
+        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730000202/fkpvqc6nqea1en9tfy37.jpg",
+        null,
+        null
+      ],
+      "id": 2
     }
   ]
 }

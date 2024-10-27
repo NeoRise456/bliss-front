@@ -3,7 +3,7 @@ export class Appointment {
         id = 0,
         userId = 0,
         serviceId = 0,
-        company = 0,
+        companyId = 0,
         reservationDate = '',
         status = '',
         date = '',
@@ -12,11 +12,12 @@ export class Appointment {
         schedule = { date: '', time: '' },
         serviceName = '',
         companyName = ''
+        review = null // Add review property
     ) {
         this.id = id;
         this.userId = userId;
         this.serviceId = serviceId;
-        this.company = company;
+        this.companyId = companyId;
         this.reservationDate = reservationDate;
         this.status = status;
         this.date = date;
@@ -25,5 +26,6 @@ export class Appointment {
         this.schedule = schedule;
         this.serviceName = serviceName;
         this.companyName = companyName;
+        this.review = review; // Initialize review property
     }
 }
