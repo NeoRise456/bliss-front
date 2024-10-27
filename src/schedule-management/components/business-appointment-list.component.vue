@@ -32,7 +32,14 @@ export default {
               phone: userResponse.phone,
               address: userResponse.address,
             };
+
+            // Add additional service details directly to the user object
             user.serviceName = serviceResponse ? serviceResponse.service_name : "Unknown Service";
+            user.description = serviceResponse ? serviceResponse.description : "No Description";
+            user.price = serviceResponse ? serviceResponse.price : 0;
+            user.duration = serviceResponse ? serviceResponse.duration : 0;
+            user.rating = serviceResponse ? serviceResponse.rating : 0;
+            user.img = serviceResponse ? serviceResponse.img : "";
 
             return user;
           }
