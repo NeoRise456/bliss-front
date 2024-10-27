@@ -267,6 +267,7 @@
       "id": 1,
       "userId": 1,
       "serviceId": 5,
+      "company": 1,
       "companyId": 1,
       "reservationDate": "2023-11-20",
       "status": "COMPLETED",
