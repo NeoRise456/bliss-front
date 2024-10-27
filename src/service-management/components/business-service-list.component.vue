@@ -1,4 +1,5 @@
 <script>
+import { defaultBusinessId } from '../../router/index.js';
 import {ServiceApiService} from "../services/service-api.service.js";
 import {Service} from "../model/service.entity.js";
 import BusinessServiceItem from "./business-service-item.component.vue";
@@ -15,7 +16,7 @@ export default {
     async fetchServices() {
       try {
         const serviceApiService = new ServiceApiService();
-        const response = await serviceApiService.getServices();
+        const response = await serviceApiService.getServicesByCompanyId(defaultBusinessId);
         this.services = response.data.map(service => new Service(
             service.id,
             service.category_id,

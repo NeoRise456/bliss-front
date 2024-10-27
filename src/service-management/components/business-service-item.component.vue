@@ -1,6 +1,6 @@
 <script>
 import { Service } from "../model/service.entity.js";
-
+import { ServiceApiService } from "../services/service-api.service.js";
 export default {
   name: "business-service-item",
   components: {},
@@ -11,8 +11,23 @@ export default {
     }
   },
   methods: {
-    redirectToServiceDetail(serviceId) {
-      this.$router.push({ name: 'Business-Service', params: { id: serviceId } });
+    redirectToServiceEdit(serviceId) {
+      this.$router.push({name: 'ServiceEdit', params: {serviceId: serviceId}});
+    },
+    async deleteService(serviceId) {
+      try{
+        const serviceApiService = new ServiceApiService();
+        await serviceApiService.deleteService(serviceId);
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Service Deleted',
+          detail: 'Your service has been deleted successfully.',
+          life: 3000
+        });
+        window.location.reload();
+      } catch (error) {
+        console.error('Error deleting service:', error);
+      }
     }
   }
 }
@@ -22,7 +37,7 @@ export default {
   <pv-card class="bg-white item-card">
     <template #header>
       <div style="padding: 10px">
-        <img alt="user header" :src="service.img" width="300px" />
+        <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
       </div>
     </template>
     <template #title>
@@ -37,16 +52,17 @@ export default {
     </template>
     <template #footer>
       <div class="flex gap-4 mt-1">
-        <pv-button icon="pi pi-pencil"
-                   icon-pos="right"
-                   :label="$t('businessService.edit')"
-                   class="w-full"
-                   @click="redirectToServiceDetail(service.id)" />
-        <pv-button icon="pi pi-delete-left"
-                   icon-pos="right"
-                   :label="$t('businessService.delete')"
-                   class="w-full"
-                   severity="danger" />
+          <pv-button icon="pi pi-pencil"
+                     icon-pos="right"
+                     :label="$t('businessService.edit')"
+                     class="w-full"
+                     @click="this.redirectToServiceEdit(service.id)" />
+          <pv-button icon="pi pi-delete-left"
+                     icon-pos="right"
+                     :label="$t('businessService.delete')"
+                     class="w-full"
+                     severity="danger"
+                     @click="this.deleteService(service.id)"/>
       </div>
     </template>
   </pv-card>

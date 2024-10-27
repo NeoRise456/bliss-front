@@ -1,6 +1,6 @@
 <script>
 import LanguageSwitcher from "./language-switcher.component.vue";
-
+import { defaultBusinessId } from '../../router/index.js';
 export default {
   components: { LanguageSwitcher },
   data() {
@@ -23,7 +23,7 @@ export default {
         return [
           { label: this.$t('toolbar.home'), to: '/homeBusiness' },
             // { label: this.$t('toolbar.myServices'), to: `/business-myservices/${this.userId}` },
-          { label: this.$t('toolbar.myServices'), to: `/business-myservices` },
+          { label: this.$t('toolbar.myServices'), to: `/business-my-services/${defaultBusinessId}` },
             // { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
           { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
         ];

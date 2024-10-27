@@ -11,7 +11,7 @@ export default {
 <template>
   <pv-card class="mt-5 mb-5 bg-white">
     <template #header>
-      <h1 class="header-left">{{ $t('businessServices.ourServices') }}</h1>
+      <h1 class="header-left">{{$t('businessServices.ourServices')}}</h1>
     </template>
     <template #content>
       <div class="content-center">
