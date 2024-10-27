@@ -1,7 +1,6 @@
 <script>
 import BusinessAppointmentItem from './business-appointment-item.component.vue';
-import { User } from "../model/business-appointment.entity.js";
-import http from "../../shared/services/http-common.js";
+import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
 
 export default {
   name: "business-appointment-list",
@@ -12,67 +11,24 @@ export default {
       companyId: 1,
       selectedUser: null,
       dialogVisible: false,
+      apiService: new BusinessAppointmentApiService(),
     };
   },
   methods: {
-    async getUserDetails(userId) {
-      try {
-        const response = await http.get(`/users/${userId}`);
-        return response.data;
-      } catch (error) {
-        return null;
-      }
+    async loadUsers() {
+      this.userList = await this.apiService.getUsersByCompanyId(this.companyId);
     },
-
-    async getService(serviceId) {
-      try {
-        const response = await http.get(`/services/${serviceId}`);
-        return response.data;
-      } catch (error) {
-        console.error('Error fetching service:', error);
-        return null;
-      }
-    },
-
-
-    async getUsersByCompanyId(companyId) {
-      try {
-        const response = await http.get('/appointments');
-        const appointments = response.data.filter(appointment => appointment.company === companyId);
-        const userDetailsPromises = appointments.map(async appointment => {
-          const serviceResponse = await this.getService(appointment.serviceId);
-          const userResponse = await this.getUserDetails(appointment.userId);
-
-          if (userResponse) {
-            return new User(
-                userResponse.id,
-                userResponse.name,
-                userResponse.email,
-                userResponse.phone,
-                userResponse.address,
-                serviceResponse ? serviceResponse.service_name : 'Unknown Service'
-            );
-          }
-          return null;
-        });
-        this.userList = (await Promise.all(userDetailsPromises)).filter(user => user !== null);
-      } catch (error) {
-        console.error('Error fetching users for company:', error);
-      }
-    },
-
     openUserDialog(user) {
       this.selectedUser = user;
       this.dialogVisible = true;
     },
-
     closeUserDialog() {
       this.dialogVisible = false;
       this.selectedUser = null;
     },
   },
   created() {
-    this.getUsersByCompanyId(this.companyId);
+    this.loadUsers();
   }
 };
 </script>
