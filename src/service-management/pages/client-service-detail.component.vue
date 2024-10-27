@@ -30,20 +30,18 @@ export default {
     getServiceId() {
       return this.$route.params.id;
     },
-    getServiceById(id){
-      this.serviceApiService.getService(id)
-          .then(response => {
-            this.currentService = this.buildServiceFromResponseData(response.data);
-          })
-          .catch(error => {
-            console.error("There was an error fetching the service:", error);
-          });
+    async getServiceById(id){
+      const response = await this.serviceApiService.getServiceById(id);
+      this.currentService = this.buildServiceFromResponseData(response.data);
     },
     getCurrentService(){
       let serviceId = this.getServiceId();
       if (serviceId) {
         this.getServiceById(serviceId);
       }
+    },
+    redirectToReservations(serviceId){
+      this.$router.push({name: 'Reservations', params: {id: serviceId}});
     }
   },
   created() {
@@ -72,7 +70,8 @@ export default {
           </div>
         </div>
         <div class="m-1">
-          <pv-button :label=" $t('clientServiceDetail.bookNow') " class="w-full" />
+          <pv-button :label=" $t('clientServiceDetail.bookNow') " class="w-full"
+           @click="redirectToReservations(currentService.id)"/>
         </div>
         <div>
           <pv-divider type="solid"/>
