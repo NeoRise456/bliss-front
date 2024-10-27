@@ -9,7 +9,7 @@ import ServiceAppointmentComponent from "../service-management/pages/service-app
 import HistoryPageComponent from "../history/pages/history-page.component.vue";
 import PageNotFound from "../public/pages/page-not-found.vue";
 import CompanyDetailPageComponent   from "../company-detail/pages/company-detail-page.component.vue";
-import ReservationsComponent from "../service-management/pages/reservations.component.vue";
+import ReservationsComponent from "../appointment-creation/pages/reservations.component.vue";
 const defaultClientId = 1;
 const defaultBusinessId = 1;
 
