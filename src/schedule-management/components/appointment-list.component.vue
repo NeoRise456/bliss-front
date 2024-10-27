@@ -52,20 +52,22 @@ export default {
           const serviceResponse = await this.getService(appointment.serviceId);
           const companyResponse = await this.getCompanyId(appointment.companyId);
 
-          return new Appointment(
+          const newAppointment = new Appointment(
               appointment.id,
-              appointment.userId,
-              appointment.serviceId,
-              appointment.companyId,
-              appointment.reservationDate,
+              appointment.user_Id,
+              appointment.service_Id,
+              appointment.company_Id,
+              appointment.reservation_Date,
               appointment.status,
               appointment.date,
-              appointment.time,
-              appointment.payment,
-              appointment.schedule,
-              serviceResponse ? serviceResponse.service_name : 'Unknown Service',
-              companyResponse ? companyResponse.name : 'Unknown Company'
+              appointment.time
           );
+
+          // Add serviceName and companyName directly to the appointment object
+          newAppointment.serviceName = serviceResponse ? serviceResponse.service_name : 'Unknown Service';
+          newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
+
+          return newAppointment;
         });
 
         this.pendingAppointments = await Promise.all(appointmentDetailsPromises);
@@ -101,7 +103,7 @@ export default {
          :key="appointment.id"
          class="appointment-item-container"
          @click="openAppointmentDialog(appointment)">
-      <appointment-item :appointment="appointment"/>
+      <appointment-item :appointment="appointment" />
     </div>
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeAppointmentDialog">
