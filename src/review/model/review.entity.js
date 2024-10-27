@@ -11,4 +11,9 @@ export class Review {
         this.userId = userId;
         this.images = images;
     }
+    static async getUserNameById(userId) {
+        const response = await fetch(`users/${userId}`);
+        const data = await response.json();
+        return data.name;
+    }
 }

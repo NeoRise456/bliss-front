@@ -93,7 +93,7 @@
       "id": 1,
       "category_id": 1,
       "company_id": 1,
-      "service_name": "Service 1",
+      "service_name": "Hair cut",
       "description": "Service 1 description",
       "price": 100,
       "duration": 60,
@@ -106,7 +106,7 @@
       "id": 2,
       "category_id": 1,
       "company_id": 1,
-      "service_name": "Service 2",
+      "service_name": "Hair dye",
       "description": "Service 2 description",
       "price": 200,
       "duration": 120,
@@ -119,7 +119,7 @@
       "id": 3,
       "category_id": 2,
       "company_id": 1,
-      "service_name": "Service 3",
+      "service_name": "Botox treatment",
       "description": "Service 3 description",
       "price": 300,
       "duration": 180,
@@ -132,7 +132,7 @@
       "id": 4,
       "category_id": 2,
       "company_id": 1,
-      "service_name": "Service 4",
+      "service_name": "Facial Treatment",
       "description": "Service 4 description",
       "price": 400,
       "duration": 240,
@@ -145,7 +145,7 @@
       "id": 5,
       "category_id": 3,
       "company_id": 1,
-      "service_name": "Service 5",
+      "service_name": "Wing Extension",
       "description": "Service 5 description",
       "price": 500,
       "duration": 300,
@@ -266,7 +266,7 @@
     {
       "id": 1,
       "userId": 1,
-      "serviceId": 1,
+      "serviceId": 5,
       "companyId": 1,
       "reservationDate": "2023-11-20",
       "status": "COMPLETED",
@@ -276,12 +276,22 @@
     {
       "id": 2,
       "userId": 1,
-      "serviceId": 1,
-      "companyId": 1,
+      "serviceId": 2,
+      "companyId": 2,
       "reservationDate": "2023-12-01",
-      "status": "COMPLETED",
+      "status": "PENDING",
       "date": "2023-12-05",
       "time": "03:00 PM"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "serviceId": 3,
+      "companyId": 3,
+      "reservationDate": "2023-12-10",
+      "status": "PENDING",
+      "date": "2023-12-15",
+      "time": "10:30 AM"
     },
     {
       "id": 4,
@@ -292,20 +302,96 @@
       "status": "PENDING",
       "date": "2023-12-25",
       "time": "09:00 AM"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "serviceId": 4,
+      "companyId": 2,
+      "reservationDate": "2023-12-28",
+      "status": "COMPLETED",
+      "date": "2023-12-30",
+      "time": "11:45 AM"
     }
   ],
   "companies": [
     {
       "id": 1,
-      "name": "Company 1",
+      "name": "SOHO",
       "ruc": "12345678901",
-      "email": "sample@sample.com",
-      "website": "www.sample.com",
+      "email": "soho@gmail.com",
+      "website": "www.soho.com",
       "description": "Company 1 description",
+      "created_at": "2021-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "MY LUCKY",
+      "ruc": "12345678901",
+      "email": "mylucky@gmail.com",
+      "website": "www.lucky.com",
+      "description": "Company 2 description",
+      "created_at": "2021-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "MONTALVO",
+      "ruc": "12345678901",
+      "email": "montalvo@gmail.com",
+      "website": "www.montalvo.com",
+      "description": "Company 3 description",
       "created_at": "2021-01-01T00:00:00.000Z"
     }
   ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "phone": "555-1234",
+      "address": "123 Oakwood Avenue Springfield, IL 62704 United States"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "phone": "555-5678",
+      "address": "456 Elm Street Springfield, IL 62705 United States"
+    },
+    {
+      "id": 3,
+      "name": "Mark Johnson",
+      "email": "markjohnson@example.com",
+      "phone": "555-9101",
+      "address": "789 Maple Avenue Springfield, IL 62706 United States"
+    }
+  ],
   "reviews": [
-
+    {
+      "rating": 3,
+      "comment": "hola",
+      "createdDate": "2024-10-27T03:41:07.310Z",
+      "appointmentId": 1,
+      "userId": 1,
+      "images": [
+        null,
+        null,
+        null
+      ],
+      "id": 1
+    },
+    {
+      "rating": 3,
+      "comment": "jiji",
+      "createdDate": "2024-10-27T03:36:46.242Z",
+      "appointmentId": "5",
+      "userId": 1,
+      "images": [
+        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730000202/fkpvqc6nqea1en9tfy37.jpg",
+        null,
+        null
+      ],
+      "id": 2
+    }
   ]
 }
