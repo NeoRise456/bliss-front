@@ -21,7 +21,7 @@ export default {
         ];
       } else {
         return [
-          { label: this.$t('toolbar.home'), to: '/home' },
+          { label: this.$t('toolbar.home'), to: '/homeBusiness' },
             // { label: this.$t('toolbar.myServices'), to: `/business-myservices/${this.userId}` },
           { label: this.$t('toolbar.myServices'), to: `/business-myservices` },
             // { label: this.$t('toolbar.schedule'), to: `/business-schedule/${this.userId}` }
