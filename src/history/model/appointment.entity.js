@@ -8,6 +8,7 @@ export class Appointment {
         status = '',
         date = '',
         time = '',
+        review = null // Add review property
     ) {
         this.id = id;
         this.userId = userId;
@@ -17,5 +18,6 @@ export class Appointment {
         this.status = status;
         this.date = date;
         this.time = time;
+        this.review = review; // Initialize review property
     }
 }

@@ -3,19 +3,27 @@ import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import ReviewManagementCard from '../components/review-management-card.component.vue';
 import { ReviewApiService } from '../services/review.service.js';
-
+import { HistoryApiService } from '../../history/services/history.service.js';
+import { Appointment } from '../../history/model/appointment.entity.js';
 const route = useRoute();
 const router = useRouter();
+const appointment = ref(null);
 const appointmentId = route.params.appointmentId;
 const review = ref(null);
 const reviewApiService = new ReviewApiService();
+const historyApiService = new HistoryApiService();
 
-const fetchReview = async () => {
+const fetchReviewAndAppointment = async () => {
   try {
-    const response = await reviewApiService.getReviewByReservationId(appointmentId);
-    review.value = response.data.length > 0 ? response.data[0] : null;
+    const [reviewResponse, appointmentResponse] = await Promise.all([
+      reviewApiService.getReviewByReservationId(appointmentId),
+      reviewApiService.getAppointmentById(appointmentId)
+    ]);
+
+    review.value = reviewResponse.data.length > 0 ? reviewResponse.data[0] : null;
+    appointment.value = appointmentResponse.data;
   } catch (error) {
-    console.error('Error fetching review:', error);
+    console.error('Error fetching review or appointment:', error);
   }
 };
 
@@ -33,13 +41,13 @@ const saveReview = async (reviewData) => {
 };
 
 onMounted(() => {
-  fetchReview();
+  fetchReviewAndAppointment();
 });
 </script>
 
 <template>
   <div>
-    <ReviewManagementCard :review="review" @saveReview="saveReview" />
+    <ReviewManagementCard v-if="appointment" :review="review" @saveReview="saveReview" :appointment="appointment"/>
   </div>
 </template>
 
