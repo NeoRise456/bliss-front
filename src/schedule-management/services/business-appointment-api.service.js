@@ -2,7 +2,6 @@ import http from "../../shared/services/http-common.js";
 
 export class BusinessAppointmentApiService {
 
-
     /**
      * Fetch user details by user ID
      * @param {number} userId
@@ -32,39 +31,16 @@ export class BusinessAppointmentApiService {
     }
 
     /**
-     * Fetch users by company ID, filtering based on appointments
-     * @param {number} companyId
-     * @returns {Promise<Array>} Array of user details including service names
+     * Fetch all appointments
+     * @returns {Promise<Array>} Array of appointment objects
      */
-    async getUsersByCompanyId(companyId) {
-        try {
-            const response = await http.get("/appointments");
-            const appointments = response.data.filter(
-                appointment => appointment.company === companyId
-            );
-
-            const userDetailsPromises = appointments.map(async appointment => {
-                const serviceResponse = await this.getServiceById(appointment.serviceId);
-                const userResponse = await this.getUserById(appointment.userId);
-
-                if (userResponse) {
-                    return {
-                        id: userResponse.id,
-                        name: userResponse.name,
-                        email: userResponse.email,
-                        phone: userResponse.phone,
-                        address: userResponse.address,
-                        serviceName: serviceResponse ? serviceResponse.service_name : "Unknown Service",
-                    };
-                }
-                return null;
+    getAppointments() {
+        return http.get("/appointments")
+            .then(response => response.data)
+            .catch(error => {
+                console.error("Error fetching appointments:", error);
+                return [];
             });
-
-            return (await Promise.all(userDetailsPromises)).filter(user => user !== null);
-        } catch (error) {
-            console.error("Error fetching users for company:", error);
-            return [];
-        }
     }
 
 }
