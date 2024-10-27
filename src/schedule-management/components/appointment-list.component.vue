@@ -62,8 +62,6 @@ export default {
               appointment.date,
               appointment.time
           );
-
-          // Add serviceName and companyName directly to the appointment object
           newAppointment.serviceName = serviceResponse ? serviceResponse.service_name : 'Unknown Service';
           newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
 
@@ -161,20 +159,6 @@ export default {
   margin: 10px 0;
 }
 
-.card-content {
-  padding: 16px;
-}
-
-.mt-3 {
-  margin-top: 1rem;
-}
-
-.appointment-details {
-  background-color: #f9f9f9;
-  padding: 15px;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-}
 
 @media (min-width: 768px) {
   .appointment-list-container {
