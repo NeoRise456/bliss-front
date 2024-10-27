@@ -54,17 +54,23 @@ export default {
             class="service-card p-shadow-2 p-mr-2"
         >
           <template #header>
-            <img :src="service.img" alt="Service image" class="service-img"/>
+            <div style="padding: 10px">
+              <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
+            </div>
           </template>
           <template #title>
+            <div class="content-text">
             {{service.service_name}}
+            </div>
           </template>
           <template #content>
+            <div class="content-text">
             <p>{{service.description}}</p>
             <p class="p-mt-2">{{$t('servicesHome.price')}}: ${{service.price}}</p>
             <p class="p-mt-2">{{$t('servicesHome.duration')}}: {{service.duration}} min</p>
             <p class="p-mt-2">{{$t('servicesHome.sales')}}: {{service.sales}}</p>
             <p class="p-mt-2">{{$t('servicesHome.rating')}}: {{service.rating}}</p>
+            </div>
           </template>
         </pv-card>
       </div>
@@ -86,32 +92,25 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  justify-content: center;
 }
 
 .service-card {
-  min-width: 250px;
-  flex: 1 1 250px;
-  margin-bottom: 16px;
-  background-color: #E24084;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+  width: 20rem;
+  height: auto;
+  overflow: hidden;
+  border-style: solid;
+  border-color: #37123C;
+  border-width: 1px;
+  background-color: #B39DE7;
 }
 
 .service-card:hover {
   transform: scale(1.05);
 }
-
-.service-img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
 .p-text-center {
   text-align: center;
-  color: #1a1a1a;
+  color: #37123C;
 }
 
 .p-mb-4 {
@@ -123,7 +122,10 @@ export default {
 }
 
 .p-shadow-2 {
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 8px rgb(179, 157, 231);/**/
+}
+.content-text {
+  color: #37123C;
 }
 
 </style>
