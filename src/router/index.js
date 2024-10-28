@@ -12,7 +12,7 @@ import CompanyDetailPageComponent   from "../company-detail/pages/company-detail
 import BusinessAppointmentListComponent from "../schedule-management/components/business-appointment-list.component.vue";
 import ReviewManagementPage from '../review/pages/review-management-page.component.vue';
 import EditBusinessServiceComponent from "../service-management/components/edit-business-service.component.vue";
-import ReservationsComponent from "../appointment-creation/pages/reservations.component.vue";
+import ReservationsComponent from "../appointment-management/pages/reservations.component.vue";
 
 const defaultClientId = 1;
 export const defaultBusinessId = 1;
