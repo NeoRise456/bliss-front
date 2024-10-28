@@ -1,12 +1,13 @@
 <script>
 import {ServiceApiService} from "../../service-management/services/service-api.service.js";
-import {Service} from "../../service-management/model/service.entity.js";
+import {Service} from "../../shared/model/service.entity.js";
 import {Appointment} from "../model/appointment.entity.js";
 import {ClientAppointmentApiService} from "../services/client-appointment-api.service.js";
+import ServiceMiniCard from "../components/service-mini-card.component.vue";
 
 export default {
   name: "reservations",
-  components: {},
+  components: {ServiceMiniCard},
   data(){
     return {
       serviceId: this.$route.params.id,
@@ -74,21 +75,7 @@ export default {
   <div class="flex gap-5 align-items-start">
     <div class="flex-1 flex align-items-center justify-content-center">
       <div>
-        <pv-card>
-          <template #header>
-            <img alt="service" :src="bookingService.img" style="max-width: 300px"/>
-          </template>
-          <template #title>
-            {{ bookingService.service_name }}
-          </template>
-          <template #subtitle>
-            {{ bookingService.description }}
-          </template>
-          <template #content>
-            PEN {{ bookingService.price }}
-          </template>
-        </pv-card>
-
+        <service-mini-card :service="bookingService"/>
       </div>
     </div>
     <div class="flex-none flex align-items-center justify-content-center">
@@ -136,9 +123,8 @@ export default {
             </span>
           </template>
           <template #footer>
-            <pv-button label="Learn More" icon="pi pi-chevron-right" icon-pos="right"/>
+            <pv-button label="Go To Services" icon="pi pi-chevron-right" icon-pos="left"/>
           </template>
-
         </pv-card>
       </div>
     </div>
