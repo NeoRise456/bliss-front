@@ -88,6 +88,7 @@ export default {
   border-radius: 8px;
   background: transparent;
   color: #37123C;
+  background: #D5CAF0;
   border-style: solid;
   border-color: black;
   border-width: 1px;

@@ -102,7 +102,7 @@ export default {
   border-style: solid;
   border-color: #37123C;
   border-width: 1px;
-  background-color: #B39DE7;
+  background-color: #D5CAF0;
   transition: transform 0.3s ease;
 }
 
