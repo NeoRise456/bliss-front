@@ -6,7 +6,7 @@ import CategoryFilter from "../components/category-filter.component.vue";
 import {CategoryApiService} from "../services/category-api.service.js";
 import {ServiceApiService} from "../services/service-api.service.js";
 import {Category} from "../model/category.entity.js";
-import {Service} from "../model/service.entity.js";
+import {Service} from "../../shared/model/service.entity.js";
 
 export default {
   name: "client-services",components: {CategoryFilter, PriceFilter, ServiceList, serviceListComponent},
