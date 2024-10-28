@@ -1,7 +1,7 @@
 <script>
 import AppointmentItem from './appointment-item.component.vue';
 import { Appointment } from "../../history/model/appointment.entity.js";
-import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
+import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
 
 export default {
   name: "appointment-list",
@@ -12,6 +12,7 @@ export default {
       userId: 1,
       selectedAppointment: null,
       dialogVisible: false,
+      cancelDialogVisible: false,
       apiService: new BusinessAppointmentApiService(),
     };
   },
@@ -50,6 +51,16 @@ export default {
       }
     },
 
+    async handleCancelAppointment(appointmentId) {
+      try {
+        await this.apiService.cancelAppointment(appointmentId);
+        this.pendingAppointments = this.pendingAppointments.filter(appointment => appointment.id !== appointmentId);
+        this.cancelDialogVisible = false;
+      } catch (error) {
+        console.error('Error canceling appointment:', error);
+      }
+    },
+
     openAppointmentDialog(appointment) {
       this.selectedAppointment = appointment;
       this.dialogVisible = true;
@@ -59,13 +70,22 @@ export default {
       this.dialogVisible = false;
       this.selectedAppointment = null;
     },
+
+    openCancelDialog(appointment) {
+      this.selectedAppointment = appointment;
+      this.cancelDialogVisible = true;
+    },
+
+    closeCancelDialog() {
+      this.cancelDialogVisible = false;
+      this.selectedAppointment = null;
+    }
   },
   created() {
     this.fetchPendingAppointments();
   }
 };
 </script>
-
 
 <template>
   <div class="appointment-list-container">
@@ -74,9 +94,10 @@ export default {
     </div>
     <div v-for="appointment in pendingAppointments"
          :key="appointment.id"
-         class="appointment-item-container"
-         @click="openAppointmentDialog(appointment)">
-      <appointment-item :appointment="appointment" />
+         class="appointment-item-container">
+      <appointment-item :appointment="appointment"
+                        @open-cancel-dialog="openCancelDialog"
+                        @open-appointment-dialog="openAppointmentDialog" />
     </div>
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeAppointmentDialog">
@@ -87,6 +108,15 @@ export default {
         <p><strong>Date:</strong> {{ selectedAppointment?.date }}</p>
         <p><strong>Time:</strong> {{ selectedAppointment?.time }}</p>
         <button @click="closeAppointmentDialog">Close</button>
+      </div>
+    </div>
+
+    <div v-if="cancelDialogVisible" class="dialog-overlay" @click="closeCancelDialog">
+      <div class="dialog-card" @click.stop>
+        <h3>Confirm Cancellation</h3>
+        <p>Are you sure you want to cancel this appointment?</p>
+        <button @click="handleCancelAppointment(selectedAppointment.id)" class="confirm-button">Yes, Cancel</button>
+        <button @click="closeCancelDialog" class="cancel-button">No, Go Back</button>
       </div>
     </div>
   </div>
@@ -134,9 +164,38 @@ export default {
   margin: 10px 0;
 }
 
+.dialog-card button {
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0.3125rem;
+}
+
+.dialog-card .confirm-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+}
+
+.dialog-card .confirm-button:hover {
+  background-color: #ff1a1a;
+}
+
+.dialog-card .cancel-button {
+  background-color: #ccc;
+  color: black;
+  border: none;
+}
+
+.dialog-card .cancel-button:hover {
+  background-color: #999;
+}
+
 @media (min-width: 768px) {
   .appointment-list-container {
     flex-direction: row;
   }
 }
+
 </style>

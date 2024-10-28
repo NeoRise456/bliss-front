@@ -203,24 +203,14 @@
       "time": "09:00 AM"
     },
     {
-      "id": 2,
-      "userId": 1,
-      "serviceId": 2,
-      "companyId": 2,
-      "reservationDate": "2023-12-01",
-      "status": "PENDING",
-      "date": "2023-12-05",
-      "time": "03:00 PM"
-    },
-    {
       "id": 3,
       "userId": 1,
       "serviceId": 3,
-      "companyId": 3,
+      "companyId": 2,
       "reservationDate": "2023-12-10",
       "status": "PENDING",
       "date": "2023-12-15",
-      "time": "10:30 AM"
+      "time": "10:45 AM"
     },
     {
       "id": 4,
@@ -241,6 +231,16 @@
       "status": "COMPLETED",
       "date": "2023-12-30",
       "time": "11:45 AM"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "serviceId": 3,
+      "companyId": 2,
+      "reservationDate": "2023-12-10",
+      "status": "PENDING",
+      "date": "2023-12-15",
+      "time": "10:30 AM"
     }
   ],
   "companies": [

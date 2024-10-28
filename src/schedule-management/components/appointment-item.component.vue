@@ -8,12 +8,18 @@ export default {
     }
   },
   methods: {
+    openCancelDialog() {
+      this.$emit('open-cancel-dialog', this.appointment);
+    },
+    openAppointmentDialog() {
+      this.$emit('open-appointment-dialog', this.appointment);
+    }
   }
 }
 </script>
 
 <template>
-  <div class="appointment-card">
+  <div class="appointment-card" @click="openAppointmentDialog">
     <div class="appointment-content">
       <img alt="user header" class="appointment-image" :src="appointment.img" />
       <div class="appointment-details">
@@ -22,11 +28,11 @@ export default {
           <div class="date-card">{{ $t('appointment.date') }}: {{ appointment.date }}</div>
           <div class="time-card">{{ $t('appointment.time') }}: {{ appointment.time }}</div>
         </div>
+        <button @click.stop="openCancelDialog" class="cancel-button">Cancel Appointment</button>
       </div>
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .appointment-card {
@@ -86,4 +92,22 @@ export default {
   font-size: 1rem;
   color: #666;
 }
+
+.cancel-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  margin-top: 0.625rem;
+  font-size: 1rem;
+  width: 12rem;
+  text-align: center;
+}
+
+.cancel-button:hover {
+  background-color: #ff1a1a;
+}
+
 </style>
