@@ -19,15 +19,23 @@ export default {
 
         const topReviews= sortedReviews.slice(0,5);
 
-
+        this.topRatedReviews= await Promise.all(
+            topReviews.map(async (review)=>{
+              const userResponse= await reviewApiService.getUserById(review.userId);
+              const user= userResponse.data;
+              return {...review, userName: user.name};
+            })
+        );
 
       }catch (error){
         console.error("Error loading top rated reviews:",error);
       }
 
     }
+  },
+  mounted() {
+    this.loadTopRatedReviews();
   }
-
 }
 </script>
 
