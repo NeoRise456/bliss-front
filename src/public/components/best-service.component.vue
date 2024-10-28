@@ -46,8 +46,8 @@ export default {
       <template #content>
         <div class="service-content flex">
 
-          <div class="image-container">
-            <img :src="bestService.img" alt="Service Image" class="service-img" />
+          <div style="padding: 10px">
+            <img :src="bestService.img" alt="service image"  width="300px" style="border-radius: 10px;" />
           </div>
 
           <div class="info-container">
@@ -69,7 +69,7 @@ export default {
 
 .p-text-center {
   text-align: center;
-  color: #1a1a1a;
+  color: #37123C;
   margin-bottom: 16px;
 }
 
@@ -81,11 +81,16 @@ export default {
 
 .best-service-card {
   width: 100%;
-  max-width: 600px;
+  height: auto;
+  max-width: 580px;
+  overflow: hidden;
   padding: 16px;
   border-radius: 8px;
-  background: #37123C;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  color: #37123C;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
   transition: transform 0.3s ease;
 }
 
@@ -103,30 +108,18 @@ export default {
   display: flex;
 }
 
-.image-container {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .info-container {
   width: 50%;
   padding: 0 16px;
 }
 
-.service-img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
+
 
 .p-mt-2 {
   margin-top: 8px;
 }
-.p-shadow-2{
-  box-shadow: 0px 2px 8px rgba(255, 251, 0, 0.98);
-}
+/*.p-shadow-2{
+  box-shadow: 0px 2px 8px rgb(159, 16, 255);
+}*/
 
 </style>

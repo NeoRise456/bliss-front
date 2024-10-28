@@ -55,7 +55,7 @@ export default {
         >
           <template #header>
             <div style="padding: 10px">
-              <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
+              <img alt="service image" :src="service.img" width="300px" style="border-radius: 10px;" />
             </div>
           </template>
           <template #title>
@@ -103,6 +103,7 @@ export default {
   border-color: #37123C;
   border-width: 1px;
   background-color: #B39DE7;
+  transition: transform 0.3s ease;
 }
 
 .service-card:hover {
