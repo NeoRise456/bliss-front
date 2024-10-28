@@ -55,16 +55,11 @@ export default {
       this.minValue = Math.min(...prices);
       this.maxValue = Math.max(...prices);
     },
-    getCategories() {
-      this.categoriesApiService.getCategories()
-          .then(response => {
-            this.categories = this.buildCategoriesFromResponseData(response.data);
-          })
-          .catch(error => {
-            console.error('Error fetching categories:', error);
-          });
+    async getCategories() {
+      const response = await this.categoriesApiService.getCategories();
+      this.categories = this.buildCategoriesFromResponseData(response.data);
     },
-    getServices() {
+    async getServices() {
       this.serviceApiService.getServices()
           .then(response => {
             this.services = this.buildServicesFromResponseData(response.data);
