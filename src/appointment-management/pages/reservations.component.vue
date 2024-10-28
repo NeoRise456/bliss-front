@@ -13,7 +13,7 @@ export default {
       bookingService: Service,
       serviceApiService: new ServiceApiService(),
       appointment: Appointment,
-      appointmentApiService: new ClientAppointmentApiService(),
+      clientAppointmentApiService: new ClientAppointmentApiService(),
       date: new Date(),
       time: new Date(),
       requirements: null
@@ -39,11 +39,7 @@ export default {
       let response = await this.serviceApiService.getServiceById(this.serviceId);
       this.bookingService = this.buildServiceFromResponseData(response.data);
     },
-    getRandomId(){
-      return Math.floor(Math.random() * 1000);
-    },
     async bookService() {
-      console.log(this.bookingService);
 
       let nowDate = new Date();
       nowDate = nowDate.toISOString();
@@ -62,7 +58,7 @@ export default {
           this.requirements
       );
 
-      let response = await this.appointmentApiService.createAppointment(this.appointment);
+      let response = await this.clientAppointmentApiService.createAppointment(this.appointment);
       console.log(response);
 
     }
