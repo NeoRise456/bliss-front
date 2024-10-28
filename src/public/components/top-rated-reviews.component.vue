@@ -22,11 +22,10 @@ export default {
         this.topRatedReviews= await Promise.all(
             topReviews.map(async (review)=>{
               const userResponse= await reviewApiService.getUserById(review.userId);
-              const user= userResponse.data;
+              const user= userResponse.data[0];
               return {...review, userName: user.name};
             })
         );
-
       }catch (error){
         console.error("Error loading top rated reviews:",error);
       }
@@ -40,9 +39,45 @@ export default {
 </script>
 
 <template>
+  <div class="top-rated-reviews-container">
+    <div v-for="review in topRatedReviews" :key="review.id" class="review-card">
+      <pv-card class="p-shadow-4">
+        <template #title>
+          <div class="p-d-flex p-jc-center content-text">
+            <h3>{{ review.userName }}</h3>
+          </div>
+        </template>
 
+        <template #content>
+          <div class="p-card-content p-text-center content-text">
+            <p>Rating: {{ review.rating }}</p>
+            <p>{{ review.comment }}</p>
+            <p>Date: {{ new Date(review.createdDate).toLocaleDateString() }}</p>
+          </div>
+        </template>
+      </pv-card>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.top-rated-reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+.p-shadow-4{
+  background: #D9D9D9;
+}
+.review-card {
+  width: 20rem;
+  height: auto;
+  overflow: hidden;
+  margin: 1rem;
 
+}
+.content-text{
+  color: #37123C;
+}
 </style>
