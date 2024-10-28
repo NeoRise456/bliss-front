@@ -1,6 +1,6 @@
 <script>
 import AppointmentItem from './appointment-item.component.vue';
-import { Appointment } from "../../history/model/appointment.entity.js";
+import { Appointment } from "../model/appointment.entity.js";
 import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
 
 export default {

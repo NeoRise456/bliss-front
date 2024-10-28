@@ -203,26 +203,6 @@
       "time": "09:00 AM"
     },
     {
-      "id": 2,
-      "userId": 1,
-      "serviceId": 2,
-      "companyId": 2,
-      "reservationDate": "2023-12-01",
-      "status": "PENDING",
-      "date": "2023-12-05",
-      "time": "03:00 PM"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "serviceId": 3,
-      "companyId": 3,
-      "reservationDate": "2023-12-10",
-      "status": "PENDING",
-      "date": "2023-12-15",
-      "time": "10:30 AM"
-    },
-    {
       "id": 4,
       "userId": 1,
       "serviceId": 1,
@@ -320,14 +300,14 @@
   ],
   "reviews": [
     {
-      "rating": 3,
-      "comment": "jiji",
-      "createdDate": "2024-10-27T03:36:46.242Z",
-      "appointmentId": "5",
+      "rating": 5,
+      "comment": "tmabien odio mi via",
+      "createdDate": "2024-10-28T05:11:06.810Z",
+      "appointmentId": 5,
       "userId": 1,
       "images": [
-        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730000202/fkpvqc6nqea1en9tfy37.jpg",
-        null,
+        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730091959/tb5bqzrvm54cvuenglij.jpg",
+        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730092263/qkcv3nx1dsupdulnfr3s.jpg",
         null
       ],
       "id": 2

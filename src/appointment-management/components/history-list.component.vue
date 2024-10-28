@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import HistoryItem from './history-item.component.vue';
-import { HistoryApiService } from '../services/history.service.js';
+import { HistoryApiService } from '../services/client-history.service.js';
 import { Appointment } from '../model/appointment.entity.js';
 import { Review } from '../../review/model/review.entity.js';
 

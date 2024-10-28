@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 
-export class AppointmentApiService{
+export class ClientAppointmentApiService {
 
     /**
      * Get all appointments By user id

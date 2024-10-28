@@ -2,7 +2,7 @@
 import {ServiceApiService} from "../../service-management/services/service-api.service.js";
 import {Service} from "../../service-management/model/service.entity.js";
 import {Appointment} from "../model/appointment.entity.js";
-import {AppointmentApiService} from "../services/appointment-api.service.js";
+import {ClientAppointmentApiService} from "../services/client-appointment-api.service.js";
 
 export default {
   name: "reservations",
@@ -13,7 +13,7 @@ export default {
       bookingService: Service,
       serviceApiService: new ServiceApiService(),
       appointment: Appointment,
-      appointmentApiService: new AppointmentApiService(),
+      appointmentApiService: new ClientAppointmentApiService(),
       date: new Date(),
       time: new Date(),
       requirements: null
