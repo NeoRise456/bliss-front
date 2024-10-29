@@ -9,7 +9,7 @@ import {Category} from "../model/category.entity.js";
 import {Service} from "../../shared/model/service.entity.js";
 
 export default {
-  name: "client-services",components: {CategoryFilter, PriceFilter, ServiceList, serviceListComponent},
+  name: "client-services",components: { CategoryFilter, PriceFilter, ServiceList, serviceListComponent},
   data() {
     return {
       categories: [],
@@ -43,7 +43,7 @@ export default {
               service.description,
               service.price,
               service.duration,
-              service.raiting,
+              service.rating,
               service.sales,
               service.created_at,
               service.img
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <template>
-
+  <pv-toast/>
   <div class="flex">
     <div class="text-center p-4 max-w-50rem">
       <category-filter v-model="selectedCategories" :categories="categories"/>
