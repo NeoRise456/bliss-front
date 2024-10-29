@@ -5,6 +5,7 @@ import {Appointment} from "../model/appointment.entity.js";
 import {ClientAppointmentApiService} from "../services/client-appointment-api.service.js";
 import ServiceMiniCard from "../components/service-mini-card.component.vue";
 import AppointmentForm from "../components/appointment-form.component.vue";
+import {defaultClientId} from "../../router/index.js";
 
 export default {
   name: "reservations",
@@ -43,9 +44,35 @@ export default {
     },
     async handleBookingEvent(appointment) {
       let response = await this.clientAppointmentApiService.createAppointment(appointment);
+      if (response.status === 201) {
+        this.afterBookingDialog();
+      }
     },
     redirectToServices(){
       this.$router.push({name: 'ClientServices'});
+    },
+    redirectToSchedules(){
+      this.$router.push({name: 'ClientSchedule' , params: {userId: defaultClientId}});
+    },
+    afterBookingDialog() {
+      this.$confirm.require({
+        message: 'Where u headed now?',
+        header: 'Service Booked :DD!!',
+        modal: true,
+        rejectProps: {
+          label: 'Go to Services',
+          outlined: true
+        },
+        acceptProps: {
+          label: 'Go to Sechedule'
+        },
+        accept: () => {
+          this.redirectToSchedules();
+        },
+        reject: () => {
+          this.redirectToServices()
+        }
+      });
     }
   },
   created(){
