@@ -4,6 +4,7 @@ import {Appointment} from "../model/appointment.entity.js";
 
 export default {
   name: "appointment-form",
+  components: {},
   props: {
     service: Service
   },
@@ -20,7 +21,6 @@ export default {
       nowDate = nowDate.toISOString();
       let bookingDate = this.date.toISOString();
       let bookingTime = `${this.time.getHours().toString().padStart(2, '0')}:${this.time.getMinutes().toString().padStart(2, '0')}`;
-
       return new Appointment(
           null,
           1,
@@ -37,12 +37,31 @@ export default {
     emitBookingEvent(){
       let appointment = this.buildAppointmentFromFormData();
       this.$emit('booking-event', appointment);
+    },
+    confirmBooking(){
+      this.$confirm.require({
+        message: 'Are you sure u want to book ' + this.service.service_name + ' service ?',
+        header: 'Confirmation',
+        icon: 'pi pi-calendar-clock',
+        rejectProps: {
+          label: 'Cancel',
+          severity: 'secondary',
+          outlined: true
+        },
+        acceptProps: {
+          label: 'Book'
+        },
+        accept: () => {
+          this.emitBookingEvent()
+        }
+      });
     }
   }
 }
 </script>
 
 <template>
+  <pv-confirm-dialog/>
   <pv-card>
     <template #title>
       Make An Appointment
@@ -70,7 +89,7 @@ export default {
       </div>
     </template>
     <template #footer>
-      <pv-button label="Book Now" icon="pi pi-check" icon-pos="right" @click="emitBookingEvent()"/>
+      <pv-button label="Book Now" icon="pi pi-check" icon-pos="right" @click="confirmBooking()"/>
     </template>
   </pv-card>
 </template>
