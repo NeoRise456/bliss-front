@@ -14,7 +14,7 @@ import ReviewManagementPage from '../review/pages/review-management-page.compone
 import EditBusinessServiceComponent from "../service-management/components/edit-business-service.component.vue";
 import ReservationsComponent from "../appointment-management/pages/reservations-page.component.vue";
 
-const defaultClientId = 1;
+export const defaultClientId = 1;
 export const defaultBusinessId = 1;
 
 const router = createRouter({
