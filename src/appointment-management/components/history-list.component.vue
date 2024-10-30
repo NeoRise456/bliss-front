@@ -4,8 +4,9 @@ import HistoryItem from './history-item.component.vue';
 import { HistoryApiService } from '../services/client-history.service.js';
 import { Appointment } from '../model/appointment.entity.js';
 import { Review } from '../../review/model/review.entity.js';
+import {defaultClientId} from "../../router/index.js";
 
-const userId = 1; // Temporary user id for testing the component
+const userId = defaultClientId; // Temporary user id for testing the component
 const completedAppointments = ref([]);
 const historyApiService = new HistoryApiService();
 
