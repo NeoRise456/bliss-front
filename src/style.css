@@ -19,6 +19,8 @@
   --p-togglebutton-color: #D1E4FA !important;
   --p-togglebutton-hover-background: #37123c !important;
   --p-inputtext-color: #000000 !important;
+  --p-rating-icon-hover-color: #e1c400 !important;
+  --p-rating-icon-active-color: #e1c400 !important;
 }
 
 a {

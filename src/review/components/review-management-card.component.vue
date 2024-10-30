@@ -111,18 +111,18 @@ onMounted(() => {
     <form @submit.prevent="saveReview">
       <div class="AppointmentDetails">
         <div>
-        <label>Service Name:</label>
-        <span>{{ serviceName }}</span>
+          <label>Service Name:</label>
+          <span>{{ serviceName }}</span>
         </div>
-      <div>
-        <label>User Name:</label>
-        <span>{{ userName }}</span>
-      </div>
-      <div>
-        <label>Appointment Date:</label>
-        <span>{{ appointmentDate }}</span>
-      </div>
-  </div>
+        <div>
+          <label>User Name:</label>
+          <span>{{ userName }}</span>
+        </div>
+        <div>
+          <label>Appointment Date:</label>
+          <span>{{ appointmentDate }}</span>
+        </div>
+    </div>
       <label for="rating">Rating</label>
       <div class="star-container">
         <div class="stars">
@@ -216,7 +216,7 @@ h2 {
   color: #666666;
 }
 .AppointmentDetails{
-  display: block ;
+  display: flex ;
   flex-direction: column;
   gap: 2px;
   justify-content: center;
