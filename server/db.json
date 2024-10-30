@@ -221,6 +221,17 @@
       "status": "COMPLETED",
       "date": "2023-12-30",
       "time": "11:45 AM"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "serviceId": 1,
+      "companyId": 1,
+      "reservationDate": "2024-10-30T06:11:42.538Z",
+      "status": "PENDING",
+      "date": "2024-10-02T05:00:00.000Z",
+      "time": "01:11",
+      "requirements": "hhh"
     }
   ],
   "companies": [

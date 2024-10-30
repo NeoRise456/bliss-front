@@ -195,13 +195,13 @@ onMounted(() => {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #37123C;
   color: white;
   cursor: pointer;
 }
 
 .review-management-card button:hover {
-  background-color: #0056b3;
+  background-color: #37123C;
 }
 h2 {
   display: block;

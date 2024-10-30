@@ -89,12 +89,10 @@ const deleteReview = async (reviewId) => {
 
 button {
   margin-bottom: 8px;
+  background-color: white;
 }
 
-.warn {
-  background-color: white;
-  color: white;
-}
+
 button.add-button {
   background-color: #37123C;
   color: white;
