@@ -1,6 +1,6 @@
 <script>
 import {ServiceApiService} from "../services/service-api.service.js";
-import {Service} from "../model/service.entity.js";
+import {Service} from "../../shared/model/service.entity.js";
 
 export default {
   name: "client-service-detail",
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <template>
-  <div style="background-color: #1a1a1a" class="flex flex-row m-3 mx-8">
+  <div style="background-color: #ffffff;" class="flex flex-row m-3 mx-8 border-round-3xl">
     <div class="flex align-items-center justify-content-center m-8 fadein animation-duration-1000">
       <img :src="currentService.img" alt="Service Image" />
     </div>

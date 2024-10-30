@@ -1,7 +1,7 @@
 <script>
 import { defaultBusinessId } from '../../router/index.js';
 import {ServiceApiService} from "../services/service-api.service.js";
-import {Service} from "../model/service.entity.js";
+import {Service} from "../../shared/model/service.entity.js";
 import BusinessServiceItem from "./business-service-item.component.vue";
 
 export default {

@@ -1,5 +1,5 @@
 <script>
-import { Service } from "../model/service.entity.js";
+import { Service } from "../../shared/model/service.entity.js";
 
 export default {
   name: "service-item",
