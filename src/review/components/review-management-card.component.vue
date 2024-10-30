@@ -124,8 +124,11 @@ onMounted(() => {
       </div>
   </div>
       <label for="rating">Rating</label>
+      <div class="star-container">
+        <div class="stars">
       <Rating v-model="rating" :stars="5"/>
-
+        </div>
+      </div>
       <label for="comment">Comment</label>
       <textarea id="comment" v-model="comment" required></textarea>
 
@@ -226,5 +229,13 @@ h2 {
 }
 .AppointmentDetails span {
   float: left;
+}
+.star-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.stars{
+  color: yellow;
 }
 </style>
