@@ -39,6 +39,7 @@ import router from "./router/index.js";
 import Slider from "primevue/slider";
 import CascadeSelect from "primevue/cascadeselect";
 import Divider from "primevue/divider";
+import DatePicker from "primevue/datepicker";
 
 const app = createApp(App);
 
@@ -49,7 +50,8 @@ app.use(PrimeVue, {
         preset: Aura,
         options: {
             prefix: 'p',
-            cssLayer: false
+            cssLayer: false,
+            darkModeSelector: false || 'none',
         }
     }
 });
@@ -84,6 +86,7 @@ app.component('pv-button', Button)
     .component('pv-avatar', Avatar)
     .component('pv-slider', Slider)
     .component('pv-divider', Divider)
+    .component('pv-datepicker', DatePicker )
     .component('pv-select-button', SelectButton)
     .component('pv-cascade-select', CascadeSelect);
 

@@ -1,5 +1,5 @@
 <script>
-import { Service } from "../model/service.entity.js";
+import { Service } from "../../shared/model/service.entity.js";
 import { ServiceApiService } from "../services/service-api.service.js";
 
 export default {

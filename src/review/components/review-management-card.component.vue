@@ -4,6 +4,7 @@ import { Review } from '../model/review.entity.js';
 import axios from 'axios';
 import Rating from 'primevue/rating';
 import { ReviewApiService } from '../services/review.service.js';
+import {defaultClientId} from "../../router/index.js";
 
 const props = defineProps({
   review: {
@@ -108,23 +109,26 @@ onMounted(() => {
   <div class="review-management-card">
     <h2>{{ review ? 'Edit Review' : 'Add Review' }}</h2>
     <form @submit.prevent="saveReview">
-      <div>
-        <label>Service Name:</label>
-        <span>{{ serviceName }}</span>
-      </div>
-
-      <div>
-        <label>User Name:</label>
-        <span>{{ userName }}</span>
-      </div>
-      <div>
-        <label>Appointment Date:</label>
-        <span>{{ appointmentDate }}</span>
-      </div>
-
+      <div class="AppointmentDetails">
+        <div>
+          <label>Service Name:</label>
+          <span>{{ serviceName }}</span>
+        </div>
+        <div>
+          <label>User Name:</label>
+          <span>{{ userName }}</span>
+        </div>
+        <div>
+          <label>Appointment Date:</label>
+          <span>{{ appointmentDate }}</span>
+        </div>
+    </div>
       <label for="rating">Rating</label>
+      <div class="star-container">
+        <div class="stars">
       <Rating v-model="rating" :stars="5"/>
-
+        </div>
+      </div>
       <label for="comment">Comment</label>
       <textarea id="comment" v-model="comment" required></textarea>
 
@@ -191,12 +195,47 @@ onMounted(() => {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #37123C;
   color: white;
   cursor: pointer;
 }
 
 .review-management-card button:hover {
-  background-color: #0056b3;
+  background-color: #37123C;
+}
+h2 {
+  display: block;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: #37123C;
+}
+.review-management-card form{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #666666;
+}
+.AppointmentDetails{
+  display: flex ;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  color: #666666;
+
+
+}
+.AppointmentDetails label {
+  float: left;
+}
+.AppointmentDetails span {
+  float: left;
+}
+.star-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.stars{
+  color: yellow;
 }
 </style>

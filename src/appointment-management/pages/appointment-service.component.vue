@@ -7,11 +7,11 @@ export default {
   components: { appointmentList, appointmentsListComponent },
   data() {
     return {
-      userId: null // Initialize userId
+      userId: null
     };
   },
   created() {
-    this.userId = this.$route.params.userId; // Get userId from the route
+    this.userId = this.$route.params.userId;
   }
 }
 </script>
@@ -31,25 +31,25 @@ export default {
 
 <style scoped>
 .custom-card {
-  background-color: white; /* White background for the card */
+  background-color: white;
   width: 100%;
-  margin: 0 auto; /* Center the card horizontally */
+  margin: 0 auto;
   padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth effect */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .appointment-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Ensure content starts from the top */
-  padding-bottom: 40px; /* Space at the bottom to grow downwards */
+  align-items: flex-start;
+  padding-bottom: 40px;
 }
 
 .title {
   text-align: left;
-  margin-top: 50px; /* Increase top margin to lower the title */
-  margin-bottom: 1px; /* Ensure space between title and content */
-  color: black; /* Black title text */
+  margin-top: 50px;
+  margin-bottom: 1px;
+  color: black;
 }
 </style>

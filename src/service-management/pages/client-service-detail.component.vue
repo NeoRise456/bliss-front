@@ -1,6 +1,6 @@
 <script>
 import {ServiceApiService} from "../services/service-api.service.js";
-import {Service} from "../model/service.entity.js";
+import {Service} from "../../shared/model/service.entity.js";
 
 export default {
   name: "client-service-detail",
@@ -30,20 +30,18 @@ export default {
     getServiceId() {
       return this.$route.params.id;
     },
-    getServiceById(id){
-      this.serviceApiService.getService(id)
-          .then(response => {
-            this.currentService = this.buildServiceFromResponseData(response.data);
-          })
-          .catch(error => {
-            console.error("There was an error fetching the service:", error);
-          });
+    async getServiceById(id){
+      const response = await this.serviceApiService.getServiceById(id);
+      this.currentService = this.buildServiceFromResponseData(response.data);
     },
     getCurrentService(){
       let serviceId = this.getServiceId();
       if (serviceId) {
         this.getServiceById(serviceId);
       }
+    },
+    redirectToReservations(serviceId){
+      this.$router.push({name: 'Reservations', params: {id: serviceId}});
     }
   },
   created() {
@@ -53,7 +51,7 @@ export default {
 </script>
 
 <template>
-  <div style="background-color: #1a1a1a" class="flex flex-row m-3 mx-8">
+  <div style="background-color: #ffffff;" class="flex flex-row m-3 mx-8 border-round-3xl">
     <div class="flex align-items-center justify-content-center m-8 fadein animation-duration-1000">
       <img :src="currentService.img" alt="Service Image" />
     </div>
@@ -72,7 +70,8 @@ export default {
           </div>
         </div>
         <div class="m-1">
-          <pv-button :label=" $t('clientServiceDetail.bookNow') " class="w-full" />
+          <pv-button :label=" $t('clientServiceDetail.bookNow') " class="w-full"
+           @click="redirectToReservations(currentService.id)"/>
         </div>
         <div>
           <pv-divider type="solid"/>

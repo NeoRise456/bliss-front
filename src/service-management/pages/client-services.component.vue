@@ -6,10 +6,10 @@ import CategoryFilter from "../components/category-filter.component.vue";
 import {CategoryApiService} from "../services/category-api.service.js";
 import {ServiceApiService} from "../services/service-api.service.js";
 import {Category} from "../model/category.entity.js";
-import {Service} from "../model/service.entity.js";
+import {Service} from "../../shared/model/service.entity.js";
 
 export default {
-  name: "client-services",components: {CategoryFilter, PriceFilter, ServiceList, serviceListComponent},
+  name: "client-services",components: { CategoryFilter, PriceFilter, ServiceList, serviceListComponent},
   data() {
     return {
       categories: [],
@@ -43,7 +43,7 @@ export default {
               service.description,
               service.price,
               service.duration,
-              service.raiting,
+              service.rating,
               service.sales,
               service.created_at,
               service.img
@@ -55,16 +55,11 @@ export default {
       this.minValue = Math.min(...prices);
       this.maxValue = Math.max(...prices);
     },
-    getCategories() {
-      this.categoriesApiService.getCategories()
-          .then(response => {
-            this.categories = this.buildCategoriesFromResponseData(response.data);
-          })
-          .catch(error => {
-            console.error('Error fetching categories:', error);
-          });
+    async getCategories() {
+      const response = await this.categoriesApiService.getCategories();
+      this.categories = this.buildCategoriesFromResponseData(response.data);
     },
-    getServices() {
+    async getServices() {
       this.serviceApiService.getServices()
           .then(response => {
             this.services = this.buildServicesFromResponseData(response.data);
@@ -101,7 +96,7 @@ export default {
 </script>
 
 <template>
-
+  <pv-toast/>
   <div class="flex">
     <div class="text-center p-4 max-w-50rem">
       <category-filter v-model="selectedCategories" :categories="categories"/>
