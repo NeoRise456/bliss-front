@@ -4,6 +4,7 @@ import { Review } from '../model/review.entity.js';
 import axios from 'axios';
 import Rating from 'primevue/rating';
 import { ReviewApiService } from '../services/review.service.js';
+import {defaultClientId} from "../../router/index.js";
 
 const props = defineProps({
   review: {
@@ -108,11 +109,11 @@ onMounted(() => {
   <div class="review-management-card">
     <h2>{{ review ? 'Edit Review' : 'Add Review' }}</h2>
     <form @submit.prevent="saveReview">
-      <div>
+      <div class="AppointmentDetails">
+        <div>
         <label>Service Name:</label>
         <span>{{ serviceName }}</span>
-      </div>
-
+        </div>
       <div>
         <label>User Name:</label>
         <span>{{ userName }}</span>
@@ -121,7 +122,7 @@ onMounted(() => {
         <label>Appointment Date:</label>
         <span>{{ appointmentDate }}</span>
       </div>
-
+  </div>
       <label for="rating">Rating</label>
       <Rating v-model="rating" :stars="5"/>
 
@@ -198,5 +199,32 @@ onMounted(() => {
 
 .review-management-card button:hover {
   background-color: #0056b3;
+}
+h2 {
+  display: block;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: #37123C;
+}
+.review-management-card form{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #666666;
+}
+.AppointmentDetails{
+  display: block ;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  color: #666666;
+
+
+}
+.AppointmentDetails label {
+  float: left;
+}
+.AppointmentDetails span {
+  float: left;
 }
 </style>
