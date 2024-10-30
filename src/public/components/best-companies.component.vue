@@ -75,8 +75,6 @@ export default {
             <h3 class="p-mt-3">{{ company.name }}</h3>
           </template>
 
-          <img :src="company.img" alt="company logo" class="company-banner"/>
-
           <template #content>
             <div class="p-card-content p-text-center">
               <p>{{ company.description }}</p>
@@ -95,13 +93,14 @@ export default {
 .companies-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .company-card {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  background: #37123C;
+  background: #D9D9D9;
 }
 
 .company-logo {
@@ -118,14 +117,18 @@ export default {
 }
 
 .p-shadow-4 {
-  box-shadow: 0px 4px 8px rgb(116, 10, 229);
+  box-shadow: 0px 4px 8px rgb(213, 202, 240);
 }
 .p-text-center {
   text-align: center;
- /* color: #1a1a1a;*/
+  color: #37123C;
 }
 .p-p-2 {
   padding: 8px;
+
+}
+.p-mt-3{
+  color: #37123C;
 }
 </style>
 
