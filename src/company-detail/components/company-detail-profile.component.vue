@@ -57,23 +57,20 @@ export default {
 
 <template>
   <div v-if="company" class="p-grid p-dir-col p-align-center">
-    <div class="p-col-12 p-md-6 p-lg-4">
-      <pv-card class="company-card p-shadow-4">
-        <template #title>
-          <h2 class="p-mt-3">{{ company.name }}</h2>
-        </template>
-
+    <div class="p-col-12 p-md-6 p-lg-4 padding-top">
+      <pv-card class="company-card p-shadow-2">
         <template #content>
-          <div class="service-content flex">
+          <div class="company-content flex">
           <div class="image-container">
             <img :src="company.img" alt="Company Image" class="service-img" />
           </div>
           <div class="info-container">
-          <p>{{ company.description }}</p>
+            <h2 class="p-mt-3">{{ company.name }}</h2>
           <p><strong>{{$t('companyDetail.ruc')}}:</strong> {{ company.ruc }}</p>
           <p><strong>{{$t('companyDetail.email')}}:</strong> {{ company.email }}</p>
           <p><strong>{{$t('companyDetail.website')}}:</strong> <a :href="company.website" target="_blank">{{ company.website }}</a></p>
-          <p><strong>{{$t('companyDetail.averageRating')}}:</strong> {{ avgRating }}</p>
+          <p><strong>{{ $t('companyDetail.averageRating')}}:</strong> {{ avgRating }}</p>
+            <p>{{ company.description }}</p>
           </div>
           </div>
         </template>
@@ -81,19 +78,22 @@ export default {
     </div>
 
     <div class="p-col-12">
-      <h4>{{$t('servicesHome.services')}}:</h4>
+      <h2>{{$t('servicesHome.services')}}:</h2>
       <div class="service-cards">
         <div v-for="service in services" :key="service.id" class="service-card">
-          <pv-card class="services-card p-shadow-4">
+          <pv-card class="bg-white services-card p-shadow-4">
             <template #header>
-              <img :src="service.img" alt="Service Image" class="service-img"/>
+              <div style="padding: 10px">
+                <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
+              </div>
             </template>
             <template #title>
               {{service.service_name}}
             </template>
             <template #content>
               <p><strong>Compania :</strong> {{ service.company_id }}</p>
-              <p><strong>{{$t('servicesHome.rating')}}: m </strong> {{ service.rating }}</p>
+              <p><strong>{{$t('servicesHome.service_name')}}:</strong> {{service.service_name}}</p>
+              <p><strong>{{$t('servicesHome.rating')}}: </strong> {{ service.rating }}</p>
               <p>{{ service.description }}</p>
             </template>
           </pv-card>
@@ -105,11 +105,24 @@ export default {
 </template>
 
 <style scoped>
+
+.padding-top {
+  padding-top: 100px;
+}
+
 .company-card {
-  background: #37123C;
+  background: transparent;
+  color: #37123C;
+
 }
 .services-card{
-  background: #C3A3BF;
+  color: #37123C;
+  width: 20rem;
+  height: auto;
+  overflow: hidden;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
 }
 .service-cards {
   display: flex;
@@ -118,11 +131,7 @@ export default {
   justify-content: center;
 }
 
-.service-card {
-  width: 300px;
-  flex: 1 1 300px;
-}
-.service-content {
+.company-content {
   display: flex;
 }
 .image-container {
@@ -133,14 +142,23 @@ export default {
 }
 .info-container {
   width: 50%;
-  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
+
 .service-img {
-  width: 100%;
-  height: 100%;
+
   object-fit: cover;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  max-height: 300px;
+}
+
+.p-col-12 h2 {
+  color: #37123C;
 }
 </style>
 

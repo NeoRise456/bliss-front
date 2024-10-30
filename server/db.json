@@ -311,14 +311,27 @@
   ],
   "reviews": [
     {
-      "rating": 5,
-      "comment": "tmabien odio mi via",
-      "createdDate": "2024-10-28T05:11:06.810Z",
-      "appointmentId": 5,
+      "rating": 3,
+      "comment": "hola",
+      "createdDate": "2024-10-27T03:41:07.310Z",
+      "appointmentId": 1,
       "userId": 1,
       "images": [
-        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730091959/tb5bqzrvm54cvuenglij.jpg",
-        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730092263/qkcv3nx1dsupdulnfr3s.jpg",
+        null,
+        null,
+        null
+      ],
+      "id": 1
+    },
+    {
+      "rating": 3,
+      "comment": "jiji",
+      "createdDate": "2024-10-27T03:36:46.242Z",
+      "appointmentId": "5",
+      "userId": 2,
+      "images": [
+        "https://res.cloudinary.com/dmeftoblw/image/upload/v1730000202/fkpvqc6nqea1en9tfy37.jpg",
+        null,
         null
       ],
       "id": 2

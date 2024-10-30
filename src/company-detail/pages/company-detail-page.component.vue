@@ -1,14 +1,20 @@
 <script>
 import CompanyDetailProfile from "../components/company-detail-profile.component.vue";
+import {defaultBusinessId} from "../../router/index.js";
 
 export default {
   name: "company-detail-page",
-  components: {CompanyDetailProfile}
+  components: {CompanyDetailProfile},
+  data(){
+    return {
+      companyId: defaultBusinessId
+    }
+  }
 }
 </script>
 
 <template>
-<company-detail-profile :companyId="1"/>
+<company-detail-profile :companyId="companyId"/>
 </template>
 
 <style scoped>
