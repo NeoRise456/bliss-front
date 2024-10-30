@@ -6,6 +6,10 @@ export class ReviewApiService extends ServiceApiService {
     constructor() {
         super();
     }
+    getReview(){
+        return http.get('/reviews');
+    }
+
 
     getReviewByReservationId(appointmentId) {
         return http.get(`/reviews?appointmentId=${appointmentId}`);
@@ -26,7 +30,7 @@ export class ReviewApiService extends ServiceApiService {
     }
 
     getUserById(userId) {
-        return http.get(`/users/${userId}`);
+        return http.get(`/users?id=${userId}`);
     }
 
 }
