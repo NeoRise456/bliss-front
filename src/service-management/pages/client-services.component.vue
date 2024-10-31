@@ -11,6 +11,8 @@ import {Service} from "../../shared/model/service.entity.js";
 export default {
   name: "client-services",components: { CategoryFilter, PriceFilter, ServiceList, serviceListComponent},
   data() {
+
+
     return {
       categories: [],
       services: [],
@@ -51,38 +53,34 @@ export default {
       );
 
     },
-    getFilterPrices(prices) {
-      this.minValue = Math.min(...prices);
-      this.maxValue = Math.max(...prices);
+    getMinValue(values) {
+      return Math.min(...values);
+    },
+    getMaxValue(values) {
+      return Math.max(...values);
     },
     async getCategories() {
-      const response = await this.categoriesApiService.getCategories();
+      let response = await this.categoriesApiService.getCategories();
       this.categories = this.buildCategoriesFromResponseData(response.data);
     },
     async getServices() {
-      this.serviceApiService.getServices()
-          .then(response => {
-            this.services = this.buildServicesFromResponseData(response.data);
-            this.getFilterPrices(this.services.map(service => service.price));
-            this.filteredServices = this.services;
-          })
-          .catch(error => {
-            console.error('Error fetching services:', error);
-          });
+      let response = await this.serviceApiService.getServices();
+      this.services = this.buildServicesFromResponseData(response.data);
+
+      this.filteredServices = this.services;
+
+      let prices = this.services.map(service => service.price);
+      this.minValue =  this.getMinValue(prices)
+      this.maxValue = this.getMaxValue(prices)
     },
-    getFilterServices() {
+    async filterServices(){
+
       this.filteredServices = this.services.filter(service => {
-        // Extract the category IDs from the selectedCategories array
-        const selectedCategoryIds = this.selectedCategories.map(category => category.id);
-
-        // Check if the service's category_id is in the selected categories or if no category is selected
-        const inCategory = selectedCategoryIds.length === 0 || selectedCategoryIds.includes(service.category_id);
-
-        // Check if the service's price is within the selected price range
-        const inPriceRange = service.price >= this.selectedRange[0] && service.price <= this.selectedRange[1];
-
-        return inCategory && inPriceRange;
+        let categoryMatch = this.selectedCategories.length === 0 || this.selectedCategories.some(category => category.id === service.category_id);
+        let priceMatch = this.selectedRange.length === 0 || (service.price >= this.selectedRange[0] && service.price <= this.selectedRange[1]);
+        return categoryMatch && priceMatch;
       });
+
     }
 
 
@@ -90,6 +88,7 @@ export default {
   created() {
     this.getCategories();
     this.getServices();
+
   }
 
 }
@@ -100,9 +99,13 @@ export default {
   <div class="flex">
     <div class="text-center p-4 max-w-50rem">
       <category-filter v-model="selectedCategories" :categories="categories"/>
-      <price-filter v-model="selectedRange" :minServiceValue="minValue" :maxServiceValue="maxValue"/>
+      <price-filter
+          v-if="minValue != null && maxValue != null"
+          v-model="selectedRange"
+          :minServiceValue="minValue"
+          :maxServiceValue="maxValue"/>
       <div class="m-3">
-        <pv-button label="Filter" class="w-full" raised @click="getFilterServices()"/>
+        <pv-button label="Filter" class="w-full" raised @click="filterServices()"/>
       </div>
     </div>
     <div class="text-center p-4 mx-4 w-auto">
@@ -113,6 +116,5 @@ export default {
 
 </template>
 
-<style >
-
+<style>
 </style>
