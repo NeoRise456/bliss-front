@@ -5,7 +5,9 @@
     "schedule": "Agenda",
     "myServices": "Historial de 'Mis Servicios'",
     "login": "Iniciar Sesión",
-    "register": "Registrarse"
+    "register": "Registrarse",
+    "myServicesBussiness": "Mis Servicios"
+
   },
   "appointment": {
     "title": "Título",
