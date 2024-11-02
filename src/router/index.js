@@ -4,14 +4,14 @@ import ScheduleComponent from "../public/pages/schedule.component.vue";
 import ClientServicesComponent from "../service-management/pages/client-services.component.vue";
 import ClientServiceDetailComponent from "../service-management/pages/client-service-detail.component.vue";
 import BusinessServicesComponent from "../service-management/pages/business-services.component.vue";
-import CreateBusinessServiceComponent from "../service-management/components/create-business-service.component.vue";
+import CreateBusinessServiceComponent from "../service-management/pages/create-business-service.component.vue";
 import ServiceAppointmentComponent from "../service-management/pages/service-appointment.component.vue";
 import HistoryPageComponent from "../appointment-management/pages/history-page.component.vue";
 import PageNotFound from "../public/pages/page-not-found.vue";
 import CompanyDetailPageComponent   from "../company-detail/pages/company-detail-page.component.vue";
 import BusinessAppointmentListComponent from "../appointment-management/components/business-appointment-list.component.vue";
 import ReviewManagementPage from '../review/pages/review-management-page.component.vue';
-import EditBusinessServiceComponent from "../service-management/components/edit-business-service.component.vue";
+import EditBusinessServiceComponent from "../service-management/pages/edit-business-service.component.vue";
 import ReservationsComponent from "../appointment-management/pages/reservations-page.component.vue";
 
 export const defaultClientId = 1;
