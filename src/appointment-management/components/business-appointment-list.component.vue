@@ -3,6 +3,7 @@ import BusinessAppointmentItem from './business-appointment-item.component.vue';
 import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
 import { AppointmentApiService } from "../services/appointment-api.service.js";
 import { ServiceApiService } from "../../service-management/services/service-api.service.js";
+import {Appointment} from "../model/appointment.entity.js";
 
 export default {
   name: "business-appointment-list",
@@ -23,36 +24,45 @@ export default {
     async fetchUsers() {
       try {
         const appointments = await this.appointmentApiService.getAppointments();
-        const filteredAppointments = appointments.filter(appointment => appointment.companyId === this.companyId);
+
+        const filteredAppointments = appointments.filter(
+            appointment => appointment.companyId === this.companyId && appointment.status === "PENDING"
+        );
 
         const userDetailsPromises = filteredAppointments.map(async appointment => {
           const serviceResponse = await this.serviceApiService.getServiceById(appointment.serviceId);
+          const companyResponse = await this.businessApiService.getCompanyById(appointment.companyId);
           const userResponse = await this.businessApiService.getUserById(appointment.userId);
 
-          if (userResponse && serviceResponse.data) {
-            const user = {
-              id: userResponse.id,
-              name: userResponse.name,
-              email: userResponse.email,
-              phone: userResponse.phone,
-              address: userResponse.address,
-              serviceName: serviceResponse.data.service_name || "Unknown Service",
-              description: serviceResponse.data.description || "No Description",
-              price: serviceResponse.data.price || 0,
-              duration: serviceResponse.data.duration || 0,
-              rating: serviceResponse.data.rating || 0,
-              sales: serviceResponse.data.sales || 0,
-              img: serviceResponse.data.img || "",
-              date: appointment.date,
-              time: appointment.time,
-            };
+          const newAppointment = new Appointment(
+              appointment.id,
+              appointment.userId,
+              appointment.serviceId,
+              appointment.companyId,
+              appointment.reservationDate,
+              appointment.status,
+              appointment.date,
+              appointment.time
+          );
 
-            return user;
-          }
-          return null;
+          newAppointment.serviceName = serviceResponse.data ? serviceResponse.data.service_name : 'Unknown Service';
+          newAppointment.description = serviceResponse.data ? serviceResponse.data.description : 'No Description';
+          newAppointment.price = serviceResponse.data ? serviceResponse.data.price : 0;
+          newAppointment.duration = serviceResponse.data ? serviceResponse.data.duration : 0;
+          newAppointment.rating = serviceResponse.data ? serviceResponse.data.rating : 0;
+          newAppointment.img = serviceResponse.data ? serviceResponse.data.img : '';
+
+          newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
+
+          newAppointment.userName = userResponse ? userResponse.name : 'Unknown User';
+          newAppointment.userEmail = userResponse ? userResponse.email : '';
+          newAppointment.userPhone = userResponse ? userResponse.phone : '';
+          newAppointment.userAddress = userResponse ? userResponse.address : '';
+
+          return newAppointment;
         });
 
-        this.userList = (await Promise.all(userDetailsPromises)).filter(user => user !== null);
+        this.userList = await Promise.all(userDetailsPromises);
       } catch (error) {
         console.error("Error loading users:", error);
       }
@@ -79,7 +89,12 @@ export default {
     },
 
     openUserDialog(user) {
-      this.selectedUser = user;
+      this.selectedUser = {
+        name: user.userName,
+        email: user.userEmail,
+        phone: user.userPhone,
+        address: user.userAddress
+      };
       this.dialogVisible = true;
     },
 
@@ -114,7 +129,7 @@ export default {
         <p><strong>{{ $t('businessAppointmentList.email') }}:</strong> {{ selectedUser?.email }}</p>
         <p><strong>{{ $t('businessAppointmentList.phone') }}:</strong> {{ selectedUser?.phone }}</p>
         <p><strong>{{ $t('businessAppointmentList.address') }}:</strong> {{ selectedUser?.address }}</p>
-        <button @click="closeUserDialog">{{ $t('businessAppointmentList.close') }}</button>
+        <button @click="closeUserDialog" class="close-button">{{ $t('businessAppointmentList.close') }}</button>
       </div>
     </div>
 
@@ -128,6 +143,8 @@ export default {
     </div>
   </div>
 </template>
+
+
 
 
 <style scoped>
@@ -200,4 +217,14 @@ export default {
   background-color: #999;
 }
 
+.dialog-card .close-button {
+  color: #ffffff; /* Cambia este valor por el color que prefieras */
+  background-color: black;
+  border: none;
+}
+
+.dialog-card .close-button:hover {
+  background-color: red;
+  color: #ffffff; /* Color al pasar el cursor */
+}
 </style>
