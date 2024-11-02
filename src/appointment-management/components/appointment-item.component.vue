@@ -1,4 +1,6 @@
 <script>
+import { HistoryApiService } from "../services/client-history.service.js";
+
 export default {
   name: 'appointment-item',
   props: {
@@ -7,7 +9,24 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      serviceImage: '', // URL de la imagen del servicio
+      historyApiService: new HistoryApiService()
+    };
+  },
+  async mounted() {
+    await this.loadServiceImage();
+  },
   methods: {
+    async loadServiceImage() {
+      try {
+        const serviceData = await this.historyApiService.getServiceById(this.appointment.serviceId);
+        this.serviceImage = serviceData.img; // Asigna la imagen del servicio a serviceImage
+      } catch (error) {
+        console.error("Error loading service image:", error);
+      }
+    },
     openCancelDialog() {
       this.$emit('open-cancel-dialog', this.appointment);
     },
@@ -15,13 +34,13 @@ export default {
       this.$emit('open-appointment-dialog', this.appointment);
     }
   }
-}
+};
 </script>
 
 <template>
   <div class="appointment-card" @click="openAppointmentDialog">
     <div class="appointment-content">
-      <img alt="user header" class="appointment-image" :src="appointment.img" />
+      <img alt="service image" class="appointment-image" :src="serviceImage"/>
       <div class="appointment-details">
         <h3 class="appointment-title">{{ appointment.serviceName }} - {{ appointment.companyName }}</h3>
         <div class="date-time-container">
