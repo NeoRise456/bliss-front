@@ -254,7 +254,7 @@
       "description": "A full day of relaxation including massage, facial, body scrub, and lunch.",
       "price": 900,
       "duration": 360,
-      "rating": 4.0,
+      "rating": 4,
       "sales": 3,
       "created_at": "2023-09-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1730512579/mjer3ngyua51wrdsco0t.jpg"
@@ -277,22 +277,12 @@
     {
       "id": 1,
       "userId": 1,
-      "serviceId": 5,
+      "serviceId": 4,
       "companyId": 1,
-      "reservationDate": "2023-11-20",
+      "reservationDate": "2023-12-28",
       "status": "COMPLETED",
-      "date": "2023-11-25",
-      "time": "09:00 AM"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "serviceId": 2,
-      "companyId": 2,
-      "reservationDate": "2023-12-01",
-      "status": "PENDING",
-      "date": "2023-12-05",
-      "time": "03:00 PM"
+      "date": "2023-12-30",
+      "time": "11:45 AM"
     },
     {
       "id": 3,
@@ -303,16 +293,6 @@
       "status": "PENDING",
       "date": "2023-12-15",
       "time": "10:30 AM"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "serviceId": 1,
-      "companyId": 1,
-      "reservationDate": "2023-12-20",
-      "status": "PENDING",
-      "date": "2023-12-25",
-      "time": "09:00 AM"
     },
     {
       "id": 5,
@@ -327,13 +307,12 @@
     {
       "id": 6,
       "userId": 1,
-      "serviceId": 8,
+      "serviceId": 7,
       "companyId": 1,
       "reservationDate": "2024-10-30T06:11:42.538Z",
       "status": "PENDING",
       "date": "2024-10-02",
-      "time": "05:00 PM",
-      "requirements": "Consultation required before the appointment."
+      "time": "05:00 PM"
     },
     {
       "id": 7,
@@ -354,6 +333,27 @@
       "status": "COMPLETED",
       "date": "2023-12-30",
       "time": "11:45 AM"
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "serviceId": 2,
+      "companyId": 2,
+      "reservationDate": "2024-11-02T03:57:52.019Z",
+      "status": "PENDING",
+      "date": "2024-11-07T05:00:00.000Z",
+      "time": "22:57",
+      "requirements": null
+    },
+    {
+      "id": 11,
+      "userId": 1,
+      "serviceId": 3,
+      "companyId": 1,
+      "reservationDate": "2024-10-30T06:11:42.538Z",
+      "status": "PENDING",
+      "date": "2024-11-02",
+      "time": "07:00 PM"
     }
   ],
   "companies": [
