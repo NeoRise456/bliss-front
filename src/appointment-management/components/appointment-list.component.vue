@@ -2,6 +2,8 @@
 import AppointmentItem from './appointment-item.component.vue';
 import { Appointment } from "../model/appointment.entity.js";
 import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
+import { AppointmentApiService } from "../services/appointment-api.service.js";
+import { ServiceApiService } from "../../service-management/services/service-api.service.js";
 
 export default {
   name: "appointment-list",
@@ -13,34 +15,36 @@ export default {
       selectedAppointment: null,
       dialogVisible: false,
       cancelDialogVisible: false,
-      apiService: new BusinessAppointmentApiService(),
+      businessApiService: new BusinessAppointmentApiService(),
+      appointmentApiService: new AppointmentApiService(),
+      serviceApiService: new ServiceApiService(),
     };
   },
   methods: {
     async fetchPendingAppointments() {
       try {
-        const appointments = await this.apiService.getAppointments();
+        const appointments = await this.appointmentApiService.getAppointments();
 
         const filteredAppointments = appointments.filter(
             appointment => appointment.userId === this.userId && appointment.status === "PENDING"
         );
 
         const appointmentDetailsPromises = filteredAppointments.map(async appointment => {
-          const serviceResponse = await this.apiService.getServiceById(appointment.serviceId);
-          const companyResponse = await this.apiService.getCompanyById(appointment.companyId);
+          const serviceResponse = await this.serviceApiService.getServiceById(appointment.serviceId);
+          const companyResponse = await this.businessApiService.getCompanyById(appointment.companyId);
 
           const newAppointment = new Appointment(
               appointment.id,
-              appointment.user_Id,
-              appointment.service_Id,
-              appointment.company_Id,
-              appointment.reservation_Date,
+              appointment.userId,
+              appointment.serviceId,
+              appointment.companyId,
+              appointment.reservationDate,
               appointment.status,
               appointment.date,
               appointment.time
           );
-          newAppointment.serviceName = serviceResponse ? serviceResponse.service_name : 'Unknown Service';
-          newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
+          newAppointment.serviceName = serviceResponse.data ? serviceResponse.data.service_name : 'Unknown Service';
+          newAppointment.companyName = companyResponse.data ? companyResponse.data.name : 'Unknown Company';
 
           return newAppointment;
         });
@@ -53,7 +57,7 @@ export default {
 
     async handleCancelAppointment(appointmentId) {
       try {
-        await this.apiService.cancelAppointment(appointmentId);
+        await this.appointmentApiService.cancelAppointment(appointmentId);
         this.pendingAppointments = this.pendingAppointments.filter(appointment => appointment.id !== appointmentId);
         this.cancelDialogVisible = false;
       } catch (error) {
@@ -97,7 +101,7 @@ export default {
          class="appointment-item-container">
       <appointment-item :appointment="appointment"
                         @open-cancel-dialog="openCancelDialog"
-                        @open-appointment-dialog="openAppointmentDialog" />
+                        @open-appointment-dialog="openAppointmentDialog"/>
     </div>
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeAppointmentDialog">

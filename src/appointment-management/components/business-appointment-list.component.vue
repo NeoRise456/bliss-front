@@ -1,6 +1,8 @@
 <script>
 import BusinessAppointmentItem from './business-appointment-item.component.vue';
 import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
+import { AppointmentApiService } from "../services/appointment-api.service.js";
+import { ServiceApiService } from "../../service-management/services/service-api.service.js";
 
 export default {
   name: "business-appointment-list",
@@ -12,37 +14,38 @@ export default {
       selectedUser: null,
       dialogVisible: false,
       cancelDialogVisible: false,
-      apiService: new BusinessAppointmentApiService(),
+      businessApiService: new BusinessAppointmentApiService(),
+      appointmentApiService: new AppointmentApiService(),
+      serviceApiService: new ServiceApiService(),
     };
   },
   methods: {
     async fetchUsers() {
       try {
-        const appointments = await this.apiService.getAppointments();
-        const filteredAppointments = appointments.filter(appointment => appointment.company === this.companyId);
+        const appointments = await this.appointmentApiService.getAppointments();
+        const filteredAppointments = appointments.filter(appointment => appointment.companyId === this.companyId);
 
         const userDetailsPromises = filteredAppointments.map(async appointment => {
-          const serviceResponse = await this.apiService.getServiceById(appointment.serviceId);
-          const userResponse = await this.apiService.getUserById(appointment.userId);
+          const serviceResponse = await this.serviceApiService.getServiceById(appointment.serviceId);
+          const userResponse = await this.businessApiService.getUserById(appointment.userId);
 
-          if (userResponse) {
+          if (userResponse && serviceResponse.data) {
             const user = {
               id: userResponse.id,
               name: userResponse.name,
               email: userResponse.email,
               phone: userResponse.phone,
               address: userResponse.address,
+              serviceName: serviceResponse.data.service_name || "Unknown Service",
+              description: serviceResponse.data.description || "No Description",
+              price: serviceResponse.data.price || 0,
+              duration: serviceResponse.data.duration || 0,
+              rating: serviceResponse.data.rating || 0,
+              sales: serviceResponse.data.sales || 0,
+              img: serviceResponse.data.img || "",
+              date: appointment.date,
+              time: appointment.time,
             };
-
-            user.serviceName = serviceResponse ? serviceResponse.service_name : "Unknown Service";
-            user.description = serviceResponse ? serviceResponse.description : "No Description";
-            user.price = serviceResponse ? serviceResponse.price : 0;
-            user.duration = serviceResponse ? serviceResponse.duration : 0;
-            user.rating = serviceResponse ? serviceResponse.rating : 0;
-            user.sales = serviceResponse ? serviceResponse.sales : 0;
-            user.img = serviceResponse ? serviceResponse.img : "";
-            user.date = appointment.date;
-            user.time = appointment.time;
 
             return user;
           }
@@ -57,7 +60,7 @@ export default {
 
     async handleCancelAppointment(userId) {
       try {
-        await this.apiService.cancelAppointment(userId);
+        await this.appointmentApiService.cancelAppointment(userId);
         this.userList = this.userList.filter(user => user.id !== userId);
         this.cancelDialogVisible = false;
       } catch (error) {
