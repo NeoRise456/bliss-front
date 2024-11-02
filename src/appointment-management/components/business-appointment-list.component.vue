@@ -97,7 +97,7 @@ export default {
 <template>
   <div class="user-list-container">
     <div v-if="userList.length === 0">
-      <p>No users available</p>
+      <p>{{ $t('businessAppointmentList.noUsersAvailable') }}</p>
     </div>
     <div v-for="user in userList"
          :key="user.id"
@@ -109,25 +109,26 @@ export default {
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeUserDialog">
       <div class="dialog-card" @click.stop>
-        <h3>User Details</h3>
-        <p><strong>Name:</strong> {{ selectedUser?.name }}</p>
-        <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
-        <p><strong>Phone:</strong> {{ selectedUser?.phone }}</p>
-        <p><strong>Address:</strong> {{ selectedUser?.address }}</p>
-        <button @click="closeUserDialog">Close</button>
+        <h3>{{ $t('businessAppointmentList.userDetails') }}</h3>
+        <p><strong>{{ $t('businessAppointmentList.name') }}:</strong> {{ selectedUser?.name }}</p>
+        <p><strong>{{ $t('businessAppointmentList.email') }}:</strong> {{ selectedUser?.email }}</p>
+        <p><strong>{{ $t('businessAppointmentList.phone') }}:</strong> {{ selectedUser?.phone }}</p>
+        <p><strong>{{ $t('businessAppointmentList.address') }}:</strong> {{ selectedUser?.address }}</p>
+        <button @click="closeUserDialog">{{ $t('businessAppointmentList.close') }}</button>
       </div>
     </div>
 
     <div v-if="cancelDialogVisible" class="dialog-overlay" @click="closeCancelDialog">
       <div class="dialog-card" @click.stop>
-        <h3>Confirm Cancellation</h3>
-        <p>Are you sure you want to cancel this appointment?</p>
-        <button @click="handleCancelAppointment(selectedUser.id)" class="confirm-button">Yes, Cancel</button>
-        <button @click="closeCancelDialog" class="cancel-button">No, Go Back</button>
+        <h3>{{ $t('businessAppointmentList.confirmCancellation') }}</h3>
+        <p>{{ $t('businessAppointmentList.confirmCancellationMessage') }}</p>
+        <button @click="handleCancelAppointment(selectedUser.id)" class="confirm-button">{{ $t('businessAppointmentList.yesCancel') }}</button>
+        <button @click="closeCancelDialog" class="cancel-button">{{ $t('businessAppointmentList.noGoBack') }}</button>
       </div>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .user-list-container {
