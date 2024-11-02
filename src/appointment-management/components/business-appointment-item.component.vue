@@ -35,10 +35,10 @@ export default {
         </div>
         <hr class="divider" />
         <div class="user-info">
-          <h3 class="section-title">{{ $t('businessAppointment.user') }}: {{ user.name }}</h3>
-          <p><strong>{{ $t('businessAppointment.email') }}:</strong> {{ user.email }}</p>
-          <p><strong>{{ $t('businessAppointment.phone') }}:</strong> {{ user.phone }}</p>
-          <p><strong>{{ $t('businessAppointment.address') }}:</strong> {{ user.address }}</p>
+          <h3 class="section-title">{{ $t('businessAppointment.user') }}: {{ user.userName }}</h3>
+          <p><strong>{{ $t('businessAppointment.email') }}:</strong> {{ user.userEmail }}</p>
+          <p><strong>{{ $t('businessAppointment.phone') }}:</strong> {{ user.userPhone }}</p>
+          <p><strong>{{ $t('businessAppointment.address') }}:</strong> {{ user.userAddress }}</p>
         </div>
         <div class="button-container">
           <button @click.stop="openCancelDialog" class="cancel-button">{{ $t('businessAppointment.cancelAppointment') }}</button>
