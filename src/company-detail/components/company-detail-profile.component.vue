@@ -2,7 +2,6 @@
 import {ServiceApiService} from "../../service-management/services/service-api.service.js";
 import {CompanyDetailApiService} from "../services/company-detail-api.service.js";
 
-
 export default {
   name: "company-detail-profile",
   data() {
@@ -61,17 +60,17 @@ export default {
       <pv-card class="company-card p-shadow-2">
         <template #content>
           <div class="company-content flex">
-          <div class="image-container">
-            <img :src="company.img" alt="Company Image" class="service-img" />
-          </div>
-          <div class="info-container">
-            <h2 class="p-mt-3">{{ company.name }}</h2>
-          <p><strong>{{$t('companyDetail.ruc')}}:</strong> {{ company.ruc }}</p>
-          <p><strong>{{$t('companyDetail.email')}}:</strong> {{ company.email }}</p>
-          <p><strong>{{$t('companyDetail.website')}}:</strong> <a :href="company.website" target="_blank">{{ company.website }}</a></p>
-          <p><strong>{{ $t('companyDetail.averageRating')}}:</strong> {{ avgRating }}</p>
-            <p>{{ company.description }}</p>
-          </div>
+            <div class="image-container">
+              <img :src="company.img" alt="Company Image" class="service-img" />
+            </div>
+            <div class="info-container">
+              <h2 class="p-mt-3">{{ company.name }}</h2>
+              <p><strong>{{$t('companyDetail.ruc')}}:</strong> {{ company.ruc }}</p>
+              <p><strong>{{$t('companyDetail.email')}}:</strong> {{ company.email }}</p>
+              <p><strong>{{$t('companyDetail.website')}}:</strong> <a :href="company.website" target="_blank">{{ company.website }}</a></p>
+              <p><strong>{{ $t('companyDetail.averageRating')}}:</strong> {{ avgRating }}</p>
+              <p>{{ company.description }}</p>
+            </div>
           </div>
         </template>
       </pv-card>
@@ -84,7 +83,7 @@ export default {
           <pv-card class="bg-white services-card p-shadow-4">
             <template #header>
               <div style="padding: 10px">
-                <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
+                <img alt="user header" :src="service.img" class="service-image" />
               </div>
             </template>
             <template #title>
@@ -105,7 +104,6 @@ export default {
 </template>
 
 <style scoped>
-
 .padding-top {
   padding-top: 100px;
 }
@@ -113,9 +111,9 @@ export default {
 .company-card {
   background: transparent;
   color: #37123C;
-
 }
-.services-card{
+
+.services-card {
   color: #37123C;
   width: 20rem;
   height: auto;
@@ -124,6 +122,7 @@ export default {
   border-color: black;
   border-width: 1px;
 }
+
 .service-cards {
   display: flex;
   flex-wrap: wrap;
@@ -134,31 +133,37 @@ export default {
 .company-content {
   display: flex;
 }
+
 .image-container {
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .info-container {
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .service-img {
-
   object-fit: cover;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   max-height: 300px;
 }
 
+.service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .p-col-12 h2 {
   color: #37123C;
 }
 </style>
-

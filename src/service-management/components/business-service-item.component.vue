@@ -37,7 +37,7 @@ export default {
   <pv-card class="bg-white item-card">
     <template #header>
       <div style="padding: 10px">
-        <img alt="user header" :src="service.img" width="300px" style="border-radius: 10px;" />
+        <img alt="user header" :src="service.img" class="service-image" />
       </div>
     </template>
     <template #title>
@@ -52,17 +52,17 @@ export default {
     </template>
     <template #footer>
       <div class="flex gap-4 mt-1">
-          <pv-button icon="pi pi-pencil"
-                     icon-pos="right"
-                     :label="$t('businessService.edit')"
-                     class="w-full"
-                     @click="this.redirectToServiceEdit(service.id)" />
-          <pv-button icon="pi pi-delete-left"
-                     icon-pos="right"
-                     :label="$t('businessService.delete')"
-                     class="w-full"
-                     severity="danger"
-                     @click="this.deleteService(service.id)"/>
+        <pv-button icon="pi pi-pencil"
+                   icon-pos="right"
+                   :label="$t('businessService.edit')"
+                   class="w-full"
+                   @click="this.redirectToServiceEdit(service.id)" />
+        <pv-button icon="pi pi-delete-left"
+                   icon-pos="right"
+                   :label="$t('businessService.delete')"
+                   class="w-full"
+                   severity="danger"
+                   @click="this.deleteService(service.id)"/>
       </div>
     </template>
   </pv-card>
@@ -79,5 +79,11 @@ export default {
 }
 .content-text {
   color: #37123C;
+}
+.service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 </style>

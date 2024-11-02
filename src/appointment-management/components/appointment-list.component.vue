@@ -44,7 +44,7 @@ export default {
               appointment.time
           );
           newAppointment.serviceName = serviceResponse.data ? serviceResponse.data.service_name : 'Unknown Service';
-          newAppointment.companyName = companyResponse.data ? companyResponse.data.name : 'Unknown Company';
+          newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
 
           return newAppointment;
         });

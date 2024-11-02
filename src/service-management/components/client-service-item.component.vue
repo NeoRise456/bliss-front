@@ -20,7 +20,7 @@ export default {
 <template>
   <pv-card style="width: 20rem; height: auto; overflow: hidden">
     <template #header>
-      <img alt="user header" :src="service.img" width="320px" />
+      <img alt="user header" :src="service.img" class="service-image" />
     </template>
     <template #title>{{ service.service_name }}</template>
     <template #subtitle>{{ $t('clientService.price') }}: {{ service.price }}</template>
@@ -42,4 +42,9 @@ export default {
 </template>
 
 <style scoped>
+.service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 </style>
