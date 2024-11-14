@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import AppointmentItem from './appointment-item.component.vue';
 import { Appointment } from "../model/appointment.entity.js";
 import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
@@ -9,7 +10,7 @@ import BusinessAppointmentItem from "./business-appointment-item.component.vue";
 
 export default {
   name: "appointment-list",
-  components: {BusinessAppointmentItem, AppointmentItem },
+  components: { BusinessAppointmentItem, AppointmentItem },
   data() {
     return {
       pendingAppointments: [],
@@ -25,51 +26,9 @@ export default {
   methods: {
     async fetchPendingAppointments() {
       try {
-        const appointments = await this.appointmentApiService.getAppointments(defaultClientId);
-
-        const filteredAppointments = appointments.filter(
-            appointment => {
-              const matchesUserId = appointment.user.id === this.userId;
-              const matchesStatus = appointment.status === "PENDING";
-              return matchesUserId && matchesStatus;
-            }
-        );
-
-        const appointmentDetailsPromises = filteredAppointments.map(async appointment => {
-          let serviceName = "Unknown Service";
-          let companyName = "Unknown Company";
-
-          if (appointment.service && appointment.service.id) {
-            const serviceResponse = await this.serviceApiService.getServiceById(appointment.service.id);
-            serviceName = serviceResponse.data ? serviceResponse.data.serviceName : "Unknown Service";
-          } else {
-            console.warn(`Missing serviceId for appointment ID: ${appointment.id}`);
-          }
-
-          if (appointment.company && appointment.company.id) {
-            const companyResponse = await this.businessApiService.getCompanyById(appointment.company.id);
-            companyName = companyResponse ? companyResponse.name : "Unknown Company";
-          } else {
-            console.warn(`Missing companyId for appointment ID: ${appointment.id}`);
-          }
-
-          const newAppointment = new Appointment(
-              appointment.id,
-              appointment.userId,
-              appointment.service.id,
-              appointment.company.id,
-              appointment.reservationDate,
-              appointment.status,
-              appointment.date,
-              appointment.time
-          );
-          newAppointment.serviceName = serviceName;
-          newAppointment.companyName = companyName;
-
-          return newAppointment;
-        });
-
-        this.pendingAppointments = await Promise.all(appointmentDetailsPromises);
+        //TODO cambiar el get axios por el get de la api
+        const response = await axios.get('http://localhost:5296/api/v1/services');
+        this.pendingAppointments = response.data;
       } catch (error) {
         console.error("Error fetching pending appointments:", error);
       }
