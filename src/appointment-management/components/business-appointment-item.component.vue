@@ -36,7 +36,6 @@ export default {
           <p><strong>{{ $t('businessAppointment.description') }}:</strong> {{ user.description }}</p>
           <p><strong>{{ $t('businessAppointment.price') }}:</strong> ${{ user.price }}</p>
           <p><strong>{{ $t('businessAppointment.duration') }}:</strong> {{ user.duration }} {{ $t('businessAppointment.minutes') }}</p>
-          <p><strong>{{ $t('businessAppointment.rating') }}:</strong> {{ user.rating }}</p>
         </div>
         <hr class="divider" />
         <div class="user-info">
