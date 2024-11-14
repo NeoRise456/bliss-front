@@ -5,10 +5,11 @@ import { BusinessAppointmentApiService } from "../services/business-appointment-
 import { AppointmentApiService } from "../services/appointment-api.service.js";
 import { ServiceApiService } from "../../service-management/services/service-api.service.js";
 import { defaultClientId } from "../../router/index.js";
+import BusinessAppointmentItem from "./business-appointment-item.component.vue";
 
 export default {
   name: "appointment-list",
-  components: { AppointmentItem },
+  components: {BusinessAppointmentItem, AppointmentItem },
   data() {
     return {
       pendingAppointments: [],
@@ -110,6 +111,7 @@ export default {
 };
 </script>
 
+
 <template>
   <div class="appointment-list-container">
     <div v-if="pendingAppointments.length === 0">
@@ -118,9 +120,9 @@ export default {
     <div v-for="appointment in pendingAppointments"
          :key="appointment.id"
          class="appointment-item-container">
-      <appointment-item :appointment="appointment"
-                        @open-cancel-dialog="openCancelDialog"
-                        @open-appointment-dialog="openAppointmentDialog"/>
+      <business-appointment-item :user="appointment"
+                                 @open-cancel-dialog="openCancelDialog"
+                                 @open-appointment-dialog="openAppointmentDialog"/>
     </div>
 
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeAppointmentDialog">
@@ -144,6 +146,8 @@ export default {
     </div>
   </div>
 </template>
+
+
 
 <style scoped>
 .appointment-list-container {
