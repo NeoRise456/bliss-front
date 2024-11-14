@@ -9,7 +9,7 @@ export default {
   },
   computed: {
     formattedDate() {
-      return new Date(this.user.date).toLocaleDateString('en-CA'); // Formato "YYYY-MM-DD"
+      return new Date(this.user.date).toLocaleDateString('en-CA');
     }
   },
   methods: {
