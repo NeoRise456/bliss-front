@@ -11,14 +11,9 @@ export default {
   },
   data() {
     return {
-      serviceImage: '',
+      serviceImage: '', // URL de la imagen del servicio
       historyApiService: new HistoryApiService()
     };
-  },
-  computed: {
-    formattedDate() {
-      return new Date(this.appointment.date).toLocaleDateString('en-CA');
-    }
   },
   async mounted() {
     await this.loadServiceImage();
@@ -27,7 +22,7 @@ export default {
     async loadServiceImage() {
       try {
         const serviceData = await this.historyApiService.getServiceById(this.appointment.serviceId);
-        this.serviceImage = serviceData.img;
+        this.serviceImage = serviceData.img; // Asigna la imagen del servicio a serviceImage
       } catch (error) {
         console.error("Error loading service image:", error);
       }
@@ -37,6 +32,9 @@ export default {
     },
     openAppointmentDialog() {
       this.$emit('open-appointment-dialog', this.appointment);
+    },
+    formattedDate() {
+      return new Date(this.appointment.date).toLocaleDateString('en-CA');
     }
   }
 };
@@ -49,7 +47,7 @@ export default {
       <div class="appointment-details">
         <h3 class="appointment-title">{{ appointment.serviceName }} - {{ appointment.companyName }}</h3>
         <div class="date-time-container">
-          <div class="date-card">{{ $t('appointment.date') }}: {{ formattedDate }}</div>
+          <div class="date-card">{{ $t('appointment.date') }}: {{ formattedDate() }}</div>
           <div class="time-card">{{ $t('appointment.time') }}: {{ appointment.time }}</div>
         </div>
         <button @click.stop="openCancelDialog" class="cancel-button">Cancel Appointment</button>
@@ -57,7 +55,6 @@ export default {
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .appointment-card {
@@ -134,5 +131,4 @@ export default {
 .cancel-button:hover {
   background-color: #ff1a1a;
 }
-
 </style>
