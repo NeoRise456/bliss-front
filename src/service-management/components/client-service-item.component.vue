@@ -25,9 +25,11 @@ export default {
     <template #title>{{ service.service_name }}</template>
     <template #subtitle>{{ $t('clientService.price') }}: {{ service.price }}</template>
     <template #content>
-      <p class="m-0">
-        {{ service.description }}
-      </p>
+      <div style="min-height: 6rem">
+        <p class="m-0">
+          {{ service.description }}
+        </p>
+      </div>
     </template>
     <template #footer>
       <div class="flex gap-4 mt-1">
