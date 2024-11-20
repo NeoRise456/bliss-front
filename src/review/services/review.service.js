@@ -31,7 +31,13 @@ export class ReviewApiService extends ServiceApiService {
     async updateReview(reviewId, reviewData) {
         return http.put(`/reviews/${reviewId}`, reviewData);
     }
-
-
-
+    getAppointmentById(appointmentId) {
+        return http.get(`/appointments/${appointmentId}`);
+    }
+    getReviewByAppointmentId(appointmentId) {
+        return http.get(`/reviews?appointmentId=${appointmentId}`);
+    }
+    getReviewsByCompanyId(companyId) {
+        return http.get(`/reviews/company/${companyId}`);
+    }
 }

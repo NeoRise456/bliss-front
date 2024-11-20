@@ -2,7 +2,6 @@
 import { ServiceApiService } from "../../service-management/services/service-api.service.js";
 import { CompanyDetailApiService } from "../services/company-detail-api.service.js";
 import { ReviewApiService } from "../../review/services/review.service.js";
-import { AppointmentApiService } from "../../appointment-management/services/appointment-api.service.js";
 
 export default {
   name: "company-detail-profile",
@@ -12,7 +11,6 @@ export default {
       company: null,
       avgRating: null,
       reviews: [],
-      appointments: [],
     };
   },
   props: {
@@ -26,7 +24,6 @@ export default {
       const companyDetailApiService = new CompanyDetailApiService();
       const serviceApiService = new ServiceApiService();
       const reviewApiService = new ReviewApiService();
-      const appointmentApiService = new AppointmentApiService();
 
       try {
         const id = this.companyId || this.$route.params.id;
@@ -35,40 +32,23 @@ export default {
           return;
         }
 
-
         const companyResponse = await companyDetailApiService.getCompaniesById(id);
         this.company = companyResponse.data;
-
 
         const servicesResponse = await serviceApiService.getServicesByCompanyId(id);
         this.services = servicesResponse.data;
 
-
-        const appointmentsResponse = await appointmentApiService.getAppointmentsByCompanyId(id);
-        this.appointments = appointmentsResponse.data;
-
-        const appointmentsId = this.appointments.map((appointment) => appointment.id);
-        console.log(appointmentsId);
-
-
-        const reviews = await Promise.all(
-            appointmentsId.map(async (id) => {
-              const response = await reviewApiService.getReviewByAppointmentId(id);
-              return response.data;
-            })
-        );
-        this.reviews = reviews.flat();
+        const reviewsResponse = await reviewApiService.getReviewsByCompanyId(id);
+        this.reviews= reviewsResponse.data;
         console.log(this.reviews);
 
-
-        if (this.services.length > 0) {
-          const totalRating = this.services.reduce((sum, service) => sum + (service.rating || 0), 0);
-          this.avgRating = (totalRating / this.services.length).toFixed(2);
+        if (this.reviews.length > 0) {
+          const totalRating = this.reviews.reduce((sum, review) => sum + review.rating, 0);
+          this.avgRating = (totalRating / this.reviews.length).toFixed(2);
         } else {
           this.avgRating = "Not rated yet";
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error loading data:", error);
       }
     }
@@ -84,19 +64,24 @@ export default {
     <!-- Card Company -->
     <div class="p-col-12 p-md-6 p-lg-4 padding-top">
       <pv-card class="company-card p-shadow-2">
+        <template #header>
+          <h1 class="p-mt-3">{{ company.name }}</h1>
+        </template>
         <template #content>
           <div class="company-content flex">
             <div class="image-container">
               <img :src="company.img" alt="Company Image" class="service-img" />
             </div>
             <div class="info-container">
-              <h2 class="p-mt-3">{{ company.name }}</h2>
               <p><strong>{{ $t('companyDetail.ruc') }}:</strong> {{ company.ruc }}</p>
               <p><strong>{{ $t('companyDetail.email') }}:</strong> {{ company.email }}</p>
-              <p><strong>{{ $t('companyDetail.website') }}:</strong>
-                <a :href="company.website" target="_blank">{{ company.website }}</a>
+              <p><strong>{{ $t('companyDetail.website') }}: </strong>
+                <a :href="company.websiteUrl" target="_blank"> {{ company.websiteUrl }}</a>
               </p>
               <p><strong>{{ $t('companyDetail.averageRating') }}:</strong> {{ avgRating }}</p>
+            </div>
+            <div class="description-container">
+              <p><strong>{{ $t('companyDetail.description')}}</strong></p>
               <p>{{ company.description }}</p>
             </div>
           </div>
@@ -112,15 +97,14 @@ export default {
           <pv-card class="bg-white services-card p-shadow-4">
             <template #header>
               <div style="padding: 10px">
-                <img :src="service.img" alt="Service Image" width="300px" style="border-radius: 10px;" />
+                <img :src="service.imgUrl" alt="Service Image" width="300px" style="border-radius: 10px;" />
               </div>
             </template>
             <template #title>
               {{service.name}}
             </template>
             <template #content>
-              <p><strong>Compania :</strong> {{ service.company_id }}</p>
-              <p><strong>{{$t('servicesHome.service_name')}}:</strong> {{service.name}}</p>
+              <p><strong>{{ $t('servicesHome.name')}}:</strong> {{service.name}}</p>
               <p>{{ service.description }}</p>
 
             </template>
@@ -135,12 +119,13 @@ export default {
         <div v-for="review in reviews" :key="review.id" class="service-card">
           <pv-card class="bg-white services-card p-shadow-4">
             <template #header>
-
+              <!-- Optional header content -->
             </template>
             <template #content>
               <p><strong>Calificación:</strong> {{ review.rating }}</p>
-              <p><strong>Comentario:</strong> {{ review.comment }}</p>
-              <p><strong>Fecha:</strong> {{ review.createdDate }}</p>
+              <p><strong>Comentario:</strong> {{ review.comments }}</p>
+              <p><strong>Fecha: </strong>{{review.appointment.reservationDate }} </p>
+
             </template>
           </pv-card>
         </div>
@@ -156,11 +141,16 @@ export default {
   padding-top: 100px;
 }
 
-.company-card {
-  background: transparent;
-  color: #37123C;
 
+.company-card {
+  background: #f5fefe;
+  border-color: #9e49b0;
+  color: #b39de7;
+  border-width: 1px; /* Add this line */
+  border-style: solid; /* Add this line */
+  overflow: hidden;
 }
+
 .services-card{
   color: #37123C;
   width: 20rem;
@@ -179,10 +169,20 @@ export default {
 
 .company-content {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1000px) {
+  .company-content {
+    flex-direction: column;
+  }
 }
 .image-container {
   width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -193,6 +193,13 @@ export default {
   justify-content: center;
   align-items: center;
 
+}
+.description-container{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .service-img {
