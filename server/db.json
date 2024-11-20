@@ -43,17 +43,17 @@
   ],
   "services": [
     {
-      "id": 1,
       "category_id": 1,
       "company_id": 1,
-      "service_name": "Precision Haircut",
-      "description": "A precise and tailored haircut to enhance your style and personality.",
+      "service_name": "Normal haircut ",
+      "description": "Just a normal man haircut",
       "price": 100,
-      "duration": 60,
+      "duration": 40,
       "rating": 4.1,
       "sales": 10,
       "created_at": "2021-01-01T00:00:00.000Z",
-      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 1
     },
     {
       "id": 2,
@@ -67,19 +67,6 @@
       "sales": 7,
       "created_at": "2021-01-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1730509067/ml3nfalcxxftzeo7jj1y.jpg"
-    },
-    {
-      "id": 3,
-      "category_id": 2,
-      "company_id": 1,
-      "service_name": "Botox Facial Rejuvenation",
-      "description": "A Botox treatment designed to smooth and rejuvenate facial skin.",
-      "price": 300,
-      "duration": 180,
-      "rating": 4.1,
-      "sales": 8,
-      "created_at": "2021-01-01T00:00:00.000Z",
-      "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1730509195/t7gwweqkfaibilps2pgb.jpg"
     },
     {
       "id": 4,
@@ -271,6 +258,19 @@
       "sales": 12,
       "created_at": "2023-10-01T00:00:00.000Z",
       "img": "https://res.cloudinary.com/dmegp6gmd/image/upload/v1730512578/a1rllm7mq1owr6amp8b7.jpg"
+    },
+    {
+      "category_id": 2,
+      "company_id": 1,
+      "service_name": "Nail design ",
+      "description": "Normal gel nails with simple design ",
+      "price": 300,
+      "duration": 93,
+      "rating": 0,
+      "sales": 0,
+      "created_at": "2024-11-02T18:29:22.515Z",
+      "img": "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp",
+      "id": 19
     }
   ],
   "appointments": [
@@ -293,6 +293,16 @@
       "status": "COMPLETED",
       "date": "2023-12-30",
       "time": "11:45 AM"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "serviceId": 7,
+      "companyId": 1,
+      "reservationDate": "2024-10-30T06:11:42.538Z",
+      "status": "PENDING",
+      "date": "2024-10-02",
+      "time": "05:00 PM"
     },
     {
       "id": 7,
@@ -326,37 +336,15 @@
       "requirements": null
     },
     {
-      "id": 10,
-      "userId": 1,
-      "serviceId": 4,
-      "companyId": 2,
-      "reservationDate": "2024-11-11T17:26:48.609Z",
-      "status": "PENDING",
-      "date": "2024-11-11T17:26:45.401Z",
-      "time": "12:26",
-      "requirements": null
-    },
-    {
-      "id": 11,
-      "userId": 1,
-      "serviceId": 5,
-      "companyId": 1,
-      "reservationDate": "2024-11-11T17:26:58.297Z",
-      "status": "PENDING",
-      "date": "2024-11-22T05:00:00.000Z",
-      "time": "07:32",
-      "requirements": null
-    },
-    {
       "id": 12,
       "userId": 1,
-      "serviceId": 8,
+      "serviceId": 1,
       "companyId": 1,
-      "reservationDate": "2024-11-11T17:27:11.877Z",
+      "reservationDate": "2024-11-02T18:22:12.974Z",
       "status": "PENDING",
       "date": "2024-11-13T05:00:00.000Z",
-      "time": "19:17",
-      "requirements": null
+      "time": "14:20",
+      "requirements": "Need more colorful hair "
     }
   ],
   "companies": [
@@ -436,7 +424,6 @@
   ],
   "reviews": [
     {
-      "id": 1,
       "rating": 3,
       "comment": "Great service, but I expected a bit more attention to detail.",
       "createdDate": "2024-10-27T03:41:07.310Z",
