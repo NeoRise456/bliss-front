@@ -87,11 +87,11 @@ export default {
               </div>
             </template>
             <template #title>
-              {{service.service_name}}
+              {{service.name}}
             </template>
             <template #content>
               <p><strong>Compania :</strong> {{ service.company_id }}</p>
-              <p><strong>{{$t('servicesHome.service_name')}}:</strong> {{service.service_name}}</p>
+              <p><strong>{{$t('servicesHome.service_name')}}:</strong> {{service.name}}</p>
               <p><strong>{{$t('servicesHome.rating')}}: </strong> {{ service.rating }}</p>
               <p>{{ service.description }}</p>
             </template>
