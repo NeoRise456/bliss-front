@@ -32,6 +32,9 @@ export default {
     },
     openAppointmentDialog() {
       this.$emit('open-appointment-dialog', this.appointment);
+    },
+    formattedDate() {
+      return new Date(this.appointment.date).toLocaleDateString('en-CA');
     }
   }
 };
@@ -44,7 +47,7 @@ export default {
       <div class="appointment-details">
         <h3 class="appointment-title">{{ appointment.serviceName }} - {{ appointment.companyName }}</h3>
         <div class="date-time-container">
-          <div class="date-card">{{ $t('appointment.date') }}: {{ appointment.date }}</div>
+          <div class="date-card">{{ $t('appointment.date') }}: {{ formattedDate() }}</div>
           <div class="time-card">{{ $t('appointment.time') }}: {{ appointment.time }}</div>
         </div>
         <button @click.stop="openCancelDialog" class="cancel-button">Cancel Appointment</button>
@@ -128,5 +131,4 @@ export default {
 .cancel-button:hover {
   background-color: #ff1a1a;
 }
-
 </style>

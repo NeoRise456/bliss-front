@@ -7,6 +7,11 @@ export default {
       required: true
     }
   },
+  computed: {
+    formattedDate() {
+      return new Date(this.user.date).toLocaleDateString('en-CA');
+    }
+  },
   methods: {
     openCancelDialog() {
       this.$emit('open-cancel-dialog', this.user);
@@ -22,7 +27,7 @@ export default {
       <div class="user-details">
         <div class="appointment-info">
           <h3 class="section-title">{{ $t('businessAppointment.appointment') }}</h3>
-          <p><strong>{{ $t('businessAppointment.date') }}:</strong> {{ user.date }}</p>
+          <p><strong>{{ $t('businessAppointment.date') }}:</strong> {{ formattedDate }}</p>
           <p><strong>{{ $t('businessAppointment.time') }}:</strong> {{ user.time }}</p>
         </div>
         <hr class="divider" />
@@ -31,7 +36,6 @@ export default {
           <p><strong>{{ $t('businessAppointment.description') }}:</strong> {{ user.description }}</p>
           <p><strong>{{ $t('businessAppointment.price') }}:</strong> ${{ user.price }}</p>
           <p><strong>{{ $t('businessAppointment.duration') }}:</strong> {{ user.duration }} {{ $t('businessAppointment.minutes') }}</p>
-          <p><strong>{{ $t('businessAppointment.rating') }}:</strong> {{ user.rating }}</p>
         </div>
         <hr class="divider" />
         <div class="user-info">
@@ -40,10 +44,10 @@ export default {
           <p><strong>{{ $t('businessAppointment.phone') }}:</strong> {{ user.userPhone }}</p>
           <p><strong>{{ $t('businessAppointment.address') }}:</strong> {{ user.userAddress }}</p>
         </div>
-        <div class="button-container">
-          <button @click.stop="openCancelDialog" class="cancel-button">{{ $t('businessAppointment.cancelAppointment') }}</button>
-        </div>
       </div>
+    </div>
+    <div class="button-container">
+      <button @click.stop="openCancelDialog" class="cancel-button">{{ $t('businessAppointment.cancelAppointment') }}</button>
     </div>
   </div>
 </template>

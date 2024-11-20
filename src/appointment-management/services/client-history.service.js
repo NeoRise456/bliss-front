@@ -20,7 +20,6 @@ export class HistoryApiService {
     async getServiceById(serviceId) {
         try {
             const response = await http.get(`/services/${serviceId}`);
-            console.log('API Response for Service:', response.data); // Debugging log
             return response.data;
         } catch (error) {
             console.error('Error fetching service:', error);
@@ -31,7 +30,6 @@ export class HistoryApiService {
     async getCompanyById(companyId) {
         try {
             const response = await http.get(`/companies/${companyId}`);
-            console.log('API Response for Company:', response.data); // Debugging log
             return response.data;
         } catch (error) {
             console.error('Error fetching company:', error);
@@ -42,7 +40,6 @@ export class HistoryApiService {
     async getReviewByAppointmentId(appointmentId) {
         try {
             const response = await http.get(`/reviews?appointmentId=${appointmentId}`);
-            console.log('API Response for Review:', response.data); // Debugging log
             return response.data;
         } catch (error) {
             console.error('Error fetching review:', error);

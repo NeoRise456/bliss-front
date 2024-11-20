@@ -4,6 +4,7 @@ import { Appointment } from "../model/appointment.entity.js";
 import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
 import { AppointmentApiService } from "../services/appointment-api.service.js";
 import { ServiceApiService } from "../../service-management/services/service-api.service.js";
+import { defaultClientId } from "../../router/index.js";
 
 export default {
   name: "appointment-list",
@@ -23,35 +24,53 @@ export default {
   methods: {
     async fetchPendingAppointments() {
       try {
-        const appointments = await this.appointmentApiService.getAppointments();
+        const appointments = await this.appointmentApiService.getAppointments(defaultClientId);
 
         const filteredAppointments = appointments.filter(
-            appointment => appointment.userId === this.userId && appointment.status === "PENDING"
+            appointment => {
+              const matchesUserId = appointment.user.id === this.userId;
+              const matchesStatus = appointment.status === "PENDING";
+              return matchesUserId && matchesStatus;
+            }
         );
 
         const appointmentDetailsPromises = filteredAppointments.map(async appointment => {
-          const serviceResponse = await this.serviceApiService.getServiceById(appointment.serviceId);
-          const companyResponse = await this.businessApiService.getCompanyById(appointment.companyId);
+          let serviceName = "Unknown Service";
+          let companyName = "Unknown Company";
+
+          if (appointment.service && appointment.service.id) {
+            const serviceResponse = await this.serviceApiService.getServiceById(appointment.service.id);
+            serviceName = serviceResponse.data ? serviceResponse.data.serviceName : "Unknown Service";
+          } else {
+            console.warn(`Missing serviceId for appointment ID: ${appointment.id}`);
+          }
+
+          if (appointment.company && appointment.company.id) {
+            const companyResponse = await this.businessApiService.getCompanyById(appointment.company.id);
+            companyName = companyResponse ? companyResponse.name : "Unknown Company";
+          } else {
+            console.warn(`Missing companyId for appointment ID: ${appointment.id}`);
+          }
 
           const newAppointment = new Appointment(
               appointment.id,
               appointment.userId,
-              appointment.serviceId,
-              appointment.companyId,
+              appointment.service.id,
+              appointment.company.id,
               appointment.reservationDate,
               appointment.status,
               appointment.date,
               appointment.time
           );
-          newAppointment.serviceName = serviceResponse.data ? serviceResponse.data.service_name : 'Unknown Service';
-          newAppointment.companyName = companyResponse ? companyResponse.name : 'Unknown Company';
+          newAppointment.serviceName = serviceName;
+          newAppointment.companyName = companyName;
 
           return newAppointment;
         });
 
         this.pendingAppointments = await Promise.all(appointmentDetailsPromises);
       } catch (error) {
-        console.error('Error fetching pending appointments:', error);
+        console.error("Error fetching pending appointments:", error);
       }
     },
 
@@ -206,10 +225,10 @@ export default {
   background-color: red;
   color: #ffffff; /* Color al pasar el cursor */
 }
+
 @media (min-width: 768px) {
   .appointment-list-container {
     flex-direction: row;
   }
 }
-
 </style>
