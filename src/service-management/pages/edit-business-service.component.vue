@@ -1,6 +1,8 @@
 <script>
 import { Service } from "../../shared/model/service.entity.js";
 import { ServiceApiService } from "../services/service-api.service.js";
+import {Category} from "../model/category.entity.js";
+import {CategoryApiService} from "../services/category-api.service.js";
 
 export default {
   name: "edit-business-service",
@@ -18,11 +20,7 @@ export default {
       price: null,
       description: null,
       selectedCategory: null,
-      categories: [
-        {name: '1', cname: '1'},
-        {name: '2', cname: '2'},
-        {name: '3', cname: '3'}
-      ]
+      categories: []
     };
   },
   methods: {
@@ -48,9 +46,21 @@ export default {
         console.error('Error fetching service:', error);
       }
     },
+    async fetchCategories() {
+      const categoriesApiService = new CategoryApiService();
+      try{
+        let response = await categoriesApiService.getCategories();
+        this.categories = response.data.map(category => ({
+          cname: category.category_name,
+          name: category.id
+        }));
+      }catch (error){
+        console.error('Error fetching categories:', error);
+      }
+    },
     async updateService(){
       const serviceData ={
-        category_id: this.selectedCategory ? parseInt(this.selectedCategory.cname) : this.service.category_id,
+        category_id: this.selectedCategory ? parseInt(this.selectedCategory.name) : this.service.category_id,
         company_id: this.service.company_id,
         service_name: this.serviceName ? this.serviceName : this.service.service_name,
         description: this.description ? this.description : this.service.description,
@@ -63,7 +73,7 @@ export default {
       };
       try {
         const serviceApiService = new ServiceApiService();
-        await serviceApiService.updateService(this.service.id, serviceData);
+        await serviceApiService.updateServiceById(this.service.id, serviceData);
         window.location.reload();
         console.log('Service updated:', serviceData);
         this.$toast.add({
@@ -84,50 +94,58 @@ export default {
   },
   created() {
     this.fetchService();
+    this.fetchCategories()
   }
 }
 </script>
 
 <template>
-  <pv-card class="w-auto p-5 custom-card-3 bg-gray-50">
-    <template #header>
-      <div>
-        <h2 class ="title">{{$t('editService.title')}}</h2>
-      </div>
-    </template>
-    <template #content>
-      <div style="text-align: left">
-        <h2 style="font-weight: normal;">{{$t('editService.serviceName')}}</h2>
-        <pv-input-text style="background-color: white; color: black; width: 100%" type="text" v-model="serviceName" :placeholder="service.service_name" class="custom-text-input"/>
-      </div>
-      <div style="text-align: left">
-        <h2 style="font-weight: normal;">{{$t('editService.serviceCategory')}}</h2>
-        <pv-cascade-select style="background-color: white; color: black; width: 100%" v-model="selectedCategory" :options="categories" optionLabel="cname" optionGroupLabel="name"
-                           optionGroupChildren="children" :placeholder="service.category_id.toString()" class="custom-cascade-select" />
-      </div>
-      <div style="text-align: left">
-        <h2 style="font-weight: normal;">{{$t('editService.serviceDuration')}}</h2>
-        <pv-input-number style="background: white!important; color: black" v-model="duration" mode="decimal" showButtons :min="40" :max="180" fluid :placeholder="service.duration.toString()" />
-      </div>
-      <div style="text-align: left">
-        <h2 style="font-weight: normal;">{{$t('editService.servicePrice')}}</h2>
-        <pv-input-number style="background-color: white; color: black" v-model="price" inputId="currency-us" :min="0" mode="currency" currency="USD" locale="en-US" fluid
-                         :placeholder="service.price.toString()" />
-      </div>
-      <div style="text-align: left">
-        <h2 style="font-weight: normal;">{{$t('editService.serviceDescription')}}</h2>
-        <pv-textarea v-model="description" rows="10" cols="75" style="background-color: white; color: black" :placeholder="service.description" />
-      </div>
-    </template>
-    <template #footer>
-      <pv-button :label="$t('editService.editButton')" class="mt-5" style="background-color: #37123C; color: white" @click="updateService" />
-    </template>
-  </pv-card>
+  <div class="content">
+    <pv-card class=" p-5 custom-card-3 bg-gray-50" style="max-width: 800px ">
+      <template #header>
+        <div>
+          <h2 class ="title">{{$t('editService.title')}}</h2>
+        </div>
+      </template>
+      <template #content>
+        <div style="text-align: left">
+          <h2 style="font-weight: normal;">{{$t('editService.serviceName')}}</h2>
+          <pv-input-text style="background-color: white; color: black; width: 100%" type="text" v-model="serviceName" :placeholder="service.service_name" class="custom-text-input"/>
+        </div>
+        <div style="text-align: left">
+          <h2 style="font-weight: normal;">{{$t('editService.serviceCategory')}}</h2>
+          <pv-cascade-select style="background-color: white; color: black; width: 100%" v-model="selectedCategory" :options="categories" optionLabel="cname" optionGroupLabel="name"
+                             optionGroupChildren="children" :placeholder="service.category_id.toString()" class="custom-cascade-select" />
+        </div>
+        <div style="text-align: left">
+          <h2 style="font-weight: normal;">{{$t('editService.serviceDuration')}}</h2>
+          <pv-input-number style="background: white!important; color: black" v-model="duration" mode="decimal" showButtons :min="40" :max="180" fluid :placeholder="service.duration.toString()" />
+        </div>
+        <div style="text-align: left">
+          <h2 style="font-weight: normal;">{{$t('editService.servicePrice')}}</h2>
+          <pv-input-number style="background-color: white; color: black" v-model="price" inputId="currency-us" :min="0" mode="currency" currency="USD" locale="en-US" fluid
+                           :placeholder="service.price.toString()" />
+        </div>
+        <div style="text-align: left">
+          <h2 style="font-weight: normal;">{{$t('editService.serviceDescription')}}</h2>
+          <pv-textarea v-model="description" rows="10" cols="75" style="background-color: white; color: black" :placeholder="service.description" />
+        </div>
+      </template>
+      <template #footer>
+        <pv-button :label="$t('editService.editButton')" class="mt-5" style="background-color: #37123C; color: white" @click="updateService" />
+      </template>
+    </pv-card>
+  </div>
 </template>
 
 <style scoped>
   .custom-card-3 {
     font-family: 'Montserrat', sans-serif;
     color: #37123C;
+  }
+  .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

@@ -1,6 +1,7 @@
 <script>
 import {defaultBusinessId} from "../../router/index.js";
 import {ServiceApiService} from "../services/service-api.service.js";
+import {CategoryApiService} from "../services/category-api.service.js";
 
 export default {
   name: "create-business-service",
@@ -10,11 +11,7 @@ export default {
       price: null,
       description: null,
       selectedCategory: null,
-      categories: [
-        {name: '1', cname: '1'},
-        {name: '2', cname: '2'},
-        {name: '3', cname: '3'}
-      ]
+      categories: []
     }
   },
   methods: {
@@ -31,7 +28,7 @@ export default {
     },
     async createService() {
       const serviceData = {
-        category_id: this.selectedCategory ? parseInt(this.selectedCategory.cname) : null,
+        category_id: this.selectedCategory ? parseInt(this.selectedCategory.name) : null,
         company_id: defaultBusinessId,
         service_name: this.serviceName,
         description: this.description,
@@ -59,7 +56,22 @@ export default {
           life: 3000
         });
       }
-    }
+    },
+    async fetchCategories() {
+      const categoriesApiService = new CategoryApiService();
+      try{
+        let response = await categoriesApiService.getCategories();
+        this.categories = response.data.map(category => ({
+          cname: category.category_name,
+          name: category.id
+        }));
+      }catch (error){
+        console.error('Error fetching categories:', error);
+      }
+    },
+  },
+  created() {
+    this.fetchCategories()
   }
 }
 </script>
