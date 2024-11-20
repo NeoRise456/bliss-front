@@ -38,7 +38,7 @@ export default {
     },
     confirmBooking(){
       this.$confirm.require({
-        message: 'Are you sure u want to book ' + this.service.name + ' service ?',
+        message: 'Are you sure u want to book ' + this.service.name + ' services ?',
         header: 'Confirmation',
         icon: 'pi pi-calendar-clock',
         rejectProps: {

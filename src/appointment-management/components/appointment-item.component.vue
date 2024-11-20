@@ -25,7 +25,7 @@ export default {
         const serviceData = await this.historyApiService.getServiceById(this.appointment.service.id);
         this.serviceImage = serviceData.imgUrl; // Asigna la imagen del servicio a serviceImage
       } catch (error) {
-        console.error("Error loading service image:", error);
+        console.error("Error loading services image:", error);
       }
     },
     openCancelDialog() {

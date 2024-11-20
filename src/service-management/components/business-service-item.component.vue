@@ -21,12 +21,12 @@ export default {
         this.$toast.add({
           severity: 'error',
           summary: 'Service Deleted',
-          detail: 'Your service has been deleted successfully.',
+          detail: 'Your services has been deleted successfully.',
           life: 3000
         });
         window.location.reload();
       } catch (error) {
-        console.error('Error deleting service:', error);
+        console.error('Error deleting services:', error);
       }
     }
   }

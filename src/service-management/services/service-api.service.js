@@ -24,7 +24,7 @@ import http from "../../shared/services/http-common.js";
             return http.get(`/services/${categoryId}`);
         }
         /**
-         * Get all service by id
+         * Get all services by id
          * @param serviceId
          * @returns {Promise<axios.AxiosResponse<any>>}
          * */
@@ -42,7 +42,7 @@ import http from "../../shared/services/http-common.js";
         }
 
         /**
-         * Create a new service
+         * Create a new services
          * @param service
          * @returns {Promise<axios.AxiosResponse<any>>}
          **/
@@ -51,7 +51,7 @@ import http from "../../shared/services/http-common.js";
         }
 
         /**
-         * Delete a new service
+         * Delete a new services
          * @param serviceId
          * @returns {Promise<axios.AxiosResponse<any>>}
          * */
@@ -60,7 +60,7 @@ import http from "../../shared/services/http-common.js";
         }
 
         /**
-        * Update a service
+        * Update a services
          * @param serviceId
          * @param service
          * @returns {Promise<axios.AxiosResponse<any>>}

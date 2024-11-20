@@ -28,18 +28,18 @@ const router = createRouter({
         // { path: '/schedule/:userId', name: 'ClientSchedule', component: ScheduleComponent, meta: { title: 'Schedule' }, props: route => ({ userId: route.params.userId || defaultClientId }) },
         { path: '/home', name: 'ClientHome', component: HomeComponent, meta: { title: 'Home' } },
         { path: '/client-services', name: 'ClientServices', component: ClientServicesComponent, meta: { title: 'Services' } },
-        { path: '/service-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: { title: 'ServiceDetail' } },
+        { path: '/services-management/:id', name: 'Service', component: ClientServiceDetailComponent, meta: { title: 'ServiceDetail' } },
         { path: '/schedule/:userId', name: 'ClientSchedule', component: ScheduleComponent, meta: { title: 'Schedule' } },
         { path: '/client-myservices/:id?', name: 'ClientMyServices', component: HistoryPageComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultClientId }) },
-        {path:'/service-appointment', name:'Service Appointment', ServiceAppointmentComponent, meta:{title:'Service Appointment'} },
+        {path:'/services-appointment', name:'Service Appointment', ServiceAppointmentComponent, meta:{title:'Service Appointment'} },
         {path: '/review/:appointmentId', name: 'ReviewManagementPage', component: ReviewManagementPage, props: true},
 
         { path: '/business-my-services/:id', name: 'BusinessMyServices', component: BusinessServicesComponent, meta: { title: 'My Services' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
         { path: '/homeBusiness', name: 'BusinessHome', component: CompanyDetailPageComponent, meta: { title: 'Home' } },
-        { path: '/service-management/edit-service/:serviceId', name: 'ServiceEdit', component: EditBusinessServiceComponent, meta: { title: 'Edit Service' }, props: true },
-        { path: '/business-service-management/create-service', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
+        { path: '/services-management/edit-services/:serviceId', name: 'ServiceEdit', component: EditBusinessServiceComponent, meta: { title: 'Edit Service' }, props: true },
+        { path: '/business-services-management/create-services', name:'Create Service', component: CreateBusinessServiceComponent, meta:{title:'Create Service'}},
         { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: PageNotFound, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
-        { path:'/service-appointment', name:'Service Appointment', ServiceAppointmentComponent, meta:{title:'Service Appointment'} },
+        { path:'/services-appointment', name:'Service Appointment', ServiceAppointmentComponent, meta:{title:'Service Appointment'} },
         { path: '/business-schedule/:id?', name: 'BusinessSchedule', component: BusinessAppointmentListComponent, meta: { title: 'Schedule' }, props: route => ({ id: route.params.id || defaultBusinessId }) },
        
 

@@ -41,7 +41,7 @@ export default {
         );
         console.log('Service:', this.service);
       } catch (error) {
-        console.error('Error fetching service:', error);
+        console.error('Error fetching services:', error);
       }
     },
     async fetchCategories() {
@@ -72,14 +72,14 @@ export default {
         this.$toast.add({
           severity: 'success',
           summary: 'Service Updated',
-          detail: 'Your service has been updated successfully.',
+          detail: 'Your services has been updated successfully.',
           life: 3000
         });
       } catch (error) {
         this.$toast.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'There was an error updating the service.',
+          detail: 'There was an error updating the services.',
           life: 3000
         });
       }

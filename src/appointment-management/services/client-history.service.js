@@ -13,7 +13,7 @@ export class HistoryApiService {
             const response = await http.get(`/services/${serviceId}`);
             return response.data;
         } catch (error) {
-            console.error('Error fetching service:', error);
+            console.error('Error fetching services:', error);
             throw error;
         }
     }

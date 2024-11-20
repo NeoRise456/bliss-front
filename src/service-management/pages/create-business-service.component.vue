@@ -43,7 +43,7 @@ export default {
         this.$toast.add({
           severity: 'success',
           summary: 'Service Created',
-          detail: 'Your service has been created successfully.',
+          detail: 'Your services has been created successfully.',
           life: 3000
         });
         this.$router.push({name: 'BusinessMyServices' , params: {id: defaultClientId}});
@@ -51,7 +51,7 @@ export default {
         this.$toast.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'There was an error creating the service.',
+          detail: 'There was an error creating the services.',
           life: 3000
         });
       }

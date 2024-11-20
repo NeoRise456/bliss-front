@@ -2,7 +2,7 @@
 
 
 
-import {useAuthenticationStore} from "../service/authentication.store.js";
+import {useAuthenticationStore} from "../services/authentication.store.js";
 import {SignInRequest} from "../model/sign-in.request.js";
 
 export default {

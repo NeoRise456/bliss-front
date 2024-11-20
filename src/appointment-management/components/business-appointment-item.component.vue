@@ -62,7 +62,7 @@ export default {
         </div>
         <hr class="divider" />
         <div class="service-info">
-          <h3 class="section-title">{{ $t('businessAppointment.service') }}: {{ appointment.serviceName }}</h3>
+          <h3 class="section-title">{{ $t('businessAppointment.services') }}: {{ appointment.serviceName }}</h3>
           <p><strong>{{ $t('businessAppointment.description') }}:</strong> {{ this.service.description }}</p>
           <p><strong>{{ $t('businessAppointment.price') }}:</strong> ${{ this.service.price}}</p>
           <p><strong>{{ $t('businessAppointment.duration') }}:</strong> {{ this.service.duration }} {{ $t('businessAppointment.minutes') }}</p>

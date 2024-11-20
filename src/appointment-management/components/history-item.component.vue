@@ -28,7 +28,7 @@ const fetchServiceDetails = async () => {
     const service = await historyApiService.getServiceById(props.appointment.service.id);
     serviceImage.value = service.img;
   } catch (error) {
-    console.error('Error fetching service details:', error);
+    console.error('Error fetching services details:', error);
   }
 };
 const checkReviewExists = async () => {

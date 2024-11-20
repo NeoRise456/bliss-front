@@ -3,7 +3,7 @@ import {AuthenticationService} from "./authentication.service.js";
 import {SignInResponse} from "../model/sign-in.response.js";
 import {SignUpResponse} from "../model/sign-up.response.js";
 /**
- * Authentication service instance
+ * Authentication services instance
  * @type {AuthenticationService}
  */
 const authenticationService = new AuthenticationService();
@@ -44,7 +44,7 @@ export const useAuthenticationStore = defineStore({
         /**
          * Signs in the user
          * @summary
-         * This method sends a sign in request to the authentication service.
+         * This method sends a sign in request to the authentication services.
          * If the request is successful, it sets the signed in state to true,
          * stores the user id and email and saves the token in the local storage.
          * It then redirects the user to the home page.
@@ -70,7 +70,7 @@ export const useAuthenticationStore = defineStore({
         /**
          * Signs up the user
          * @summary
-         * This method sends a sign-up request to the authentication service.
+         * This method sends a sign-up request to the authentication services.
          * If the request is successful, it redirects the user to the sign-in page.
          * @param signUpRequest - {@link SignUpRequest} sign up request
          * @param router - router instance

@@ -1,7 +1,7 @@
 <script>
 
 import {SignUpRequest} from "../model/sign-up.request.js";
-import {useAuthenticationStore} from "../service/authentication.store.js";
+import {useAuthenticationStore} from "../services/authentication.store.js";
 
 export default {
   name: "sign-up",
