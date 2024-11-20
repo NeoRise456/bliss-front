@@ -2,10 +2,11 @@
   "toolbar": {
     "home": "Home",
     "services": "Services",
-    "schedule": "Schedule",
-    "myServices": "My Services",
+    "schedule": "Appointments",
+    "myServices": "'My Services' History",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "myServicesBussiness": "My Services"
   },
   "appointment": {
     "title": "Title",
@@ -78,7 +79,7 @@
   },
   "servicesHome": {
     "services": "Services",
-    "service_name": "Service Name",
+    "name": "Service Name",
     "description": "Description",
     "price": "Price",
     "duration": "Duration",
@@ -95,5 +96,56 @@
     "averageRating": "Average Rating",
     "companyNotFound": "Company not found.",
     "bestCompany": "Best Companies"
+  },
+  "bestService": {
+    "title": "Best Service",
+    "error": "No services available."
+  },
+  "serviceCategory": {
+    "title": "Service Categories"
+  },
+  "topRatedReviews": {
+    "title": "Best Reviews",
+    "rating": "Rating",
+    "date": "Date"
+  },
+  "historyCard": {
+    "noSchedule": "No schedule available",
+    "addReview": "Add Review",
+    "editReview": "Edit Review",
+    "deleteReview": "Delete Review"
+  },
+  "historyPage": {
+    "completedAppointments": "Completed Appointments"
+  },
+  "businessAppointment": {
+    "appointment": "Appointment",
+    "date": "Date",
+    "time": "Time",
+    "service": "Service",
+    "description": "Description",
+    "price": "Price",
+    "duration": "Duration",
+    "rating": "Rating",
+    "user": "User",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "minutes": "mins",
+    "cancelAppointment": "Cancel Appointment"
+  },
+  "businessAppointmentList": {
+    "noUsersAvailable": "No users available",
+    "userDetails": "User Details",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "confirmCancellation": "Confirm Cancellation",
+    "confirmCancellationMessage": "Are you sure you want to cancel this appointment?",
+    "yesCancel": "Yes, Cancel",
+    "noGoBack": "No, Go Back",
+    "close": "Close"
   }
+
 }

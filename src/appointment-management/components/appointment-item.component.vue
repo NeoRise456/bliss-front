@@ -1,4 +1,7 @@
 <script>
+import { HistoryApiService } from "../services/client-history.service.js";
+import {Appointment} from "../model/appointment.entity.js";
+
 export default {
   name: 'appointment-item',
   props: {
@@ -7,25 +10,45 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      serviceImage: '', // URL de la imagen del servicio
+      historyApiService: new HistoryApiService()
+    };
+  },
+  async mounted() {
+    await this.loadServiceImage();
+  },
   methods: {
+    async loadServiceImage() {
+      try {
+        const serviceData = await this.historyApiService.getServiceById(this.appointment.service.id);
+        this.serviceImage = serviceData.imgUrl; // Asigna la imagen del servicio a serviceImage
+      } catch (error) {
+        console.error("Error loading service image:", error);
+      }
+    },
     openCancelDialog() {
       this.$emit('open-cancel-dialog', this.appointment);
     },
     openAppointmentDialog() {
       this.$emit('open-appointment-dialog', this.appointment);
+    },
+    formattedDate() {
+      return new Date(this.appointment.date).toLocaleDateString('en-CA');
     }
   }
-}
+};
 </script>
 
 <template>
   <div class="appointment-card" @click="openAppointmentDialog">
     <div class="appointment-content">
-      <img alt="user header" class="appointment-image" :src="appointment.img" />
+      <img alt="service image" class="appointment-image" :src="serviceImage"/>
       <div class="appointment-details">
-        <h3 class="appointment-title">{{ appointment.serviceName }} - {{ appointment.companyName }}</h3>
+        <h3 class="appointment-title">{{ appointment.service.serviceName }} - {{ appointment.company.name }}</h3>
         <div class="date-time-container">
-          <div class="date-card">{{ $t('appointment.date') }}: {{ appointment.date }}</div>
+          <div class="date-card">{{ $t('appointment.date') }}: {{ formattedDate() }}</div>
           <div class="time-card">{{ $t('appointment.time') }}: {{ appointment.time }}</div>
         </div>
         <button @click.stop="openCancelDialog" class="cancel-button">Cancel Appointment</button>
@@ -109,5 +132,4 @@ export default {
 .cancel-button:hover {
   background-color: #ff1a1a;
 }
-
 </style>

@@ -7,6 +7,11 @@ export default {
       required: true
     }
   },
+  computed: {
+    formattedDate() {
+      return new Date(this.user.date).toLocaleDateString('en-CA');
+    }
+  },
   methods: {
     openCancelDialog() {
       this.$emit('open-cancel-dialog', this.user);
@@ -21,29 +26,28 @@ export default {
       <img :src="user.img" alt="Service Image" class="user-image" />
       <div class="user-details">
         <div class="appointment-info">
-          <h3 class="section-title">Appointment</h3>
-          <p><strong>Date:</strong> {{ user.date }}</p>
-          <p><strong>Time:</strong> {{ user.time }}</p>
+          <h3 class="section-title">{{ $t('businessAppointment.appointment') }}</h3>
+          <p><strong>{{ $t('businessAppointment.date') }}:</strong> {{ formattedDate }}</p>
+          <p><strong>{{ $t('businessAppointment.time') }}:</strong> {{ user.time }}</p>
         </div>
         <hr class="divider" />
         <div class="service-info">
-          <h3 class="section-title">Service: {{ user.serviceName }}</h3>
-          <p><strong>Description:</strong> {{ user.description }}</p>
-          <p><strong>Price:</strong> ${{ user.price }}</p>
-          <p><strong>Duration:</strong> {{ user.duration }} mins</p>
-          <p><strong>Rating:</strong> {{ user.rating }}</p>
+          <h3 class="section-title">{{ $t('businessAppointment.service') }}: {{ user.serviceName }}</h3>
+          <p><strong>{{ $t('businessAppointment.description') }}:</strong> {{ user.description }}</p>
+          <p><strong>{{ $t('businessAppointment.price') }}:</strong> ${{ user.price }}</p>
+          <p><strong>{{ $t('businessAppointment.duration') }}:</strong> {{ user.duration }} {{ $t('businessAppointment.minutes') }}</p>
         </div>
         <hr class="divider" />
         <div class="user-info">
-          <h3 class="section-title">User: {{ user.name }}</h3>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>Phone:</strong> {{ user.phone }}</p>
-          <p><strong>Address:</strong> {{ user.address }}</p>
-        </div>
-        <div class="button-container">
-          <button @click.stop="openCancelDialog" class="cancel-button">Cancel Appointment</button>
+          <h3 class="section-title">{{ $t('businessAppointment.user') }}: {{ user.userName }}</h3>
+          <p><strong>{{ $t('businessAppointment.email') }}:</strong> {{ user.userEmail }}</p>
+          <p><strong>{{ $t('businessAppointment.phone') }}:</strong> {{ user.userPhone }}</p>
+          <p><strong>{{ $t('businessAppointment.address') }}:</strong> {{ user.userAddress }}</p>
         </div>
       </div>
+    </div>
+    <div class="button-container">
+      <button @click.stop="openCancelDialog" class="cancel-button">{{ $t('businessAppointment.cancelAppointment') }}</button>
     </div>
   </div>
 </template>

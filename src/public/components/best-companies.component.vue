@@ -20,7 +20,6 @@ export default {
         this.services = servicesResponse.data;
         this.companies = companiesResponse.data;
 
-        // Suma de ratings y conteo de servicios por empresa
         const companyRatings = {};
 
         this.services.forEach((service) => {
@@ -32,13 +31,11 @@ export default {
           companyRatings[service.company_id].serviceCount++;
         });
 
-        // Cálculo del promedio de rating por empresa
         const companyAvgRating = Object.keys(companyRatings).map((companyId) => {
           const avgRating = companyRatings[companyId].totalRating / companyRatings[companyId].serviceCount;
           return { companyId: parseInt(companyId), avgRating };
         });
 
-        // Ordena por promedio de rating y selecciona las 3 empresas con mejor rating
         const topCompanyIds = companyAvgRating
             .sort((a, b) => b.avgRating - a.avgRating)
             .slice(0, 3)
@@ -60,7 +57,7 @@ export default {
 
 <template>
   <div class="p-m-4">
-    <h2 class="p-text-center">{{$t('companyDetail.bestCompany')}}:</h2>
+    <h2 class="p-text-center title">{{$t('companyDetail.bestCompany')}}</h2>
     <div class="companies-container p-grid p-nogutter">
       <div
           v-for="company in topCompanies"
@@ -119,16 +116,23 @@ export default {
 .p-shadow-4 {
   box-shadow: 0px 4px 8px rgb(213, 202, 240);
 }
+
 .p-text-center {
   text-align: center;
   color: #37123C;
 }
+
 .p-p-2 {
   padding: 8px;
-
 }
-.p-mt-3{
+
+.p-mt-3 {
   color: #37123C;
+}
+
+.title {
+  font-size: 3rem;
+  text-decoration: underline;
 }
 </style>
 

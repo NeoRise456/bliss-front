@@ -6,19 +6,17 @@ import { Appointment } from '../model/appointment.entity.js';
 import { Review } from '../../review/model/review.entity.js';
 import {defaultClientId} from "../../router/index.js";
 
-const userId = defaultClientId; // Temporary user id for testing the component
+const userId = defaultClientId;
 const completedAppointments = ref([]);
 const historyApiService = new HistoryApiService();
 
 const fetchCompletedAppointments = async () => {
   try {
     const appointments = await historyApiService.getAppointments();
-    console.log('Fetched Appointments:', appointments); // Debugging log
     if (!Array.isArray(appointments)) {
       throw new TypeError('Expected an array of appointments');
     }
     const filteredAppointments = appointments.filter(appointment => appointment.userId === userId  && appointment.status === "COMPLETED");
-    console.log('Filtered Appointments:', filteredAppointments); // Debugging log
     completedAppointments.value = await Promise.all(
         filteredAppointments.map(async appointment => {
           const service = await historyApiService.getServiceById(appointment.serviceId);
@@ -36,7 +34,7 @@ const fetchCompletedAppointments = async () => {
               appointment.date,
               appointment.time
           );
-          newAppointment.serviceName = service.service_name;
+          newAppointment.serviceName = service.name;
           newAppointment.companyName = company.name;
           newAppointment.review = review;
 
