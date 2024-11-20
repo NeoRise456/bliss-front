@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import ReviewManagementCard from '../components/review-management-card.component.vue';
 import { ReviewApiService } from '../services/review.service.js';
-import { AppointmentApiService } from '../services/appointment.service.js';
+import { HistoryApiService } from '../../appointment-management/services/client-history.service.js';
 
 const route = useRoute();
 const router = useRouter();
@@ -11,7 +11,7 @@ const appointment = ref(null);
 const appointmentId = route.params.appointmentId;
 const review = ref(null);
 const reviewApiService = new ReviewApiService();
-const appointmentApiService = new AppointmentApiService();
+const appointmentApiService = new HistoryApiService();
 
 const fetchReviewAndAppointment = async () => {
   try {

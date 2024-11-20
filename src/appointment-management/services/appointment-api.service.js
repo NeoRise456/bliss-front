@@ -7,7 +7,7 @@ export class AppointmentApiService {
      * @returns {Promise<Array>} Array of appointment objects
      */
     getAppointmentsByUserId(userId) {
-        return http.get(`/appointments/user/${userId }`)
+        return http.get(`/appointments/user/${userId}`)
             .then(response => response.data)
             .catch(error => {
                 console.error("Error fetching appointments:", error);
@@ -33,5 +33,9 @@ export class AppointmentApiService {
                 console.error(`Error canceling appointment with id ${appointmentId}:`, error);
                 throw error;
             });
+    }
+
+    getAppointmentById(appointmentId) {
+        return http.get(`/appointments/${appointmentId}`);
     }
 }
