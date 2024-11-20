@@ -12,7 +12,7 @@ export default {
 <template>
   <pv-card>
     <template #header>
-      <img alt="service" :src="service.img" style="max-width: 300px"/>
+      <img alt="service" :src="service.imgUrl" style="max-width: 300px"/>
     </template>
     <template #title>
       {{ service.name }}
