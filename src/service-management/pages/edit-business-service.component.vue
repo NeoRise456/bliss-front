@@ -125,7 +125,7 @@ export default {
         </div>
       </template>
       <template #footer>
-        <pv-button :label="$t('editService.editButton')" class="mt-5" style="background-color: #37123C; color: white" @click="updateService" />
+        <pv-button :label="$t('editService.editButton')" class="mt-5" style="background-color: #37123C; color: white" @click="updateService" router/>
       </template>
     </pv-card>
   </div>

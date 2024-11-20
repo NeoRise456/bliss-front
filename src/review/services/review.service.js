@@ -32,6 +32,8 @@ export class ReviewApiService extends ServiceApiService {
     updateReview(reviewId, reviewData) {
         return http.put(`/reviews/${reviewId}`, reviewData);
     }
-
-
+  
+    getReviewByAppointmentId(appointmentId) {
+        return http.get(`/reviews?appointmentId=${appointmentId}`);
+    }
 }

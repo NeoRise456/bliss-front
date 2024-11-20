@@ -20,6 +20,16 @@ export class AppointmentApiService {
     }
 
     /**
+     * Fetch appointment by company ID
+     * @param companyId
+     * @returns {Promise<axios.AxiosResponse<any>>} Array of appointment objects
+     */
+
+    getAppointmentsByCompanyId(companyId){
+        return http.get(`/appointments?companyId=${companyId}`);
+    }
+
+    /**
      * Cancel an appointment by appointment ID
      * @param {number} appointmentId
      * @returns {Promise<void>} Resolves if the appointment is successfully canceled
