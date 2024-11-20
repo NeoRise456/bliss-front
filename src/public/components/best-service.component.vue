@@ -41,7 +41,6 @@ export default {
             const avgRating = ratingData.count > 0 ? ratingData.totalRating / ratingData.count : 0;
             return { ...service, avgRating };
           });
-          
           const sortedServices = serviceAvgRatings.sort((a, b) => b.avgRating - a.avgRating);
           this.bestService = sortedServices[0];
         }
