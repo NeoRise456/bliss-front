@@ -1,5 +1,5 @@
 <script>
-import {defaultBusinessId} from "../../router/index.js";
+import {defaultBusinessId, defaultClientId} from "../../router/index.js";
 import {ServiceApiService} from "../services/service-api.service.js";
 import {CategoryApiService} from "../services/category-api.service.js";
 
@@ -43,14 +43,15 @@ export default {
         this.$toast.add({
           severity: 'success',
           summary: 'Service Created',
-          detail: 'Your service has been created successfully.',
+          detail: 'Your services has been created successfully.',
           life: 3000
         });
+        this.$router.push({name: 'BusinessMyServices' , params: {id: defaultClientId}});
       } catch (error) {
         this.$toast.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'There was an error creating the service.',
+          detail: 'There was an error creating the services.',
           life: 3000
         });
       }

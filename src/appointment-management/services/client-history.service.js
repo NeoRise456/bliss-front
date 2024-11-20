@@ -6,23 +6,14 @@ export class HistoryApiService {
         this.serviceApiService = new ServiceApiService();
     }
 
-    async getAppointments() {
-        try {
-            const response = await http.get(`/appointments/`);
-            return response.data;
-        }
-        catch (error) {
-            console.error('Error fetching appointments:', error);
-            throw error;
-        }
-    }
+
 
     async getServiceById(serviceId) {
         try {
             const response = await http.get(`/services/${serviceId}`);
             return response.data;
         } catch (error) {
-            console.error('Error fetching service:', error);
+            console.error('Error fetching services:', error);
             throw error;
         }
     }
@@ -39,11 +30,20 @@ export class HistoryApiService {
 
     async getReviewByAppointmentId(appointmentId) {
         try {
-            const response = await http.get(`/reviews?appointmentId=${appointmentId}`);
+            const response = await http.get(`/reviews/${appointmentId}`);
             return response.data;
         } catch (error) {
             console.error('Error fetching review:', error);
             throw error;
         }
+
+    }
+
+    async getAppointmentById(appointmentId) {
+        return http.get(`/appointments/${appointmentId}`);
+    }
+
+    async getAppointmentByUserId(userId) {
+        return http.get(`/appointments/user/${userId}`);
     }
 }

@@ -6,8 +6,8 @@ export class AppointmentApiService {
      * Fetch all appointments
      * @returns {Promise<Array>} Array of appointment objects
      */
-    getAppointments(userId) {
-        return http.get(`/appointments/user/${userId }`)
+    getAppointmentsByUserId(userId) {
+        return http.get(`/appointments/user/${userId}`)
             .then(response => response.data)
             .catch(error => {
                 console.error("Error fetching appointments:", error);
@@ -15,14 +15,8 @@ export class AppointmentApiService {
             });
     }
 
-    /**
-     * Fetch appointment by company ID
-     * @param companyId
-     * @returns {Promise<axios.AxiosResponse<any>>} Array of appointment objects
-     */
-
-    getAppointmentsByCompanyId(companyId){
-        return http.get(`/appointments?companyId=${companyId}`);
+    getAppointmentsByCompanyId(companyId) {
+        return http.get(`/companies/${companyId}/appointments`)
     }
 
     /**
@@ -39,5 +33,9 @@ export class AppointmentApiService {
                 console.error(`Error canceling appointment with id ${appointmentId}:`, error);
                 throw error;
             });
+    }
+
+    getAppointmentById(appointmentId) {
+        return http.get(`/appointments/${appointmentId}`);
     }
 }

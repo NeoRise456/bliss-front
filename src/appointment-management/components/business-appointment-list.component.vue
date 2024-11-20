@@ -1,11 +1,9 @@
 <script>
-import axios from 'axios';
 import AppointmentItem from './appointment-item.component.vue';
-import { Appointment } from "../model/appointment.entity.js";
-import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
-import { AppointmentApiService } from "../services/appointment-api.service.js";
-import { ServiceApiService } from "../../service-management/services/service-api.service.js";
-import { defaultClientId } from "../../router/index.js";
+import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
+import {AppointmentApiService} from "../services/appointment-api.service.js";
+import {ServiceApiService} from "../../service-management/services/service-api.service.js";
+import {defaultBusinessId} from "../../router/index.js";
 import BusinessAppointmentItem from "./business-appointment-item.component.vue";
 
 export default {
@@ -26,9 +24,10 @@ export default {
   methods: {
     async fetchPendingAppointments() {
       try {
-        //TODO cambiar el get axios por el get de la api
-        const response = await axios.get('http://localhost:5296/api/v1/services');
-        this.pendingAppointments = response.data;
+        const response = await this.appointmentApiService.getAppointmentsByCompanyId(defaultBusinessId);
+        this.pendingAppointments = response.data.filter(
+            appointment => appointment.status === "PENDING"
+        );
       } catch (error) {
         console.error("Error fetching pending appointments:", error);
       }
@@ -79,7 +78,7 @@ export default {
     <div v-for="appointment in pendingAppointments"
          :key="appointment.id"
          class="appointment-item-container">
-      <business-appointment-item :user="appointment"
+      <business-appointment-item :appointment="appointment"
                                  @open-cancel-dialog="openCancelDialog"
                                  @open-appointment-dialog="openAppointmentDialog"/>
     </div>

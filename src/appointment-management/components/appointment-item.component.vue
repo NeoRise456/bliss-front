@@ -1,5 +1,6 @@
 <script>
 import { HistoryApiService } from "../services/client-history.service.js";
+import {Appointment} from "../model/appointment.entity.js";
 
 export default {
   name: 'appointment-item',
@@ -21,10 +22,10 @@ export default {
   methods: {
     async loadServiceImage() {
       try {
-        const serviceData = await this.historyApiService.getServiceById(this.appointment.serviceId);
-        this.serviceImage = serviceData.img; // Asigna la imagen del servicio a serviceImage
+        const serviceData = await this.historyApiService.getServiceById(this.appointment.service.id);
+        this.serviceImage = serviceData.imgUrl; // Asigna la imagen del servicio a serviceImage
       } catch (error) {
-        console.error("Error loading service image:", error);
+        console.error("Error loading services image:", error);
       }
     },
     openCancelDialog() {
@@ -45,7 +46,7 @@ export default {
     <div class="appointment-content">
       <img alt="service image" class="appointment-image" :src="serviceImage"/>
       <div class="appointment-details">
-        <h3 class="appointment-title">{{ appointment.serviceName }} - {{ appointment.companyName }}</h3>
+        <h3 class="appointment-title">{{ appointment.service.serviceName }} - {{ appointment.company.name }}</h3>
         <div class="date-time-container">
           <div class="date-card">{{ $t('appointment.date') }}: {{ formattedDate() }}</div>
           <div class="time-card">{{ $t('appointment.time') }}: {{ appointment.time }}</div>
