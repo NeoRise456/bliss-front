@@ -1,10 +1,10 @@
 <script>
 import AppointmentItem from './appointment-item.component.vue';
-import { Appointment } from "../model/appointment.entity.js";
-import { BusinessAppointmentApiService } from "../services/business-appointment-api.service.js";
-import { AppointmentApiService } from "../services/appointment-api.service.js";
-import { ServiceApiService } from "../../service-management/services/service-api.service.js";
-import { defaultClientId } from "../../router/index.js";
+import {Appointment} from "../model/appointment.entity.js";
+import {BusinessAppointmentApiService} from "../services/business-appointment-api.service.js";
+import {AppointmentApiService} from "../services/appointment-api.service.js";
+import {ServiceApiService} from "../../service-management/services/service-api.service.js";
+import {defaultClientId} from "../../router/index.js";
 
 export default {
   name: "appointment-list",
@@ -24,13 +24,10 @@ export default {
   methods: {
     async fetchPendingAppointments() {
       try {
-        const appointments = await this.appointmentApiService.getAppointments(defaultClientId);
-
+        const appointments = await this.appointmentApiService.getAppointmentsByUserId(defaultClientId);
         const filteredAppointments = appointments.filter(
             appointment => {
-              const matchesUserId = appointment.user.id === this.userId;
-              const matchesStatus = appointment.status === "PENDING";
-              return matchesUserId && matchesStatus;
+              return  appointment.status === "PENDING";
             }
         );
 
@@ -54,13 +51,14 @@ export default {
 
           const newAppointment = new Appointment(
               appointment.id,
-              appointment.userId,
-              appointment.service.id,
-              appointment.company.id,
+              appointment.user,
+              appointment.service,
+              appointment.company,
               appointment.reservationDate,
               appointment.status,
               appointment.date,
-              appointment.time
+              appointment.time,
+              appointment.requirements
           );
           newAppointment.serviceName = serviceName;
           newAppointment.companyName = companyName;
@@ -69,6 +67,7 @@ export default {
         });
 
         this.pendingAppointments = await Promise.all(appointmentDetailsPromises);
+        console.log('Pending Appointments:', this.pendingAppointments);
       } catch (error) {
         console.error("Error fetching pending appointments:", error);
       }
@@ -126,8 +125,8 @@ export default {
     <div v-if="dialogVisible" class="dialog-overlay" @click="closeAppointmentDialog">
       <div class="dialog-card" @click.stop>
         <h3>Appointment Details</h3>
-        <p><strong>Service:</strong> {{ selectedAppointment?.serviceName }}</p>
-        <p><strong>Company:</strong> {{ selectedAppointment?.companyName }}</p>
+        <p><strong>Service:</strong> {{ selectedAppointment?.service.serviceName }}</p>
+        <p><strong>Company:</strong> {{ selectedAppointment?.company.name }}</p>
         <p><strong>Date:</strong> {{ selectedAppointment?.date }}</p>
         <p><strong>Time:</strong> {{ selectedAppointment?.time }}</p>
         <button @click="closeAppointmentDialog" class="close-button">Close</button>
