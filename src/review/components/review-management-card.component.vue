@@ -1,10 +1,10 @@
 <script setup>
-import {ref, watch, computed, onMounted} from 'vue';
-import {Review} from '../model/review.entity.js';
+import { ref, watch, computed, onMounted } from 'vue';
+import { Review } from '../model/review.entity.js';
 import axios from 'axios';
 import Rating from 'primevue/rating';
-import {ReviewApiService} from '../services/review.service.js';
-import {AppointmentApiService} from "../services/appointment.service.js";
+import { ReviewApiService } from '../services/review.service.js';
+import { HistoryApiService } from "../../appointment-management/services/client-history.service.js";
 
 const props = defineProps({
   review: {
@@ -17,7 +17,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['saveReview']);
+const emit = defineEmits(['saveReview', 'reviewCreated']);
 const rating = ref(0);
 const comment = ref('');
 const imageUrl = ref('');
@@ -36,6 +36,7 @@ const saveReview = () => {
   console.log('Review Data:', reviewData); // Log the review data
 
   emit('saveReview', reviewData);
+  emit('reviewCreated', reviewData);
 };
 
 const uploadImage = async (event) => {
@@ -68,10 +69,10 @@ watch(reviewData, (newReview) => {
     comment.value = newReview.comments;
     imageUrl.value = newReview.imageUrl || '';
   }
-}, {immediate: true});
+}, { immediate: true });
 
 onMounted(() => {
-  // No need to set serviceName, companyName, reservationStartTime, and userName here
+
 });
 </script>
 

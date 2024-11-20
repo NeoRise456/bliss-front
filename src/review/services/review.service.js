@@ -6,32 +6,32 @@ export class ReviewApiService extends ServiceApiService {
         super();
     }
 
-
-    getReviewByReservationId(appointmentId) {
+    async getReviewByAppointmentId(appointmentId) {
         return http.get(`/reviews/appointment/${appointmentId}`);
     }
 
-    getReviewByCompanyId(companyId) {
+    async getReviewByCompanyId(companyId) {
         return http.get(`/reviews/company/${companyId}`);
     }
 
-    getReviewByUserId(userId) {
+    async getReviewByUserId(userId) {
         return http.get(`/reviews/user/${userId}`);
     }
-    getReviewById(reviewId) {
+    async getReviewById(reviewId) {
         return http.get(`/reviews/${reviewId}`);
     }
 
-    deleteReview(reviewId) {
+    async deleteReview(reviewId) {
         return http.delete(`/reviews/${reviewId}`);
     }
 
-    createReview(reviewData) {
+    async createReview(reviewData) {
         return http.post('/reviews', reviewData);
     }
-    updateReview(reviewId, reviewData) {
+    async updateReview(reviewId, reviewData) {
         return http.put(`/reviews/${reviewId}`, reviewData);
     }
+
 
 
 }
