@@ -6,13 +6,17 @@ export class AppointmentApiService {
      * Fetch all appointments
      * @returns {Promise<Array>} Array of appointment objects
      */
-    getAppointments(userId) {
+    getAppointmentsByUserId(userId) {
         return http.get(`/appointments/user/${userId }`)
             .then(response => response.data)
             .catch(error => {
                 console.error("Error fetching appointments:", error);
                 return [];
             });
+    }
+
+    getAppointmentsByCompanyId(companyId) {
+        return http.get(`/companies/${companyId}/appointments`)
     }
 
     /**
