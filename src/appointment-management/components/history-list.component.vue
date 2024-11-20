@@ -34,7 +34,7 @@ const fetchCompletedAppointments = async () => {
               appointment.date,
               appointment.time
           );
-          newAppointment.serviceName = service.service_name;
+          newAppointment.serviceName = service.name;
           newAppointment.companyName = company.name;
           newAppointment.review = review;
 

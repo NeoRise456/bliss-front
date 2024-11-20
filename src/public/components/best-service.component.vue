@@ -38,7 +38,7 @@ export default {
     <div v-if="bestService" class="best-service-content flex justify-content-center">
       <pv-card class="best-service-card p-shadow-2">
         <template #title>
-          <h2 class="service-title">{{ bestService.service_name }}</h2>
+          <h2 class="service-title">{{ bestService.name }}</h2>
         </template>
         <template #content>
           <div class="service-content flex">

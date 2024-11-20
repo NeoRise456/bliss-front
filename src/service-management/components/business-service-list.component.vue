@@ -21,14 +21,13 @@ export default {
             service.id,
             service.category_id,
             service.company_id,
-            service.service_name,
+            service.name,
             service.description,
             service.price,
             service.duration,
             service.rating,
             service.sales,
-            service.created_at,
-            service.img
+            service.imgUrl
         ));
       } catch (error) {
         console.error('Error fetching services:', error);

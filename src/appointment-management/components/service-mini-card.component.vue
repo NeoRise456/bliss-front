@@ -15,7 +15,7 @@ export default {
       <img alt="service" :src="service.img" style="max-width: 300px"/>
     </template>
     <template #title>
-      {{ service.service_name }}
+      {{ service.name }}
     </template>
     <template #subtitle>
       {{ service.description }}

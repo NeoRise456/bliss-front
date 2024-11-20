@@ -32,7 +32,7 @@ export default {
           response.data.id,
           response.data.category_id,
           response.data.company_id,
-          response.data.service_name,
+          response.data.name,
           response.data.description,
           response.data.price,
           response.data.duration,
@@ -51,7 +51,7 @@ export default {
       try{
         let response = await categoriesApiService.getCategories();
         this.categories = response.data.map(category => ({
-          cname: category.category_name,
+          cname: category.name,
           name: category.id
         }));
       }catch (error){
@@ -62,14 +62,13 @@ export default {
       const serviceData ={
         category_id: this.selectedCategory ? parseInt(this.selectedCategory.name) : this.service.category_id,
         company_id: this.service.company_id,
-        service_name: this.serviceName ? this.serviceName : this.service.service_name,
+        name: this.serviceName ? this.serviceName : this.service.name,
         description: this.description ? this.description : this.service.description,
         price: this.price ? this.price : this.service.price,
         duration: this.duration ? this.duration : this.service.duration,
         rating: this.service.rating,
         sales: this.service.sales,
-        created_at: this.service.created_at,
-        img: this.service.img
+        imgUrl: this.service.imgUrl
       };
       try {
         const serviceApiService = new ServiceApiService();
@@ -110,7 +109,7 @@ export default {
       <template #content>
         <div style="text-align: left">
           <h2 style="font-weight: normal;">{{$t('editService.serviceName')}}</h2>
-          <pv-input-text style="background-color: white; color: black; width: 100%" type="text" v-model="serviceName" :placeholder="service.service_name" class="custom-text-input"/>
+          <pv-input-text style="background-color: white; color: black; width: 100%" type="text" v-model="serviceName" :placeholder="service.name" class="custom-text-input"/>
         </div>
         <div style="text-align: left">
           <h2 style="font-weight: normal;">{{$t('editService.serviceCategory')}}</h2>

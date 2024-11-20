@@ -45,7 +45,7 @@ const fetchAdditionalData = async (appointmentId, userId) => {
 
     const serviceResponse = await reviewApiService.getServiceById(appointment.serviceId);
 
-    serviceName.value = serviceResponse.data.service_name;
+    serviceName.value = serviceResponse.data.name;
     userName.value = user.name;
     appointmentDate.value = appointment.date;
   } catch (error) {

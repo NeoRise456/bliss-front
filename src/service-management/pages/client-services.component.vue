@@ -41,7 +41,7 @@ export default {
               service.id,
               service.category_id,
               service.company_id,
-              service.service_name,
+              service.name,
               service.description,
               service.price,
               service.duration,

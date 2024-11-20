@@ -30,7 +30,7 @@ export default {
       const serviceData = {
         category_id: this.selectedCategory ? parseInt(this.selectedCategory.name) : null,
         company_id: defaultBusinessId,
-        service_name: this.serviceName,
+        name: this.serviceName,
         description: this.description,
         price: this.price,
         duration: this.getRandomInt(40, 120),
@@ -62,7 +62,7 @@ export default {
       try{
         let response = await categoriesApiService.getCategories();
         this.categories = response.data.map(category => ({
-          cname: category.category_name,
+          cname: category.name,
           name: category.id
         }));
       }catch (error){
