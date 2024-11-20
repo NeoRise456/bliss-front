@@ -39,8 +39,8 @@ export default {
       return service.map(
           service=> new Service(
               service.id,
-              service.category_id,
-              service.company_id,
+              service.category,
+              service.company,
               service.name,
               service.description,
               service.price,
