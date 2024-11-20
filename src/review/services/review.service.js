@@ -31,6 +31,9 @@ export class ReviewApiService extends ServiceApiService {
     getReviewByAppointmentId(appointmentId) {
         return http.get(`/reviews?appointmentId=${appointmentId}`);
     }
+    getReviewsByCompanyId(companyId) {
+        return http.get(`/reviews/company/${companyId}`);
+    }
 
     getUserById(userId) {
         return http.get(`/users?id=${userId}`);
