@@ -13,6 +13,8 @@ import BusinessAppointmentListComponent from "../appointment-management/componen
 import ReviewManagementPage from '../review/pages/review-management-page.component.vue';
 import EditBusinessServiceComponent from "../service-management/pages/edit-business-service.component.vue";
 import ReservationsComponent from "../appointment-management/pages/reservations-page.component.vue";
+import SignInComponent from "../iam/pages/sign-in.component.vue";
+import SignUpComponent from "../iam/pages/sign-up.component.vue";
 
 export const defaultClientId = 1;
 export const defaultBusinessId = 1;
@@ -42,9 +44,12 @@ const router = createRouter({
        
 
         // Redirection options
-        { path: '/', redirect: '/home' },
+        { path: '/', redirect: '/sign-in' },
         { path: '/:pathMatch(.*)*', name: 'not-found', component: PageNotFound, meta: { title: 'Page Not Found' } },
         {path: '/reservation/:id', name: 'Reservations', component: ReservationsComponent, meta: { title: 'Reservations' } },
+        { path: '/sign-in', name: 'sign-in',component: SignInComponent,meta: { title: 'Sign In'}},
+        { path: '/sign-up', name: 'sign-up',component: SignUpComponent,meta: { title: 'Sign Up'}},
+
     ]
 });
 
