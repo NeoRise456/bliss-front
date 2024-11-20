@@ -1,8 +1,8 @@
 export class Service {
     constructor(
         id = 0,
-        category_id = 0,
-        company_id = 0,
+        company = { id: 0, name: '' },
+        category = { id: 0, name: '' },
         name = '',
         description = '',
         price = 0,
@@ -12,8 +12,8 @@ export class Service {
         imgUrl = '',
     ) {
         this.id = id;
-        this.category_id = category_id;
-        this.company_id = company_id;
+        this.company = company;
+        this.category = category;
         this.name = name;
         this.description = description;
         this.price = price;

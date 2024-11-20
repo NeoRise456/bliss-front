@@ -1,7 +1,6 @@
 <script>
 import { Service } from "../../shared/model/service.entity.js";
 import { ServiceApiService } from "../services/service-api.service.js";
-import {Category} from "../model/category.entity.js";
 import {CategoryApiService} from "../services/category-api.service.js";
 
 export default {
@@ -30,15 +29,14 @@ export default {
         const response = await serviceApiService.getServiceById(parseInt(this.serviceId));
         this.service = new Service(
           response.data.id,
-          response.data.category_id,
-          response.data.company_id,
+          response.data.company,
+          response.data.category,
           response.data.name,
           response.data.description,
           response.data.price,
           response.data.duration,
           response.data.rating,
           response.data.sales,
-          response.data.created_at,
           response.data.img
         );
         console.log('Service:', this.service);
@@ -60,15 +58,11 @@ export default {
     },
     async updateService(){
       const serviceData ={
-        category_id: this.selectedCategory ? parseInt(this.selectedCategory.name) : this.service.category_id,
-        company_id: this.service.company_id,
+        categoryId: this.selectedCategory ? parseInt(this.selectedCategory.name) : this.service.category.id,
         name: this.serviceName ? this.serviceName : this.service.name,
         description: this.description ? this.description : this.service.description,
         price: this.price ? this.price : this.service.price,
         duration: this.duration ? this.duration : this.service.duration,
-        rating: this.service.rating,
-        sales: this.service.sales,
-        imgUrl: this.service.imgUrl
       };
       try {
         const serviceApiService = new ServiceApiService();
@@ -114,7 +108,7 @@ export default {
         <div style="text-align: left">
           <h2 style="font-weight: normal;">{{$t('editService.serviceCategory')}}</h2>
           <pv-cascade-select style="background-color: white; color: black; width: 100%" v-model="selectedCategory" :options="categories" optionLabel="cname" optionGroupLabel="name"
-                             optionGroupChildren="children" :placeholder="service.category_id.toString()" class="custom-cascade-select" />
+                             optionGroupChildren="children" :placeholder="service.category.name" class="custom-cascade-select" />
         </div>
         <div style="text-align: left">
           <h2 style="font-weight: normal;">{{$t('editService.serviceDuration')}}</h2>

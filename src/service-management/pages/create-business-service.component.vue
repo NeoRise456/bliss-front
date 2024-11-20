@@ -28,19 +28,17 @@ export default {
     },
     async createService() {
       const serviceData = {
-        category_id: this.selectedCategory ? parseInt(this.selectedCategory.name) : null,
-        company_id: defaultBusinessId,
+        companyId: defaultBusinessId,
+        categoryId: this.selectedCategory ? parseInt(this.selectedCategory.name) : null,
         name: this.serviceName,
         description: this.description,
         price: this.price,
         duration: this.getRandomInt(40, 120),
-        rating: 0,
-        sales: 0,
-        created_at: new Date().toISOString(),
-        img: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
+        imageUrl: "https://res.cloudinary.com/dbdoazcrx/image/upload/v1727333993/ulxogsmo1ynfnaxxmxiv.webp"
       };
       try {
         const serviceApiService = new ServiceApiService();
+        console.log('Service Data:', serviceData);
         const response = await serviceApiService.createService(serviceData);
         this.$toast.add({
           severity: 'success',

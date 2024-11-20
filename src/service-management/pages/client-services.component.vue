@@ -30,7 +30,7 @@ export default {
       return categories.map(
           category=> new Category(
               category.id,
-              category.category_name,
+              category.name,
               category.description
           )
       );
@@ -47,8 +47,7 @@ export default {
               service.duration,
               service.rating,
               service.sales,
-              service.created_at,
-              service.img
+              service.imgUrl
           )
       );
 
