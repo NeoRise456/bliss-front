@@ -15,6 +15,10 @@ export class AppointmentApiService {
             });
     }
 
+    getAppointmentsByCompanyId(companyId) {
+        return http.get(`/companies/${companyId}/appointments`)
+    }
+
     /**
      * Cancel an appointment by appointment ID
      * @param {number} appointmentId
