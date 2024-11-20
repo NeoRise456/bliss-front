@@ -57,7 +57,7 @@ export default {
             </template>
             <template #title>
               <div class="content-text">
-                {{ service.service_name }}
+                {{ service.name }}
               </div>
             </template>
             <template #content>

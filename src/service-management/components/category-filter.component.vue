@@ -37,7 +37,7 @@ export default {
                class="justify-content-start flex align-items-center">
             <pv-checkbox v-model="selectedCategories"  name="category"
                          :value="category"/>
-            <label :for="category.id"> {{category.category_name}}</label>
+            <label :for="category.id"> {{category.name}}</label>
           </div>
         </div>
       </div>

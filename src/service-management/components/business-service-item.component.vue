@@ -37,12 +37,12 @@ export default {
   <pv-card class="bg-white item-card">
     <template #header>
       <div style="padding: 10px">
-        <img alt="user header" :src="service.img" class="service-image" />
+        <img alt="user header" :src="service.imgUrl" class="service-image" />
       </div>
     </template>
     <template #title>
       <div class="content-text">
-        {{ service.service_name }}
+        {{ service.name }}
       </div>
     </template>
     <template #content>
